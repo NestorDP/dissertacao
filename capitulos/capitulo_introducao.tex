@@ -1,5 +1,48 @@
 \chapter{Introdução}
 
+% Apresentação do Tema e Contexto
+% Nesta parte do documento, o pesquisador precisa explicar no texto a respeito do contexto 
+% em que o tema está inserido. É bom imaginar que o leitor não conhece da área então 
+% antes de explicar o assunto específico que será abordado, você deve explicar onde ele 
+% está inserido.
+Pesquisa em desenvolvimento em robótica, aumento das aplicações, robótica móvel e robótica
+colaborativa
+
+O ROS como um framework que esta se tornando o padrão no desenvolvimento de robótica
+
+Desenvolvimento com fpga, SoC. dificuldade e maior tempo de desenvolvimento 
+
+Juntar fpga com robótica através do ros dando foco na facilidade de desenvolvimento
+
+
+% Delimitação do Tema
+% Nessa área o redator e pesquisador do projeto pode explicar o tema dentro do contexto, 
+% qual a sua delimitação e qual a importância de se aprofundar.
+explicar a parte da comunicação entre o computador/ros e o SoC
+
+melhorar a comunicação, comunicação eficiente, pacote pronto e de fácil integração com qualquer sistema 
+ros,
+
+O mais genérico possível para se enquadrar a qualquer projeto é que o desenvolvedor tenha
+interesse em incluir um FPGA ao sistema
+
+
+% Problema
+% Qual problema o projeto pretende resolver? Lembramos que a pesquisa da monografia procura 
+% responder a uma pergunta, ou discutir um problema. Permite atingir conclusões e considerações.
+% Na parte da problematização é explicado qual será o problema a ser respondido pela pesquisa e 
+% pesquisador.
+Definir o problema (a pergunta)
+
+\begin{itemize}
+    \item \textbf{Como estabelecer a comunicação entre o ROS e um sistema de processamento auxiliar 
+embarcado em um FPGA?}
+
+\end{itemize}
+
+
+
+
 
 
 Agrupar inúmeros “blocos" de softwares usados em robótica, fornecer drivers para hardwares
@@ -34,72 +77,59 @@ mas em contra partida as facilidade de desenvolvimento encontradas em aplicaçõ
 fazem uso de softwares não são encontradas nas mesmas proporções no mundo do hardware,
 sendo assim:
 
-\begin{itemize}
-    \item \textbf{Como estabelecer a comunicação entre o ROS e um sistema de processamento de vídeo 
-embarcado em um FPGA?}
-
-
-Esse problema inicial nos leva naturalmente a outro:
-
-
-    \item \textbf{Stabelecendo a comunicação entre o FPGA e o ROS a execução do pro-
-cessamento de vídeo de forma paralela, embarcada em um FPGA, pode
-melhorar a performance do sistema?}
-  
-\end{itemize}
-
-
-
 
 
 
 
 \section{Justificativa}
 
-Nos últimos anos novas técnicas para construção de robôs tem sido bastante estudadas, em 
-especial uma área que tem sido bastante explorada é a robótica móvel. A principal 
-características que tem sido buscada é cada vez fornecer mais autonomia ao sistemas 
-robóticos o que vem tornado cada vez seus softwares mais complexos, o que aumenta a 
-necessidade do uso de processadores cada vez mais poderosos, que consomem mais energia. 
-Entretanto a busca por mais autonomia, diz respeito também às baterias, que são as fontes 
-de energia da maioria dos robôs móveis, o que provoca uma verdadeira briga entre poder 
-de processamento e baixo consumo.
+1 - 
 
-Sendo assim, o FPGA pode ser uma ótima alternativa para solucionar os problemas de aumento 
-do poder de processamento em conjunto com baixo consumo de energia. Meyer-Baese (2007) 
-descreve algumas vantagens dos FPGAs modernos para uso em processamento digitais de 
-sinais, como as cadeias de fast-carry usadas para implementar MACs de alta velocidade e o 
-paralelismo tipicamente encontrado em dedign implementados em FPGA. Por essas 
-características o FPGA necessita de frequências menores de trabalho para alcançar 
-desempenho equivalente ou superior às soluções baseadas em processadores, tornando a 
-dissipação de energia menor.
 
-Foi encontrado até o memento uma única pesquisa que relaciona o ROS e FPGA para 
-processamento de vídeo, nesse ponto a proposta deste trabalho difere da solução encontrado. 
-No trabalho de Yamashina et al. (2005), são demonstradas três técnica para realizar a 
-conexão entre o FPGA e o ROS, que se diferem da proposta por essa pesquisa. A ideia é 
-utilizar um soft-core processor, que é um processador descrito em linguagem HDL embarcado 
-no FPGA (CHU, 2012), esse processador ficará responsável por estabelecer a comunicação entre 
-a rede TCP/IP e o hardware configurado no FPGA.
+% Nos últimos anos novas técnicas para construção de robôs tem sido bastante estudadas, em 
+% especial uma área que tem sido bastante explorada é a robótica móvel. A principal 
+% características que tem sido buscada é cada vez fornecer mais autonomia ao sistemas 
+% robóticos o que vem tornado seus softwares cada vez mais complexos, o que tem exigido um
+% poder maior de processamento, e consequentemente, maior consumo de energia. 
+% Entretanto a busca por mais autonomia, diz respeito também às baterias, que são as fontes 
+% de energia da maioria dos robôs móveis, o que provoca uma verdadeira briga entre poder 
+% de processamento e baixo consumo.
 
-O FPGA que será utilizado para o desenvolvimento da pesquisa é o Cyclone IV da Intel. A Intel 
-fornece o Nios II um soft-core porocessor para ser utilizado em conjunto com os seus FPGAs. 
-O Nios II é disponibilizado em duas versões, a fast: que foi projetado para alta performance e 
-a economy: projetado para ocupar um menor espaço dentro do FPGA(CHU, 2012).
+% Na busca do equilíbrio entra maior poder de processamento e menor consumo de energia, o uso do 
+% FPGA pode ser uma ótima alternativa para solucionar este problema. Meyer-Baese (2007) 
+% descreve algumas vantagens dos FPGAs modernos para uso em processamento digitais de 
+% sinais, como as cadeias de fast-carry usadas para implementar MACs de alta velocidade e o 
+% paralelismo tipicamente encontrado em dedign implementados em FPGA. Por essas 
+% características o FPGA necessita de frequências menores de trabalho para alcançar 
+% desempenho equivalente ou superior às soluções baseadas em processadores, tornando a 
+% dissipação de energia menor.
 
-A versão do Nios II econômica foi escolhida por não necessitar de uma licença adicional para 
-seu uso, uma alternativa para RTOS é o FreeRTOS, que é um sistema operacional de tempo real de 
-código aberto(BARRY, 2016b) e para stack TCP/IP a Lightweight TCP/IP stack - LwIP, que é uma 
-versão do pacote de protocolos TCP/IP de código aberto para ser usado em sistemas 
-embarcado(NONGNU, 2018). Todas as ferramentas de softwares necessárias para desenvolver o 
-projeto são de uso livre, o objetivo é fazer uso de o maior número de ferramentas sem custos 
-adicionais, como licenças e softwares pagos.
+% Foi encontrado até o memento uma única pesquisa que relaciona o ROS e FPGA para 
+% processamento de vídeo, nesse ponto a proposta deste trabalho difere da solução encontrado. 
+% No trabalho de Yamashina et al. (2005), são demonstradas três técnica para realizar a 
+% conexão entre o FPGA e o ROS, que se diferem da proposta por essa pesquisa. A ideia é 
+% utilizar um soft-core processor, que é um processador descrito em linguagem HDL embarcado 
+% no FPGA (CHU, 2012), esse processador ficará responsável por estabelecer a comunicação entre 
+% a rede TCP/IP e o hardware configurado no FPGA.
 
-O tempo de desenvolvimento de projetos em FPGA é maior em relação a projetos puramente de 
-software, por isso, a pesquisa busca ao final do projeto produzir um sistema genérico que possa 
-ser usado em outras aplicações com poucas ou até mesmo nenhuma alteração se tornando uma 
-alternativa para integrar o ROS a um FPGA, de forma simples e de baixo custo, possibilitando 
-outras aplicações desta solução.
+% O FPGA que será utilizado para o desenvolvimento da pesquisa é o Cyclone IV da Intel. A Intel 
+% fornece o Nios II um soft-core porocessor para ser utilizado em conjunto com os seus FPGAs. 
+% O Nios II é disponibilizado em duas versões, a fast: que foi projetado para alta performance e 
+% a economy: projetado para ocupar um menor espaço dentro do FPGA(CHU, 2012).
+
+% A versão do Nios II econômica foi escolhida por não necessitar de uma licença adicional para 
+% seu uso, uma alternativa para RTOS é o FreeRTOS, que é um sistema operacional de tempo real de 
+% código aberto(BARRY, 2016b) e para stack TCP/IP a Lightweight TCP/IP stack - LwIP, que é uma 
+% versão do pacote de protocolos TCP/IP de código aberto para ser usado em sistemas 
+% embarcado(NONGNU, 2018). Todas as ferramentas de softwares necessárias para desenvolver o 
+% projeto são de uso livre, o objetivo é fazer uso de o maior número de ferramentas sem custos 
+% adicionais, como licenças e softwares pagos.
+
+% O tempo de desenvolvimento de projetos em FPGA é maior em relação a projetos puramente de 
+% software, por isso, a pesquisa busca ao final do projeto produzir um sistema genérico que possa 
+% ser usado em outras aplicações com poucas ou até mesmo nenhuma alteração se tornando uma 
+% alternativa para integrar o ROS a um FPGA, de forma simples e de baixo custo, possibilitando 
+% outras aplicações desta solução.
 
 \section{Objetivos}
 
