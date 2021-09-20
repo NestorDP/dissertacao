@@ -1,6 +1,34 @@
 \chapter{Introdução}
 
+% Apresentação do Tema e Contexto
+% Nesta parte do documento, o pesquisador precisa explicar no texto a respeito do contexto 
+% em que o tema está inserido. É bom imaginar que o leitor não conhece da área então 
+% antes de explicar o assunto específico que será abordado, você deve explicar onde ele 
+% está inserido.
 
+Nos últimos anos novas técnicas para construção de robôs tem estado em muita evidência, em 
+especial áreas como robótica móvel e robótica colaborativa tem chamado bastante atenção dos 
+pesquisadores. Uma das principais características dessas áreas é exigência de um alto grau de 
+percepção do ambiente que rodeia o robô, além de uma execução mais precisa em seus movimentos, 
+isto devido ao fato de que as atividades desempenhadas por robôs estão exigindo um nível cada 
+vez maior de interação com as atividades desempenhadas por seres humanos.
+
+
+Outro ponto que sempre teve bastante importância no desenvolvimento 
+de novos robôs é a autonomia, tanto do ponto de vista do consumo energético quando na tomada 
+de decisões, superar o nível de autonomia atual continua sendo um dos principais objetivos na 
+pesquisa e desenvolvimento de novos robôs.
+
+As consequências desses trabalhos podem ser percebida em robôs com 
+
+2 - a busca por sistemas com um grau maior de autonomia
+A robótica tem se caracterizádo pelo grande nível de percepção do ambiente e pelos sistema
+complexos de controle do movimentos 
+
+
+\textbf{O ROS como um framework que esta se tornando o padrão no desenvolvimento de robótica}
+
+1 - Fazer um link com a complexidade dos sistemas robóticos modernos e o ROS
 
 Agrupar inúmeros “blocos" de softwares usados em robótica, fornecer drivers para hardwares
 específicos (sensores e atuadores), gerenciar troca de mensagens entre os nós que fazem 
@@ -23,8 +51,16 @@ facilitam este trabalho, por já fornecer funções prontas para o desenvolvimen
 de novos códigos compatíveis e que possam se registrar na rede. Detalhes dos protocolos e
 interno podem ser visto em (ROS, 2011a), (ROS, 2018) e (ROS, 2011b).
 
+<<<<<<< HEAD
 Por se tratar de um hardware configurável o FPGA é ideal para processamento
 digitais de sinais. O potencial que os FPGAs possuem para melhorar o 
+=======
+\textbf{Desenvolvimento com fpga, SoC. dificuldade e maior tempo de desenvolvimento}
+
+1 - explicar a ideia do FPGA e a dificuldade do desenvolvimento
+
+ O potencial que os FPGAs possuem para melhorar o 
+>>>>>>> 688eea1c4a8a8466b873451fbfb594eb047e8a41
 desempenho de sistemas que utilizam processamento digitais de sinal é conhecido já algum
 tempo, as possibilidades de paralelismo, criação de estruturas de DSP dedicadas à aplicação,
 são recursos muito interessantes que a possibilidade do hardware configurado oferecem.
@@ -32,8 +68,31 @@ Em contra partida as facilidade de desenvolvimento encontradas em aplicações q
 fazem uso de softwares não são encontradas nas mesmas proporções no mundo do hardware,
 sendo assim:
 
+\textbf{Juntar fpga com robótica através do ros dando foco na facilidade de desenvolvimento}
+
+2 - Fala sobre o FPGA escolhido
+
+% Delimitação do Tema
+% Nessa área o redator e pesquisador do projeto pode explicar o tema dentro do contexto, 
+% qual a sua delimitação e qual a importância de se aprofundar.
+explicar a parte da comunicação entre o computador/ros e o SoC
+
+melhorar a comunicação, comunicação eficiente, pacote pronto e de fácil integração com qualquer sistema 
+ros,
+
+O mais genérico possível para se enquadrar a qualquer projeto é que o desenvolvedor tenha
+interesse em incluir um FPGA ao sistema
+
+
+% Problema
+% Qual problema o projeto pretende resolver? Lembramos que a pesquisa da monografia procura 
+% responder a uma pergunta, ou discutir um problema. Permite atingir conclusões e considerações.
+% Na parte da problematização é explicado qual será o problema a ser respondido pela pesquisa e 
+% pesquisador.
+Definir o problema (a pergunta)
+
 \begin{itemize}
-    \item \textbf{Como estabelecer a comunicação entre o ROS e um sistema de processamento de vídeo 
+    \item \textbf{Como estabelecer a comunicação entre o ROS e um sistema de processamento auxiliar 
 embarcado em um FPGA?}
 
 \end{itemize}
@@ -41,6 +100,7 @@ embarcado em um FPGA?}
 Este problema é o que o trabalho vai tentar responder, podendo assim outros pesquisadores possam usar 
 os benefícios do uso do hardware dedicado integrados ao benefícios que o ROS fornecem aos sistemas 
 robóticos.
+
 
 
 
@@ -52,6 +112,7 @@ robóticos.
 % melhorar a performance do sistema?}
   
 % \end{itemize}
+
 
 
 
@@ -81,6 +142,25 @@ dissipação de energia consideravelmente menor.
 
 % melhorar o início deste paragrafo
 
+% Nos últimos anos novas técnicas para construção de robôs tem sido bastante estudadas, em 
+% especial uma área que tem sido bastante explorada é a robótica móvel. A principal 
+% características que tem sido buscada é cada vez fornecer mais autonomia ao sistemas 
+% robóticos o que vem tornado seus softwares cada vez mais complexos, o que tem exigido um
+% poder maior de processamento, e consequentemente, maior consumo de energia. 
+% Entretanto a busca por mais autonomia, diz respeito também às baterias, que são as fontes 
+% de energia da maioria dos robôs móveis, o que provoca uma verdadeira briga entre poder 
+% de processamento e baixo consumo.
+
+% Na busca do equilíbrio entra maior poder de processamento e menor consumo de energia, o uso do 
+% FPGA pode ser uma ótima alternativa para solucionar este problema. Meyer-Baese (2007) 
+% descreve algumas vantagens dos FPGAs modernos para uso em processamento digitais de 
+% sinais, como as cadeias de fast-carry usadas para implementar MACs de alta velocidade e o 
+% paralelismo tipicamente encontrado em dedign implementados em FPGA. Por essas 
+% características o FPGA necessita de frequências menores de trabalho para alcançar 
+% desempenho equivalente ou superior às soluções baseadas em processadores, tornando a 
+% dissipação de energia menor.
+
+
 % Foi encontrado até o memento uma única pesquisa que relaciona o ROS e FPGA para 
 % processamento de vídeo, nesse ponto a proposta deste trabalho difere da solução encontrado. 
 % No trabalho de Yamashina et al. (2005), são demonstradas três técnica para realizar a 
@@ -102,11 +182,11 @@ dissipação de energia consideravelmente menor.
 % projeto são de uso livre, o objetivo é fazer uso de o maior número de ferramentas sem custos 
 % adicionais, como licenças e softwares pagos.
 
-O tempo de desenvolvimento de projetos em FPGA é maior em relação a projetos puramente de 
-software, por isso, a pesquisa busca ao final do projeto produzir um sistema genérico que possa 
-ser usado em outras aplicações com poucas ou até mesmo nenhuma alteração se tornando uma 
-alternativa para integrar o ROS a um FPGA, de forma simples e de baixo custo, possibilitando 
-outras aplicações desta solução.
+% O tempo de desenvolvimento de projetos em FPGA é maior em relação a projetos puramente de 
+% software, por isso, a pesquisa busca ao final do projeto produzir um sistema genérico que possa 
+% ser usado em outras aplicações com poucas ou até mesmo nenhuma alteração se tornando uma 
+% alternativa para integrar o ROS a um FPGA, de forma simples e de baixo custo, possibilitando 
+% outras aplicações desta solução.
 
 \section{Objetivos}
 
