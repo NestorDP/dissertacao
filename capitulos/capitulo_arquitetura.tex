@@ -1,5 +1,12 @@
 \chapter{Arquitetura do sistema}
 
+Para conseguirmos estabelecer a comunicação entre o computador e o SoC precisaremos efetuar programação de sockets e bibliotecas específicas para trabalho em redes, desenvolver um pacote ROS para disponibilizar os dados recebidos através da interface de rede para os outros pacotes ROS do sistema robótico, além de um programa rodando no HPS do SoC para estabelecer esta comunicação entre a interface de rede da placa De10-nano e a aplicação sendo executada no FPGA. Já está aplicação que estará embarcada no FPGA contido no SoC deverá ser descrita por alguma linguagem de descrição de hardware, como por exemplo, verilog ou VHDL.
+
+Todas essas etapas descritas anteriormente são necessárias para a construção completa do sistema proposto, o que torna o desenvolvimento da solução completa um desafio devido às diferentes ferramentas de software e hardware necessárias para sua conclusão. Tendo em vista este problema, a solução foi idealizada para conter o maior grau de modularidade possível, ou seja, cada uma dessas etapas será tratada com um projeto independente, apenas tendo cuidado para garantir a correta comunicação entre cada uma delas.
+
+ que por sua vez deverá conter a aplicação desenvolvida em alguma linguagem de descrição de hardware . 
+
+
 %O que é um sistema operacional de tempo real?
 % Porque usar um RTOS?
     %apresentar outras técnicas alternativas ao uso de um RTOS
