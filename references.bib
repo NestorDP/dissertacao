@@ -1,20 +1,12 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%		BOOK
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 @book{effective,
 	title			= {Effective Robotics Programming with ROS},
 	author			= {Mahtani, A. and Sanchez, L. and Fernandez, E. and Martinez, A.},
 	Edition 		= {3},
 	year			= {2016},
 	publisher		= {Packt Publishing}
-}
-
-@book{niosIIBook,
-	title			= {Embedded SoPC Design with Nios II Processor and Verilog Examples},
-	author			= {Pong P. Chu},
-	address         = {Hoboken},
-	year			= {2012},
-	publisher		= {John Wiley & Sons, Inc}
 }
 
 @book{dspFPGA,
@@ -34,10 +26,19 @@
 	publisher		= {ROBOTIS}
 }
 
+@book{rosEfetiveProgram,
+	title			= {Effective Robotics Programming with ROS},
+	author			= {Anil Mahtani and Luis Sánchez and Enrique Fernández and Aaron Martinez},
+	address         = {Birmingham},
+	Edition 		= {3},
+	year			= {2016},
+	publisher		= {Packt Publishing Ltd}
+}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%		OUTROS/INTERNET
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 @Misc{MasteringFreertos,
 	author 			= {Richard Barry},
 	title 			= {Mastering the FreeRTOS Real Time Kernel - A Hands-on Tutorial Guide},
@@ -74,6 +75,24 @@
 	year 			= {2013}
 }
 
+@Misc{RosPKG,
+	author 			= {ROS},
+	title 			= {Pckages},
+	howpublished	= {Open Source Robotics Fundation},
+	url				= {http://wiki.ros.org/Packages},
+	urlaccessdate	= {20 julho 2021},
+	year 			= {2019}
+}
+
+@Misc{RosIntro,
+	author 			= {ROS},
+	title 			= {Introduction},
+	howpublished	= {Open Source Robotics Fundation},
+	url				= {http://wiki.ros.org/ROS/Introduction},
+	urlaccessdate	= {20 julho 2021},
+	year 			= {2018}
+}
+
 @Misc{FreeRTOS_history,
 	author 			= {FreeRTOS},
 	title 			= {History},
@@ -83,9 +102,36 @@
 	year 			= {2019}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@Misc{RosSeria,
+	author 			= {Michael Ferguson},
+	title 			= {Rosserial},
+	howpublished	= {rosserial},
+	url				= {http://wiki.ros.org/rosserial},
+	urlaccessdate	= {20 julho 2021},
+	year 			= {2018}
+}
+
+@Misc{RosPkgXml,
+	author 			= {ROS},
+	title 			= {catkin/package.xml},
+	url				= {http://wiki.ros.org/catkin/package.xml},
+	urlaccessdate	= {21 setembro 2021},
+	year 			= {2019}
+}
+
+@Misc{SocLinux,
+	author 			= {RocketBoards.org},
+	title 			= {Embedded Linux Beginners Guide},
+	url				= {https://rocketboards.org/foswiki/Documentation/
+	EmbeddedLinuxBeginnerSGuide},
+	urlaccessdate	= {5 outubro 2021},
+	year 			= {2015}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%		ARTIGOS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 @article{van86,
 	Author 			= {Kazushi Yamashina and Takesshi Ohkawa and Kanemitsu Ootsu and Takashi Yokota},
 	Journal 		= {2nd International Workshop on FPGAs for Software Programmers (FSP 2015)},
@@ -94,97 +140,57 @@
 	Year 			= {2015}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		DOCUMENTOS TÉCNICOS E MANUAIS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@manual{SocDeviceOver,
+  title         = {Cyclone V Device  Overview},
+  author        = {Intel}, 
+  organization  = {Intel},
+  month         = {5},
+  year          = {2018},
+  url		    = {https://www.intel.com/content/dam/www/ programmable/us/en/pdfs/literature/hb/cyclone-v/cv\underline{\hspace{.047in}}51001.pdf},
+  urlaccessdate	= {20 julho 2021},
+  note          = {cv-510001}
+}
+
+@manual{DE10nano,
+  title         = {DE10-Nano User Manual},
+  author        = {Terasic}, 
+  organization  = {Terasic Inc},
+  month         = {1},
+  year          = {2020},
+  Edition 		= {2.2},
+  note          = {rev. B2/C Hardware}
+}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		REPOSITÓRIOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@Misc{Pereira-Neto-Biblioteca,
+	author	= {Pereira Neto, Nestor},
+	month   = {12},
+	title   = {{Biblioteca projeto interfacesocket}},
+	version = {0.1},
+	url		= {https://github.com/NestorDP/libinterfacesocket},
+	year    = {2021}
+}
 
+@Misc{interface-socket-server,
+	author 	= {Pereira Neto, Nestor},
+	month 	= {12},
+	title 	= {interface\underline{\hspace{.047in}}socket\underline{\hspace{.047in}}server},
+	url 	= {https://github.com/NestorDP/interface\underline{\hspace{.047in}}socket\underline{\hspace{.047in}}server},
+	version = {0.1},
+	year 	= {2021}
+}
 
-
-
-
-
-
-
-
-
-
-
-
-@mastersthesis{araujo2012,
-	Address = {Bras{\'\i}lia},
-	Author = {Lauro C{\'e}sar Araujo},
-	Date-Added = {2013-01-09 11:04:42 +0000},
-	Date-Modified = {2013-01-09 11:04:42 +0000},
-	Month = {mar.},
-	School = {Universidade de Bras{\'\i}lia},
-	Subtitle = {uma perspectiva de {A}rquitetura da {I}nforma{\c c}{\~a}o da {E}scola de {B}ras{\'\i}lia},
-	Title = {Configura{\c c}{\~a}o},
-	Year = {2012}}
-
-@article{van86,
-	Author = {{van}, Gigch, John P. and Leo L. Pipino},
-	Journal = {Future Computing Systems},
-	Number = {1},
-	Pages = {71-97},
-	Title = {In search for a paradigm for the discipline of information systems},
-	Volume = {1},
-	Year = {1986}}
-
-@phdthesis{guizzardi2005,
-	Address = {Enschede, The Netherlands},
-	Author = {Giancarlo Guizzardi},
-	Date-Added = {2012-04-23 11:35:28 +0000},
-	Date-Modified = {2012-04-23 11:35:28 +0000},
-	School = {Centre for Telematics and Information Technology, University of Twente},
-	Title = {Ontological Foundations for Structural Conceptual Models},
-	Url = {http://www.loa.istc.cnr.it/Guizzardi/SELMAS-CR.pdf},
-	Urlaccessdate = {3 jul. 2011},
-	Year = {2005},
-	Bdsk-Url-1 = {http://www.loa.istc.cnr.it/Guizzardi/SELMAS-CR.pdf}}
-
-@inproceedings{masolo2010,
-	Author = {Claudio Masolo},
-	Booktitle = {Proceedings of the Twelfth International Conference on the Principles of Knowledge Representation and Reasoning (KR 2010)},
-	Date-Added = {2012-04-23 11:34:38 +0000},
-	Date-Modified = {2012-04-23 11:34:38 +0000},
-	Editor = {Lin, F. and Sattler, U.},
-	Pages = {258-268},
-	Publisher = {AAAI Press},
-	Title = {Understanding Ontological Levels},
-	Url = {http://wiki.loa-cnr.it/Papers/kr10v0.7.pdf},
-	Urlaccessdate = {2 jan. 2012},
-	Year = {2010},
-	Bdsk-Url-1 = {http://wiki.loa-cnr.it/Papers/kr10v0.7.pdf}}
-
-@inbook{guarino1995,
-	Address = {Vienna},
-	Author = {Nicola Guarino},
-	Booktitle = {Philosophy and the Cognitive Science},
-	Date-Added = {2012-04-23 11:34:29 +0000},
-	Date-Modified = {2012-04-23 11:34:29 +0000},
-	Editor = {R. Casati and B. Smith and G. White},
-	Month = {Sept.},
-	Pages = {443-456},
-	Publisher = {Holder-Pivhler-Tempsky},
-	Title = {The Ontological Level},
-	Url = {http://wiki.loa-cnr.it/Papers/OntLev.pdf},
-	Urlaccessdate = {2 jan. 2012},
-	Year = {1995},
-	Bdsk-Url-1 = {http://wiki.loa-cnr.it/Papers/OntLev.pdf}}
-
-@incollection{bates2010,
-	Address = {New York},
-	Author = {Marcia J. Bates},
-	Booktitle = {Encyclopedia of Library and Information Sciences},
-	Date-Added = {2012-04-23 11:34:29 +0000},
-	Date-Modified = {2012-04-23 11:34:29 +0000},
-	Edition = {3rd},
-	Editor = {Marcia J. Bates and Mary Niles Maack},
-	Pages = {2347-2360},
-	Publisher = {CRC Press},
-	Title = {Information},
-	Url = {http://pages.gseis.ucla.edu/faculty/bates/articles/information.html},
-	Urlaccessdate = {24 out. 2011},
-	Volume = {3},
-	Year = {2010},
-	Bdsk-Url-1 = {http://pages.gseis.ucla.edu/faculty/bates/articles/information.html}}
-
+@Misc{interface-socket,
+	author 	= {Pereira Neto, Nestor},
+	month 	= {12},
+	title 	= {interface\underline{\hspace{.047in}}socketr},
+	url 	= {https://github.com/NestorDP/interface\underline{\hspace{.047in}}socket},
+	version = {0.1},
+	year 	= {2021}
+}
