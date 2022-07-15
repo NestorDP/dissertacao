@@ -68,7 +68,7 @@
 \tikzset{
   folder/.pic={
     \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
-      (-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);  
+      (-1.05*\Size,0.2\Size+5pt) rectangle ++ (.75*\Size,-0.2\Size-5pt);  
     \filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
       (-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
   }
@@ -77,14 +77,14 @@
 
 % Configurações do pacote backref
 % Usado sem a opção hyperpageref de backref
-\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+\renewcommand{\backrefpagesname}{Citado na (s) página (s):~}
 % Texto padrão antes do número das páginas
 \renewcommand{\backref}{}
 % Define os textos da citação
 \renewcommand*{\backrefalt}[4]{
-	\ifcase #1 %
+	\ifcase#1
 		Nenhuma citação no texto.%
-	\or
+	\or%
 		Citado na página #2.%
 	\else
 		Citado #1 vezes nas páginas #2.%
@@ -95,14 +95,14 @@
 %		DADOS PESSOAIS
 %		Informações básicas sobre os trabalho e os autores 
 %-------------------------------------------------------------------------------------
-\titulo			{Desenvolvimento de um co-processador de vídeo em FPGA para integração com o Robot Operating System - ROS}
-\autor			{Nestor Dias Pereira Neto}
-\local			{Salvador}
-\data			{30 de abril 2022}
-\orientador		{Wagner Oliveira}
-\coorientador	{Paulo César}
-\tipotrabalho	{Dissertação (Mestrado)} 
-\preambulo		{Esta Dissertação de Mestrado foi apresentada ao Programa de Pós Graduação em Engenharia Elétrica da Universidade Federal da Bahia, como requisito parcial para obtenção do grau de Mestre em Engenharia Elétrica.}
+\titulo{Desenvolvimento de um co-processador de vídeo em FPGA para integração com o Robot Operating System - ROS}
+\autor{Nestor Dias Pereira Neto}
+\local{Salvador}
+\data{30 de abril 2022}
+\orientador{Wagner Oliveira}
+\coorientador{Paulo César}
+\tipotrabalho{Dissertação (Mestrado)} 
+\preambulo{Esta Dissertação de Mestrado foi apresentada ao Programa de Pós Graduação em Engenharia Elétrica da Universidade Federal da Bahia, como requisito parcial para obtenção do grau de Mestre em Engenharia Elétrica.}
 
 \instituicao{%
   Universidade Federal da Bahia - UFBA
@@ -138,8 +138,7 @@
 %-------------------------------------------------------------------------------------
 % \pretextual
 
-\imprimircapa
-\imprimirfolhaderosto*	% (o * indica que haverá a ficha bibliográfica)
+\imprimircapa\imprimirfolhaderosto*	% (o * indica que haverá a ficha bibliográfica)
 
 \include{pre-textuais/ficha_catalografica}
 %\include{pre-textuais/errata}
@@ -156,15 +155,13 @@
 % inserir o sumario
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
-\cleardoublepage
-
-
+\cleardoublepage%
 
 %-------------------------------------------------------------------------------------
 % 		ELEMENTOS TEXTUAIS
 %		Informações relevantes ao trabalho, capítulos e suas respectivas seções.
 %-------------------------------------------------------------------------------------
-\textual
+\textual%
 
 \include{capitulos/capitulo_introducao}
 
@@ -183,20 +180,13 @@
 \include{capitulos/capitulo_trabalhos_futuros} 
 
 % Adiciona espaço de parte no Sumário
-\phantompart
-
-
-
-
-
+\phantompart%
 %-------------------------------------------------------------------------------------
 %		CONTEÚDO PÓS-TEXTUAL
 %		Parte do documento que aparece após o capítulo de conclusão, incluindo 
 %		bibliografia e anexos.
 %-------------------------------------------------------------------------------------
-\postextual
-
-\bibliography{references} 
+\postextual\bibliography{references} 
 
 %\glossary
 
