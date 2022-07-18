@@ -1,2 +1,10 @@
 \chapter{Resultados Alcançados}
 
+Para validar a comunicação foram idealizados dois ensaios: o primeiro com o objetivo de testar o fluxo completo de troca de dados entre um nó ROS e uma aplicação embarcada no FPGA; o segundo ensaio teve o objetivo de testar um fluxo grande de dados trafegando entre o ROS e o SoC.
+
+No primeiro ensaio foi descrito um circuito simples para calcular o dobro de um número, em seguida a \textit{HPS-to-FPGA Lightweight} bridge foi utilizada para realizar a comunicação entre o servidor rodando no HPS e o FPGA\@. No nó cliente, rodando no ROS, foram configurados dois tópicos, um para o número a ser enviado e outro para receber o resultado calculado no FPGA, da mesma maneira que mostra o esquema da Figura 
+%\ref{fig:geral}. 
+
+Com o objetivo de testar a sobrecarga de dados na rede, para o segundo ensaio foi realizado o envio de uma stream de vídeo com resolução de 1280x720 em 15 fps. Ao receber os dados o servidor os reenvia ao cliente que o republica em um tópico. Neste ensaio os dados não foram processados no FPGA\@. 
+
+Os resultados alcançados para os dois ensaios foram considerados satisfatórios. Apesar de, na transferência das imagens, ter sido observado um pequeno \textit{delay} entre a imagem enviada e a recebida de volta.
