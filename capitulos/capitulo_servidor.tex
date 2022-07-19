@@ -24,10 +24,6 @@ Com o linux já devidamente configurado, ele já pode ser inicializado no proces
 O acesso do servidor ao FPGA é feito através de mapeamento de endereços do linux, os SoCs Intel possuem uma arquitetura de memória mapeada. Desta forma, além da biblioteca desenvolvida durante a pesquisa, um outro arquivo cabeçalho é necessário para facilitar o acesso aos endereços de memória do HPS\@. Quando uma instância do processador ARM é incluída no projeto do QSys Designer, é gerado um arquivo.sopcinfo no momento em que o projeto é compilado. Podemos usar esse arquivo como entrada da ferramenta \textit{sopc-create-header-files} presente no SoC EDS para gerar um novo arquivo com extensão \textit{.h}, que lista os endereços base de todos os módulos (IP) incluídos no FPGA\@. Portanto, o arquivo cabeçalho gerado disponibiliza o \textit{offset} do endereço em que cada periférico está localizado para cada uma das FPGA-bridges disponíveis. Deste modo o servidor pode enviar ou receber dados ao periférico conhecendo o endereço da FPGA-bridge em que este periférico está conectado e o seu nome, sem a necessidade de se conhecer exatamente o seu endereço.
 
 
-
-
-
-
 O Servidor mantém porta aberta para estabelecer uma conexão com o cliente e assim que a conexão é estabelecida, o cliente já pode começar a enviar os dados. Ao receber os dados do cliente, o servidor envia-os ao FPGA que os processa e os devolve ao servidor para que ele possa reenviar os dados já processados ao cliente. Um fluxograma simplificado desse processo pode ser visualizado na Figura \ref{fig:fluxoServidor}.
 
 
