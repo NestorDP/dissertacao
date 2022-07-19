@@ -22,11 +22,16 @@ A etapa seguinte ao \textit{PreLoader} é o \textit{bootloader}. Nessa fase do b
 % Explicar a distribuição usada
 %=====================================
 \section{Distribuição Linux rsyocto}
-Com todos os arquivos necessários para o boot do sitema já gerados a partir das ferramentas de desenvolvimento da Intel, poderemos escolher nosso sistema operacional. O sistema escolhido foi uma distribuição linux desenvolvida exclusivamente para SoCs da Intel com fpga integrado, como pode ser observado na descrição da distribuição disponível em~\cite{rsyocto}:
+Com todos os arquivos necessários para o boot do sistema já gerados a partir das ferramentas de desenvolvimento da Intel, poderemos escolher nosso sistema operacional. O sistema escolhido foi uma distribuição linux desenvolvida exclusivamente para SoCs da Intel com fpga integrado, como pode ser observado na descrição da distribuição disponível em~\cite{rsyocto}:
 
 \begin{citacao}
 	``\textbf{rsyocto} is an open source Embedded Linux Distribution designed with the Yocto Project and with a custom build flow to be optimized for Intel SoC-FPGAs (Intel Cyclone V and Intel Arria 10 SX SoC-FPGA with an ARM Cortex-A9) to achieve the best customization for the strong requirements of modern embedded SoC-FPGA applications.''
 \end{citacao} 
+
+O rsyocto faz uso do Kernel Linux~\textbf{linux-socfpga 5.11}~\cite{linuxsocfpga} e possui um conjunto de ferramentas necessárias para ajudar a simplificar o uso e desenvolvimento de aplicações desenvolvidas para os SoCs com FPGA integrado da Intel. Além destas ferramentas o rsyocto dispõe de drivers para todos os periféricos de comunicação integrados SoC, como por exemplo, a interfaces I2C e CAN, e para todas as interfaces entres o HPS e o FPGA\@. O rsyocto oferece um conjunto de simples aplicações que podem ser executadas em linha de comando, que possibilitam executar novas configurações no FPGA, usando o FPGA Manager, até mesmo ler e escrever a interface ARM AXI-Bridge que permite interagir com o FPGA\@. 
+
+Essas aplicações simplificam a comunicação com o FPGA a partir de simples comandos que podem ser executados a partir do terminal, através de todas as interfaces disponíveis, estes comandos são:~\textbf{lwhps2fpga}, que permite ações de leitura e escrita no barramento Lightweight HPS-to-FPGA-Bridge, o~\textbf{hps2fpga} para leitura e escrita no barramento HPS-to-FPGA-Bridge, o~\textbf{hps2sdram}, que proporciona acesso à interface da SDRAM e os~\textbf{gpi} e~\textbf{gpo} para acesso aos sinais de uso geral. Na Figura~\ref{fig:rsyocto} podemos ter uma visão geral de todas as ferramentas disponíveis na distribuição linux rsyocto.
+
 
 \begin{figure}[ht]
 	\caption{Overview do rsyocto}
