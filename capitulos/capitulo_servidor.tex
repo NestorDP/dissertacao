@@ -4,7 +4,7 @@
 %=====================================
 No modelo cliente-servidor, o servidor é o elemento responsável por executar uma ação somente após um pedido realizado pelo cliente, sendo assim, o servidor deve estar sempre preparado para responder à uma solicitação de serviço. Deste modo, além da capacidade de se comunicar com o cliente, o servidor deve oferecer algum serviço de interesse do cliente. 
 
-Neste trabalho o programa servidor disponibiliza ao cliente a interface com o FPGA presente no SoC, logo, ao receber o pedido do cliente, o servidor deve ser capaz de receber os dados vindos do cliente à unidade de processamento embarcada no FPGA e em seguida devolver esses dados já processados ao cliente. Antes mesmo de iniciar o desenvolvimento do código do servidor, devemos compilar uma distribuição linux e configurar o processo de boot desse sistema no processador ARM presente no SoC. Estas etapas no desenvolvimento do servidor serão descritas neste capítulo.
+Neste trabalho o programa servidor disponibiliza ao cliente a interface com o FPGA presente no SoC, logo, ao receber o pedido do cliente, o servidor deve ser capaz de receber os dados vindos do cliente à unidade de processamento embarcada no FPGA e em seguida devolver esses dados já processados ao cliente. Entretanto, antes mesmo de iniciar o desenvolvimento do código do servidor, devemos compilar uma distribuição linux e configurar o processo de boot desse sistema no processador ARM presente no SoC. Estas etapas no desenvolvimento do servidor serão descritas neste capítulo.
 
 % explicar processo de boot
 %=====================================
@@ -69,12 +69,58 @@ Com o linux já devidamente configurado, ele já pode ser inicializado no proces
 
 O acesso do servidor ao FPGA é feito através de mapeamento de endereços do linux, os SoCs Intel possuem uma arquitetura de memória mapeada. Desta forma, além da biblioteca desenvolvida durante a pesquisa, um outro arquivo cabeçalho é necessário para facilitar o acesso aos endereços de memória do HPS\@. Quando uma instância do processador ARM é incluída no projeto do QSys Designer, é gerado um arquivo.sopcinfo no momento em que o projeto é compilado. Podemos usar esse arquivo como entrada da ferramenta \textit{sopc-create-header-files} presente no SoC EDS para gerar um novo arquivo com extensão \textit{.h}, que lista os endereços base de todos os módulos (IP) incluídos no FPGA\@. Portanto, o arquivo cabeçalho gerado disponibiliza o \textit{offset} do endereço em que cada periférico está localizado para cada uma das FPGA-bridges disponíveis. Deste modo o servidor pode enviar ou receber dados ao periférico conhecendo o endereço da FPGA-bridge em que este periférico está conectado e o seu nome, sem a necessidade de se conhecer exatamente o seu endereço.
 
-O Servidor mantém porta aberta para estabelecer uma conexão com o cliente e assim que a conexão é estabelecida, o cliente já pode começar a enviar os dados. Ao receber os dados do cliente, o servidor envia-os ao FPGA que os processa e os devolve ao servidor para que ele possa reenviar os dados já processados ao cliente. Um fluxograma simplificado desse processo pode ser visualizado na Figura \ref{fig:fluxoServidor}.
+Assim que é inicializado o servidor mantém uma porta aberta para estabelecer uma conexão com o cliente e assim que a conexão é estabelecida, o cliente já pode começar a enviar os dados. Ao receber os dados do cliente, o servidor envia-os ao FPGA que os processa e os devolve ao servidor para que ele possa reenviar os dados já processados ao cliente. Um fluxograma simplificado desse processo pode ser visualizado na Figura \ref{fig:fluxoServidor}.
 
 \begin{figure}[ht]
 	\caption{Fluxograma simplificado do servidor}
 	\begin{center}
-		\includegraphics[scale=0.47]{imagens/fluxogramaServidor.png}\\
+		\includegraphics[scale=0.41]{imagens/fluxogramaServidor.png}\\
 		{\small \textbf{Fonte:}Elaborado pelo autor}
     \end{center}\label{fig:fluxoServidor}
 \end{figure} 
+
+\begin{figure}[ht]
+\caption{Memória mapeada}
+\begin{center}
+\begin{lstlisting}[language=C++, backgroundcolor=\color{gray!10}]
+ // Open up the /dev/mem device (aka, RAM)
+ devmem_fd = open("/dev/mem", O_RDWR | O_SYNC);
+ if(devmem_fd < 0) {
+	perror("devmem open");
+	exit(EXIT_FAILURE);
+ }	
+
+ // mmap() the entire address space of the Lightweight 
+ // bridge so we can access our custom module 
+ lw_bridge_map = (uint32_t *)mmap( 
+				NULL, HPS_TO_FPGA_AXI_SPAN, 
+				PROT_READ|PROT_WRITE, 
+				MAP_SHARED, devmem_fd, 
+				HPS_TO_FPGA_AXI_BASE ); 
+				
+ if(lw_bridge_map == MAP_FAILED) {
+	perror("devmem mmap");
+	close(devmem_fd);
+	exit(EXIT_FAILURE);
+ }
+\end{lstlisting}
+{\small \textbf{Fonte:}Elaborado pelo autor}	
+\end{center}\label{fig:codigomap}
+	
+\end{figure} 
+
+\begin{figure}[ht]
+\caption{Memória mapeada}
+\begin{center}
+\begin{lstlisting}[language=C++, backgroundcolor=\color{gray!10}]
+ // Set the dobro_map to the correct offset 
+ // within the RAM
+ dobro_map = (uint32_t*)(lw_bridge_map + DOBRO_0_BASE);
+
+ *dobro_map = 56;
+ valor = *dobro_map;
+\end{lstlisting}
+{\small \textbf{Fonte:}Elaborado pelo autor}	
+\end{center}\label{fig:codigomapdobro}
+	
+\end{figure}

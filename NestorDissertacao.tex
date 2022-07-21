@@ -32,7 +32,7 @@
 	% -- opções da classe memoir --
 	12pt,						% tamanho da fonte
 	openright,					% capítulos começam em pág ímpar (insere página vazia caso preciso)
-	twoside,					% para impressão em recto e verso. Oposto a oneside
+	oneside,					% para impressão em recto e verso. Oposto a oneside
 	a4paper,					% tamanho do papel. 
 	% -- opções da classe abntex2 --
 	%chapter=TITLE,				% títulos de capítulos convertidos em letras maiúsculas
@@ -60,6 +60,28 @@
 
 \usepackage{forest}
 \usepackage{fontawesome}
+
+\definecolor{thered}{rgb}{0.65,0.04,0.07}
+\definecolor{thegreen}{rgb}{0.06,0.44,0.08}
+\definecolor{thegrey}{gray}{0.5}
+\definecolor{theshade}{rgb}{1,1,0.97}
+\definecolor{theframe}{gray}{0.6}
+\definecolor{blue}{RGB}{41,5,195} 
+
+\usepackage{listings}
+\lstset{
+	basicstyle=\small, % print whole listing small
+	keywordstyle=\color{blue}\bfseries, %\underbar,% underlined bold black keywords
+	% keywords=[0]{uint32_t, exit},
+	% keywordstyle=[0]\color{thered},
+	identifierstyle=, % nothing happens
+	commentstyle=\color{gray!85}, % white comments
+	stringstyle=\color{thered}\ttfamily, % typewriter type for strings
+	showstringspaces=false, % no special string spaces
+	numbers=left,
+	numberstyle=\tiny,
+	stepnumber=2
+}
 
 \definecolor{folderbg}{RGB}{124,166,198}
 \definecolor{folderborder}{RGB}{110,144,169}
