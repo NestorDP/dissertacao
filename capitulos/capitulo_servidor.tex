@@ -79,10 +79,10 @@ Logo que é inicializado o servidor mantém uma porta aberta para estabelecer um
 
 O acesso do servidor ao FPGA é feito através de mapeamento de endereços do linux, os SoCs Intel possuem uma arquitetura de memória mapeada. Desta forma, além da biblioteca desenvolvida durante a pesquisa, um outro arquivo cabeçalho é necessário para facilitar o acesso aos endereços de memória do HPS\@. Quando uma instância do processador ARM é incluída no projeto do QSys Designer, é gerado um arquivo.sopcinfo no momento em que o projeto é compilado. Podemos usar esse arquivo como entrada da ferramenta \textit{sopc-create-header-files} presente no SoC EDS para gerar um novo arquivo com extensão \textit{.h}, que lista os endereços base de todos os módulos (IP) incluídos no FPGA\@. 
 
-Portanto, o arquivo cabeçalho gerado disponibiliza o \textit{offset} do endereço em que cada periférico está localizado para cada uma das FPGA-bridges disponíveis. Deste modo o servidor pode enviar ou receber dados ao periférico conhecendo o endereço da FPGA-bridge em que este periférico está conectado e o seu nome, sem a necessidade de se conhecer exatamente o seu endereço. Na Figura~\ref{fig:codigodobro} é apresentado uma parte do arquivo cabeçalho gerado pela ferramenta sopc-create-reader-files, neste trecho são realizadas algumas definições que facilitam o acesso ao IP dobro, que já está instanciado no FPGA. Este módulo IP foi usado para testar o processo completo de comunicação entre o tópico ROS até o FPGA.
+Portanto, o arquivo cabeçalho gerado disponibiliza o \textit{offset} do endereço em que cada periférico está localizado para cada uma das FPGA-bridges disponíveis. Deste modo o servidor pode enviar ou receber dados ao periférico conhecendo o endereço da FPGA-bridge em que este periférico está conectado e o seu nome, sem a necessidade de se conhecer exatamente o seu endereço. Na Figura~\ref{fig:codigodobro} é apresentado uma parte do arquivo cabeçalho gerado pela ferramenta sopc-create-reader-files, neste trecho são realizadas algumas definições que facilitam o acesso ao IP dobro, que já está instanciado no FPGA\@. Este módulo IP foi usado para testar o processo completo de comunicação entre o tópico ROS até o FPGA\@.
 
 \begin{figure}[ht]
-\caption{Definições de endereço IP dobro}
+\caption{Definição de endereço presente no arquivo hps\underline{ }0.h}
 \begin{center}
 \begin{lstlisting}[language=C++, backgroundcolor=\color{gray!10}]
  /*
@@ -138,13 +138,14 @@ Em seguida podemos usar o descritor de arquivo gerado como retorno da função o
 \end{center}\label{fig:codigomap}
 \end{figure} 
 
-kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+Agora que já existe um ponteiro para a região de memória onde se encontra a interface de comunicação com o FPGA, podemos enviar e receber dados para o IP instanciado no FPGA. Para isto, vamos usar este ponteiro para o endereço da HPS-to-FPGA-Bridge, somado com o offset presente no arquivo hps\underline{ }0.h.  Consequentemente, será possível interagir com o IP em um programa escrito em linguagem C, da mesma maneira que interagimos com um ponteiro comum. O bloco de código da Figura~\ref{fig:codigomapdobro} ilustra este processo de escrita e leitura de dados em um IP através de um ponteiro
 
 \begin{figure}[ht]
 \caption{Memória mapeada}
 \begin{center}
 \begin{lstlisting}[language=C++, backgroundcolor=\color{gray!10}]
  // Set the dobro_map to the correct offset within the RAM
+ uint32_t * dobro_map = 0;
  dobro_map = (uint32_t*)(lw_bridge_map + DOBRO_0_BASE);
 
  *dobro_map = 56;
