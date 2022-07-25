@@ -1,4 +1,4 @@
-\chapter{Introdução}
+\chapter{Introdução}\label{cap:intro}
 
 % Apresentação do Tema e Contexto
 % Nesta parte do documento, o pesquisador precisa explicar no texto a respeito do contexto 
@@ -6,49 +6,21 @@
 % antes de explicar o assunto específico que será abordado, você deve explicar onde ele 
 % está inserido.
 
-Nos últimos anos novas técnicas para construção de robôs tem estado em muita evidência, em especial áreas como robótica móvel e robótica colaborativa tem chamado bastante atenção dos pesquisadores. Uma das principais características dessas áreas é exigência de um alto grau de percepção do ambiente que rodeia o robô, além de uma execução mais precisa em seus movimentos, isto devido ao fato de que as atividades desempenhadas por robôs estão exigindo um nível cada vez maior de interação com as atividades desempenhadas por seres humanos.
+Nos últimos anos novas técnicas para construção de robôs tem estado em muita evidência, em especial áreas como robótica móvel e robótica colaborativa têm chamado bastante atenção dos pesquisadores. Uma das principais características dessas áreas é a exigência de um alto grau de percepção do ambiente que rodeia o robô, além de uma execução mais precisa em seus movimentos, isto devido ao fato de que as atividades desempenhadas por estes robôs estão exigindo um nível cada vez maior de interação com as atividades desempenhadas por seres humanos.
 
+Este grau de precisão requerido no desenvolvimento de novos robôs demandam um poder de processamento cada vez maior, consequentemente, elevando o consumo energético, o que pode vir a ser um problema principalmente em sistemas que fazem uso de baterias. Uma excelente alternativa para adicionar poder de processamento aliado ao baixo consumo é o uso do FPGA\@. O potencial que os FPGAs possuem para melhorar o desempenho de sistemas computacionais já é bem conhecido há algum tempo, as possibilidades de paralelismo e criação de estruturas de DSP dedicadas, são recursos muito interessantes que o hardware configurado oferece. 
 
-Outro ponto que sempre teve bastante importância no desenvolvimento de novos robôs é a autonomia, tanto do ponto de vista do consumo energético quando na tomada de decisões, superar o nível de autonomia atual continua sendo um dos principais bjetivos na pesquisa e desenvolvimento de novos robôs.
+Entretanto as facilidades de desenvolvimento encontradas em aplicações que fazem uso de softwares não estão disponíveis na mesma proporção no mundo do hardware configurável. A maio dificuldade no desenvolvimento de soluções que fazem uso do FPGA tornam os seus projetos mais longo, e necessitam de mão de obra extremamente especializada, o que fazem seu desenvolvimento mais caro. Isso faz com que o seu uso em projetos de robótica seja pouco usado e ate mesmo desistimulado. 
 
-As consequências desses trabalhos podem ser percebida em robôs com 
+Atualmente o \textit{framework} ROS está se consolidando como o padrão na criação de novas plataformas robóticas, tanto no desenvolvimento de manipuladores colaborativos quanto na robótica móvel. O objetivo do ROS é facilitar a elaboração de novos robôs, através de um conjunto completo de ferramentas para desenvolvimento, como \textit{drivers} para sensores e atuadores, bibliotecas e principalmente reuso de código. Agrupar inúmeros ``blocos'' de softwares usados em robótica, fornecer drivers para hardwares específicos (sensores e atuadores), gerenciar troca de mensagens entre os nós que fazem parte do sistema, são as função do ROS\@. 
 
-2 - a busca por sistemas com um grau maior de autonomiaA robótica tem se caracterizádo pelo grande nível de percepção do ambiente e pelos sistemacomplexos de controle do movimentos 
+Estas características fazem com que o ROS seja reconhecido com um pseudo sistema operacional~\cite{rosPYO}. Dessa maneira o ROS se tornou muito ágil no desenvolvimento de novas aplicações para robótica. Usando aplicações já desenvolvidas e testadas por outros desenvolvedores, podemos criar novos sistemas completos apenas gerenciando estas aplicações na estrutura interna do ROS. Essa abordagem fez com que o número de pacotes para o ROS cresça em uma taxa muito rápida, desde o ano de seu lançamento, em 2007, até 2012 o ROS aumentou de 1 para 3699 pacotes~\cite{fpgarobotics}.
 
+Aproveitar as facilidades de desenvolvimento proporcionadas pelo ROS em conjunto com o alto poder de processamento e baixo consumo que o FPGA oferece, seria um cenário ideal no desenvolvimento de novas aplicações com robôs. Para isso, precisamos estabelecer uma conexão com uma taxa de transferência de dados alta o suficiente para não influenciar de forma negativa no tempo de processamento e, que torne relativamente fácil seu uso por desenvolvedores especializados em robótica, mas sem grande experiência em FPGA. Portanto, este trabalho tem como objetivo estabelecer uma comunicação de alto desempenho entre ROS e um FPGA para que se possa aproveitar o melhor das duas tecnologias em projetos de robótica. 
 
-\textbf{O ROS como um framework que esta se tornando o padrão no desenvolvimento de robótica}
-
-1 - Fazer um link com a complexidade dos sistemas robóticos modernos e o ROS
-
-Agrupar inúmeros “blocos" de softwares usados em robótica, fornecer drivers para hardwares específicos (sensores e atuadores), gerenciar troca de mensagens entre os nós que fazem parte do sistema, são as função do ROS. Essas características fazem com que o ROS seja reconhecido com um pseudo sistema operacional (PYO et al., 2017). Dessa maneira o ROS se tornou muito ágil no desenvolvimento de novas aplicações para robótica. Usando nós já desenvolvidos e testados por outros desenvolvedores podemos criar novos sistemas completos apenas gerenciando esses nós na rede interna do ROS. Essa abordagem fez com que o número de pacotes para o ROS cresça em uma taxa muito rápida, desde o ano de seu lançamento, 2007, até 2012 o ROS aumentou de 1 para 3699 pacotes (YAMASHINA et al., 2005).
-
-Com essa distribuição de tarefas através de vários nós podemos criar sistemas cada
-vez mais complexos, apenas inserindo novos nós na rede, essa rede é gerenciada pelo ROS Master, que é apensas mais um nó do sistema, mas com a função de ser um servidor de nome e serviços para o restante dos nós. Ele identifica os nós na rede, assim todos os nós podem se comunicar com os outros através de conexões peer-to-peer, igura
-1. Para desenvolver novas aplicações para o crescente grupo de pacotes ROS, o desenvolvedor deve respeitar os protocolos de comunicação da rede, as bibliotecas do ROS facilitam este trabalho, por já fornecer funções prontas para o desenvolvimento
-de novos códigos compatíveis e que possam se registrar na rede. Detalhes dos  rotocolos e interno podem ser visto em (ROS, 2011a), (ROS, 2018) e (ROS, 2011b).
-
-Por se tratar de um hardware configurável o FPGA é ideal para processamento digitais de sinais. O potencial que os FPGAs possuem para melhorar o 
-
-\textbf{Desenvolvimento com fpga, SoC. dificuldade e maior tempo de desenvolvimento}
-
-1 - explicar a ideia do FPGA e a dificuldade do desenvolvimento
-
- O potencial que os FPGAs possuem para melhorar o desempenho de sistemas que utilizam processamento digitais de sinal é conhecido já algum tempo, as possibilidades de paralelismo, criação de estruturas de DSP dedicadas à aplicação,
-são recursos muito interessantes que a possibilidade do hardware configurado ferecem.
-Em contra partida as facilidade de desenvolvimento encontradas em aplicações que fazem uso de softwares não são encontradas nas mesmas proporções no mundo do ardware,
-sendo assim:
-
-\textbf{Juntar fpga com robótica através do ros dando foco na facilidade de desenvolvimento}
-
-2 - Fala sobre o FPGA escolhido
-
-% Delimitação do Tema
-% Nessa área o redator e pesquisador do projeto pode explicar o tema dentro do contexto, 
-% qual a sua delimitação e qual a importância de se aprofundar.
 explicar a parte da comunicação entre o computador/ros e o SoC melhorar a comunicação, comunicação eficiente, pacote pronto e de fácil integração com qualquer sistema ros, O mais genérico possível para se enquadrar a qualquer projeto é que o desenvolvedor tenha interesse em incluir um FPGA ao sistema
 
 
-% Problema Qual problema o projeto pretende resolver? Lembramos que a pesquisa da monografia procura responder a uma pergunta, ou discutir um problema. Permite atingir conclusões e considerações. Na parte da problematização é explicado qual será o problema a ser respondido pela pesquisa e pesquisador. Definir o problema (a pergunta)
 
 \begin{itemize}
     \item \textbf{Como estabelecer a comunicação entre o ROS e um sistema de processamento auxiliar 
@@ -56,76 +28,22 @@ embarcado em um FPGA?}
 
 \end{itemize}
 
-Este problema é o que o trabalho vai tentar responder, podendo assim outros pesquisadores possam usar 
-os benefícios do uso do hardware dedicado integrados ao benefícios que o ROS fornecem aos sistemas 
-robóticos.
+Este problema é o que o trabalho vai tentar resolver, possibilitando assim, o uso de aceleração por hardware através do fpga, ser incluída no desenvolvimento de novos projetos de robótica. Projetistas especializados em robótica poderão aproveitar dos benefícios do uso do hardware dedicado em seus projetos e profissionais que trabalham com descrição de hardware poderão desenvolver novas soluções para problemas de robótica de forma modularizada. 
 
 
 
-
-% Esse problema inicial nos leva naturalmente a outro:
-
-
-%     \item \textbf{Stabelecendo a comunicação entre o FPGA e o ROS a execução do pro-
-% cessamento de vídeo de forma paralela, embarcada em um FPGA, pode
-% melhorar a performance do sistema?}
-  
-% \end{itemize}
 
 
 \section{Justificativa}
 
-Nos últimos anos novas técnicas para construção de robôs tem sido bastante estudadas, em especial uma área que tem sido bastante explorada é a robótica móvel. A principal características que tem sido buscada é cada vez fornecer mais autonomia ao sistemas robóticos o que torna seus softwares cada vez mais complexos, o que aumenta a necessidade do uso de processadores muito mais poderosos, consequentemente aumentando muito o consumo de energia. Entretanto a busca por mais autonomia, diz respeito também às baterias, que são as fontes de energia da maioria dos robôs móveis, o que provoca uma verdadeira briga entre poder de processamento e baixo consumo.
+Sistemas robóticos cada vez mais complexos exigem a necessidade do uso de processadores igualmente mais poderosos, consequentemente demandando um maior consumo de energia. Este aumento de consumo, provoca uma verdadeira briga entre poder de processamento e baixo consumo.
 
-Sendo assim, o FPGA pode ser uma ótima alternativa para solucionar os problemas de aumento do poder de processamento em conjunto com baixo consumo de energia. Meyer-Baese (2007) descreve algumas vantagens dos FPGAs modernos para uso em processamento digitais de sinais, como as cadeias de fast-carry usadas para implementar MACs de alta velocidade e o paralelismo tipicamente encontrado em dedign implementados em FPGA. Por essas características o FPGA necessita de frequências menores de trabalho para alcançar desempenho equivalente ou superior às soluções baseadas em processadores, tornando a dissipação de energia consideravelmente menor.
+O FPGA é uma excelente alternativa, que pode oferecer aumento do poder de processamento em conjunto com baixo consumo de energia. \citeonline{dspFPGA} descreve algumas vantagens dos FPGAs modernos para uso em processamento digitais de sinais, como as cadeias de fast-carry usadas para implementar MACs de alta velocidade e o paralelismo tipicamente encontrado em dedign implementados em FPGA\@. Por essas características o FPGA necessita de frequências menores de trabalho para alcançar desempenho equivalente ou superior às soluções baseadas em processadores, diminuido a dissipação térmica, e consequentemente, necessitando um consumo de energia consideravelmente menor.
 
-% melhorar o início deste paragrafo
+O tempo de desenvolvimento de projetos em FPGA é maior em relação a projetos puramente de software, por isso, a pesquisa busca ao final do projeto produzir um sistema genérico que possa ser usado em outras aplicações com poucas ou até mesmo nenhuma alteração se tornando uma alternativa para integrar o ROS a um FPGA, de forma simples e de baixo custo, possibilitando outras aplicações desta solução
 
-% Nos últimos anos novas técnicas para construção de robôs tem sido bastante estudadas, em 
-% especial uma área que tem sido bastante explorada é a robótica móvel. A principal 
-% características que tem sido buscada é cada vez fornecer mais autonomia ao sistemas 
-% robóticos o que vem tornado seus softwares cada vez mais complexos, o que tem exigido um
-% poder maior de processamento, e consequentemente, maior consumo de energia. 
-% Entretanto a busca por mais autonomia, diz respeito também às baterias, que são as fontes 
-% de energia da maioria dos robôs móveis, o que provoca uma verdadeira briga entre poder 
-% de processamento e baixo consumo.
+Foi encontrado até o memento uma única pesquisa que relaciona o ROS e FPGA para  processamento de vídeo, nesse ponto a proposta deste trabalho difere da solução encontrado. No trabalho de \citeonline{fpgarobotics} são demonstradas três técnica para realizar a conexão entre o FPGA e o ROS, que se diferem da proposta por essa pesquisa. 
 
-% Na busca do equilíbrio entra maior poder de processamento e menor consumo de energia, o uso do 
-% FPGA pode ser uma ótima alternativa para solucionar este problema. Meyer-Baese (2007) 
-% descreve algumas vantagens dos FPGAs modernos para uso em processamento digitais de 
-% sinais, como as cadeias de fast-carry usadas para implementar MACs de alta velocidade e o 
-% paralelismo tipicamente encontrado em dedign implementados em FPGA. Por essas 
-% características o FPGA necessita de frequências menores de trabalho para alcançar 
-% desempenho equivalente ou superior às soluções baseadas em processadores, tornando a 
-% dissipação de energia menor.
-
-
-% Foi encontrado até o memento uma única pesquisa que relaciona o ROS e FPGA para 
-% processamento de vídeo, nesse ponto a proposta deste trabalho difere da solução encontrado. 
-% No trabalho de Yamashina et al. (2005), são demonstradas três técnica para realizar a 
-% conexão entre o FPGA e o ROS, que se diferem da proposta por essa pesquisa. A ideia é 
-% utilizar um soft-core processor, que é um processador descrito em linguagem HDL embarcado 
-% no FPGA (CHU, 2012), esse processador ficará responsável por estabelecer a comunicação entre 
-% a rede TCP/IP e o hardware configurado no FPGA.
-
-% O FPGA que será utilizado para o desenvolvimento da pesquisa é o Cyclone IV da Intel. A Intel 
-% fornece o Nios II um soft-core porocessor para ser utilizado em conjunto com os seus FPGAs. 
-% O Nios II é disponibilizado em duas versões, a fast: que foi projetado para alta performance e 
-% a economy: projetado para ocupar um menor espaço dentro do FPGA(CHU, 2012).
-
-% A versão do Nios II econômica foi escolhida por não necessitar de uma licença adicional para 
-% seu uso, uma alternativa para RTOS é o FreeRTOS, que é um sistema operacional de tempo real de 
-% código aberto(BARRY, 2016b) e para stack TCP/IP a Lightweight TCP/IP stack - LwIP, que é uma 
-% versão do pacote de protocolos TCP/IP de código aberto para ser usado em sistemas 
-% embarcado(NONGNU, 2018). Todas as ferramentas de softwares necessárias para desenvolver o 
-% projeto são de uso livre, o objetivo é fazer uso de o maior número de ferramentas sem custos 
-% adicionais, como licenças e softwares pagos.
-
-% O tempo de desenvolvimento de projetos em FPGA é maior em relação a projetos puramente de 
-% software, por isso, a pesquisa busca ao final do projeto produzir um sistema genérico que possa 
-% ser usado em outras aplicações com poucas ou até mesmo nenhuma alteração se tornando uma 
-% alternativa para integrar o ROS a um FPGA, de forma simples e de baixo custo, possibilitando 
-% outras aplicações desta solução.
 
 \section{Objetivos}
 
@@ -137,17 +55,16 @@ configurado como um co-processador de vídeo.
 \subsection{Objetivos Específicos}
 
 \begin{itemize}
-    \item Estudar os assuntos relevantes ao projeto: Verilog HDL, embedded linx,  Cyclone V, 
-    TCP/IP Stack, ROS;
-    \item Conhecer com detalhes os protocolos da rede TCP/IP usada para comunicação interna dos 
-    nós e serviços ROS;
-    \item Implementa distribuição embedded linux para processador ARM;
+    \item Estudar teoria dos assuntos relevantes ao projeto: Verilog HDL, embedded linx,  Cyclone V, 
+    TCP/IP Stack, ROS\@;
+    \item Estudar conceito de programação de redes usando sockets em liguagem C++ e detalhes dos protocolos da rede TCP/IP usada para comunicação interna dos nós e serviços ROS\@;
+    \item Implementar distribuição embedded linux para processador ARM embarcado no SoC Cyclone V da Intel;
     \item Estabelecer comunicação entre o ROS e o Cyclone V, através da tecnologia Gigabit Ethernet;
-    \item Testar aplicações de processamento de vídeo em hardware em conjunto com ROS;
-    \item Avaliar a performance com a inclusão do FPGA ao sistema.
+    \item Desenvolver aplicação em Verilog para testar comunicação;
+    \item Avaliar a performance da rede entre o computador e o protótipo após a inclusão do FPGA ao sistema.
 \end{itemize}
 
 
 \section{Organização}
 
- No primeiro caítulo...
+ No primeiro Capítulo~\ref{cap:intro}
