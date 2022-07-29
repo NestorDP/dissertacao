@@ -79,6 +79,14 @@ Após os dados serem enviados ao servidor, o cliente deve ser capaz de recebê-l
 
 
 \section{Outras alternativas}
+
+Se seu objetivo for apenas estabelecer a comunicação entre dois dispositivos, já existe um pacote ROS pronto que atenderá a sua necessidade. O ROS serial é uma pacote que tem como principal objetivo permitir a comunicação entre o ROS e outro dispositivo que possua uma porta serial ou uma interface de rede~\cite{RosSeria}. Sendo assim o ROS serial seria uma opção genérica, que não depende do dispositivo de hardware. Além do ROS serial, foi encontrado um trabalho em que os autores estabeleceram a comunicação entre o ROS e um FPGA\@. 
+
+A grande diferença deste trabalhos para o proposto é a busca por No trabalho de Yamashina et al. (2005), são demonstradas três técnica para realizar a conexão entre o FPGA e o ROS, que se diferem da proposta por essa pesquisa
+
+
+
+
 Existem alternativas prontas para fazê-lo, como por exemplo o ROS serial, pacote ROS desenvolvido para permitir comunicação entre o ROS e outros dispositivos que possuem uma porta serial ou uma interface de rede~\cite{RosSeria}. A escolha por desenvolver um novo pacote para executar a mesma função se fez necessário pela necessidade de alta taxa de transferência de dados entre o ROS e o SoC para que seja aceitável a utilização do SoC com a finalidade de acelerar o processamento por hardware. 
 
 Desenvolvendo um novo pacote de comunicação podemos extrair o máximo de desempenho da rede, como por  xemplo, escolhendo o melhor protocolo (UDP ou TCP) e transferindo apenas os dados para o processamento da informação. Todos os códigos do cliente podem ser encontrados no repositório disponível em~\cite{interface-socket}.
