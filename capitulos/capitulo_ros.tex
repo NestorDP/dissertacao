@@ -1,4 +1,5 @@
 \chapter{Robot Operating System - ROS}\label{cap:ros}
+
 \begin{citacao}
 ``O Robot Operating System (ROS) é um conjunto de bibliotecas de software e ferramentas que te auxiliam na construção de aplicações em robótica. De drivers ao estado da arte de algoritmos, e com poderosas ferramentas de desenvolvimento, ROS tem o que você precisa para seu próximo projeto de robótica. E tudo é open source~\cite{Ros}''    
 \end{citacao}
@@ -7,73 +8,36 @@ O ROS foi idealizado com o objetivo de ser um ambiente completo, de código aber
 
 A cada ano o ROS vem se consolidando como o framework padrão para o desenvolvimento de novos projetos de robótica, apesar de já possuir este status, o ROS possui uma história relativamente curta. O ROS teve início no Laboratório de Inteligência Artificial de Standord e em 2007 a companhia Willow Garage assumiu o seu desenvolvimento. A Willow Garage é uma empresa que desenvolve robôs pessoais e de serviços. Ela também é responsável pelo desenvolvimento de suporte a \textit{Point Cloud Library (PCL)}, que é uma biblioteca de software largamente usada para processamento de nuvens de pontos. Em Janeiro de 2010 a primeira versão do ROS foi lançada, desde então muitas outras versões foram lançadas. O ROS está sob as licenças BSD 3-Clause e Apache 2.0, que permite qualquer um modificar, reusar e distribuir códigos ROS~\cite{rosPYO}. Atualmente o ROS se encontra com uma versão estável do ROS2 e o ROS uma tem seu fim marcada para maio de 2015.
 
+
+
 \section{Um sistema operacional para robôs}
 
-The robotics community has made impressive progress in recent years. Reliable and in-
-expensive robot hardware—from land-based mobile robots, to quadrotor helicopters, to
-humanoids—is more widely available than ever before. Perhaps even more impressively,
-the community has also developed algorithms that help those robots run with increasing
-levels of autonomy.
-In spite of (or, some might argue, because of ) this rapid progress, robots do still present
-some significant challenges for software developers. This book introduces a software plat-
-form called Robot Operating System, or ROS, 1 that is intended to ease some of these dif-
-ficulties. The official description of ROS is:
-ROS is an open-source, meta-operating system for your robot. It provides the
-services you would expect from an operating system, including hardware ab-
-straction, low-level device control, implementation of commonly-used func-
-tionality, message-passing between processes, and package management. It
-also provides tools and libraries for obtaining, building, writing, and running
-code across multiple computers. Í 1
-1 When spoken aloud, the name “ROS” is nearly always pronounced as a single word that rhymes with
-“moss,” and almost never spelled out “arrr-oh-ess.”
-Í 1 http://wiki.ros.org/ROS/Introduction
-11. I NTRODUCTION
-This description is accurate—and it correctly emphasizes that ROS does not replace, but
-instead works alongside a traditional operating system—but it may leave you wondering
-what the real advantages are for software that uses ROS. After all, learning to use a new
-framework, particularly one as complex and diverse as ROS, can take quite a lot of time
-and mental energy, so one should be certain that the investment will be worthwhile. Here
-are a few specific issues in the development of software for robots that ROS can help to
-resolve.
-Meta sistema operacional
+De forma simplificada um sistema operacional tem como objetivo gerenciar os recursos do sistema computacional, ele atua como uma ponte entre esses recursos e o seu usuário, ou seja, o sistema operacional se faz necessário para disponibilizar às aplicações os recursos funcionais do sistema de forma padronizada, se tornando uma verdadeira camada de abstração entre os programas e o hardware. Windows, Ubuntu, para computadores pessoais e Android para smartphones, são exemplos de sistemas operacionais populares.
 
-2.2. Meta-Operating System
-Operating Systems (OS) for general purpose computers include Windows (XP, 7, 8, 10), Linux
-(Linux Mint, Ubuntu, Fedora, Gentoo) and Mac (OS X Mavericks, Yosemite, El Capitan). For
-smartphones, there are Android, iOS, Symbian, RiMO, Tizen, etc.
-Is ROS a new operating system for robots?
-ROS is the abbreviation for Robot Operating System, so it would be safe to say that it is an
-operating system. In particular, those who are new to ROS might think that it is a similar
-operating system as aforementioned operating systems. When I first encountered ROS, I also
-thought that it was a new operating system for robots.
-However, a more accurate description would be that ROS is a Meta-Operating System 1 .
-Although the Meta-Operating System is not a defined term in the dictionary, it describes a system
-that performs processes such as scheduling, loading, monitoring and error handling by utilizing
-virtualization layer between applications and distributed computing resources.
+A comunidade da robótica em todo mundo tem feito grande progresso nos últimos anos. Hardware confiáveis e com menor custo têm sido ofertados em um nível nunca encontrado no passado, desde robôs móveis terrestres, passando por drones e até mesmo robôs humanóides estão disponíveis no mercado com relativa facilidade. O que pode ser até mais impressionante, a comunidade também tem desenvolvido algoritmos que permitem que estes robôs possuam um nível crescente de autonomia. Apesar desse rápido progresso, o desenvolvimento de robôs ainda representam um desafio para os desenvolvedores de softwares e grande parte desse desafio se deve a falta de padronização de um software específico para robótica, ou até mesmo um sistema operacional dedicado para robôs, como podemos encontrar em outros nichos, como os PCs e smartphones e o ROS tenta preencher essa lacuna.
 
-Therefore, ROS is not a conventional operating system such as Windows, Linux and Android,
-but a meta-operating system that runs on the existing operating system. In order to operate ROS,
-an operating system such as Ubuntu, which is one of Linux’s distributions, must be installed
-first. After completing ROS installation on top Linux, features provided by the conventional
-operating system such as process management system, file system, user interface and program
-utility (compiler, thread model) can be used. In addition to the basic features provided by Linux,
-ROS provides essential functions required for robot application programs as libraries such as
-data transmission/reception among heterogeneous hardware, scheduling, and error handling.
-This type of software is also called middleware or software framework.
-As a meta-operating system, ROS is developing, managing, and providing application
-packages for various purposes, and it has formed an ecosystem that distributes packages
-developed by users. As described in Figure 2-1, ROS is a supporting system for controlling a
-robot and sensor with a hardware abstraction and developing robot application based on existing
-conventional operating systems.
+O nome ROS vem da abreviação de Robot Operating System, mas seria o ROS um sistema operacional para robôs? Ele fornece abstração de hardware, controle de baixo nível para dispositivos, implementações de funcionalidades de uso comum, troca de mensagens entre processos, até um sistema de gerenciamento de pacotes. Além destas características o ROS está equipado com bibliotecas e ferramentas para escrever, compilar e rodar seus códigos~\cite{RosIntro}.
+
+Apesar de todos os atributos que o caracterizam como um sistema operacional, o ROS não é um sistema operacional convencional, por ainda precisar rodar em um outro sistema operacional previamente instalado, o que faz com que o ROS seja conhecido como um meta-sistema operacional. Antes de ter o ROS em execução no robô é necessário instalar um sistema operacional, como por exemplo o Ubuntu. Com a distribuição Linux rodando é possível executar a instalação completa do ROS, sendo assim, todos os recursos fornecidos por um sistema operacional convencional podem ser utilizados pelo ROS, como sistema de gerenciamento de processos, sistema de arquivos, interface do usuário, compiladores entre outros. 
+
+Para complementar esses recursos básicos do sistema operacional o ROS fornece funcionalidades específicas para o uso na robótica, tal como libraries para transmissão e recepção de dados para uma variedade de hardwares comumente utilizados em sistemas robóticos. Esse tipo de software é conhecido como middleware ou framework. Como pode ser visto na Figura~\ref{fig:rosmeta}, o ROS é o sistema auxiliar para controlar atuadores e sensores, com um nível de abstração de hardware dando suporte para o desenvolvimento de novas aplicações de robótica em sistemas operacionais convencionais.
+
+\begin{figure}[ht]
+	\caption{ROS um meta-sistema operacional}
+	\begin{center}
+		\includegraphics[scale=0.47]{imagens/metaOS.png}\\
+		{\small \textbf{Fonte:} \citeonline{rosPYO}}
+    \end{center}\label{fig:rosmeta}
+\end{figure}
 
 
 
+\section{Vantagens do ROS}
 
 
-
-
-
-\section{Computacão distribuida}
+\subsection{Computacão distribuida}
+\subsection{Reuso de Software}
+\subsection{Testes Rápidos}
 
 \section{Sistemas de aquivos}
 ROS package
