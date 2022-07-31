@@ -5,10 +5,9 @@
 
 O ROS foi idealizado com o objetivo de ser um ambiente completo, de código aberto, para elaboração de sistemas robóticos. Largamente aceito e amplamente utilizado atualmente, os desenvolvedores se beneficiam da alta qualidade de código proporcionado pelo grande número de usuários e plataformas que aproveitam-se do ROS em seus projetos~\cite{RosIntro}. Uma ampla variedade de sensores e atuadores empregados na robótica também seguem essa tendência e oferecem suporte ao ROS através de seus drivers. O ROS fornece abstração de hardware, controle de baixo nível para dispositivos, funcionalidades e bibliotecas de uso comum, passagem de mensagens entre processos e gerenciamento de pacotes~\cite{rosEfetiveProgram}. Por esses motivos, o ROS é conhecido como um meta sistema operacional para robôs. Neste capítulo será apresentado o ROS e as vantagens do seu uso na concepção de novas plataformas robóticas.
 
+A cada ano o ROS vem se consolidando como o framework padrão para o desenvolvimento de novos projetos de robótica, apesar de já possuir este status, o ROS possui uma história relativamente curta. O ROS teve início no Laboratório de Inteligência Artificial de Standord e em 2007 a companhia Willow Garage assumiu o seu desenvolvimento. A Willow Garage é uma empresa que desenvolve robôs pessoais e de serviços. Ela também é responsável pelo desenvolvimento de suporte a \textit{Point Cloud Library (PCL)}, que é uma biblioteca de software largamente usada para processamento de nuvens de pontos. Em Janeiro de 2010 a primeira versão do ROS foi lançada, desde então muitas outras versões foram lançadas. O ROS está sob as licenças BSD 3-Clause e Apache 2.0, que permite qualquer um modificar, reusar e distribuir códigos ROS~\cite{rosPYO}. Atualmente o ROS se encontra com uma versão estável do ROS2 e o ROS uma tem seu fim marcada para maio de 2015.
 
-\section{Porque usar o ROS}
-
-
+\section{Um sistema operacional para robôs}
 
 The robotics community has made impressive progress in recent years. Reliable and in-
 expensive robot hardware—from land-based mobile robots, to quadrotor helicopters, to
@@ -68,14 +67,20 @@ robot and sensor with a hardware abstraction and developing robot application ba
 conventional operating systems.
 
 
-Computacão distribuida
 
-Sistemas de aquivos
+
+
+
+
+
+\section{Computacão distribuida}
+
+\section{Sistemas de aquivos}
 ROS package
 ROS Mensagens
 ROS services
 
-Sistemas computacional ROS Graph level
+\section{Sistemas computacional ROS Graph level}
 entendendo ROS node
 ROS TOPIC
 ROS master
@@ -83,7 +88,7 @@ ROS Parameters
 Workspace ROS
 
 
-Community level- ROS ecosistema
+\section{Community level- ROS ecosistema}
 
 
 
@@ -128,7 +133,7 @@ Muitos dos sensores e atuadores usados na robótica já são suportados pelo ros
 
 
 
-\section{Um sistema operacional para robôs}
+Um sistema operacional para robôs
 
 De forma simplificada um sistema operacional tem como objetivo gerenciar os recursos de um sistema computacional, ele atua como uma ponte entre esses recursos e o ultilizador, ou seja, o sistema operacional se faz necessário para disponibilizar às aplicações os recursos 
 funcionais do sistema de forma padrinzada, se tornando uma verdadeira camada de abstração entre os programas e o hardware. Windows, Ubuntun, para computadores pessoais e Android para smartphones, são exemplos de sistemas operacionais populares.
@@ -150,8 +155,7 @@ As described in Figure 2-1, ROS is a supporting system for controlling a robot a
 % como seu próprio nome indica, que é a abreviação de Robot Operating System. Apesar de fornecer 
 % serviços que um sistema operacional precisa fornercer o ROS ainda precisa de um sistema 
 % operacional padrão, como por exemplo o Ubuntu, para ser executado
-
-\section{Conceitos importantes}
+Conceitos importantes
 
 It uses graph architecture with a centralized topology, where processing takes place in nodes that may receive and send messages to communicate with other nodes on the graph net. A node is any process that can read data from a sensor, control an actuator, or run high level, complex robotic or vision algorithms for mapping or navigating autonomously in the
 environment.\cite{rosEfetiveProgram}
