@@ -33,11 +33,94 @@ Para complementar esses recursos básicos do sistema operacional o ROS fornece f
 
 
 \section{Vantagens do ROS}
+Até agora descrevemos o ROS como uma ferramenta ideal para o desenvolvimento de novos projetos de robótica, apesar disto, aprender a usar um novo framework é uma atividade árdua, principalmente um tão abrangente e complexo como o ROS. Esse tipo de questão deve ser levada em consideração na escolha das ferramentas no inicio de um novo projeto. 
+
+O objetivo do ROS não é ser um framework com o maior número de recursos, seu principal objetivo é oferecer o máximo de reuso de softwares usados no desenvolvimento de novos robôs. O ROS é um framework de computação distribuída, isso que dizer que os seus processos podem ser projetados individualmente e podem ser integrados ao sistema livremente e em tempo de execução. Estes processos podem ser agrupados em pacotes, facilitando o compartilhamento e a sua distribuição. Outra iniciativa para incentivar a colaboração e o compartilhamento de código são os repositórios oficiais do ROS, que estão disponíveis de forma livre. 
+
+A seguir serão listadas algumas características que incentivam a colaboração da comunidade e são responsáveis pelo sucesso do ROS\@:
+
+\begin{itemize}
+    \item\textbf{Recursos Nativos:} O ROS oferece, de forma nativa, muitos recursos prontos, testados e validados pela comunidade. Podemos citar como exemplos o \textit{Simultaneous Localization and Mapping (SLAM)} e o \textit{Adaptive Monte Carlo Localization (AMCL)} que são usados para navegação autônoma de plataformas robóticas móveis, outro pacote oferecido pelo ROS é o MoveIt,pacote usado para planejamento de movimento de manipuladores. Estes recursos podem ser usados sem nenhum problema e são altamente configuráveis, podendo ser adaptados em vários modelos de robôs e atender a inúmeras aplicações. 
+
+    \item\textbf{Ferramentas de desenvolvimento:} O ROS é disponibilizado com uma grande quantidade de ferramentas para debugging, visualização, incluindo ferramentas para simulação. Algumas das ferramentas open source mais poderosas para visualização, debugging e  simulação, respectivamente, rqt\underline{ }gui, RViz e Gazebo, são nativas do ambiente ROS\@.
+    
+    
+    \item\textbf{Suporte sensores e atuadores:} Muitos dos sensores e atuadores usados na robótica já são suportados pelo ROS e o número de dispositivos compatíveis aumenta a cada ano. Algumas companhias se beneficiam pelo fato de muitos desses dispositivos fazerem uso de hardware aberto e o software existente também pode ser reutilizado a custo zero. Fazendo com que o processo de desenvolvimento de novos hardware periféricos usados na robótica também acelere. Sensores como Velodyne-LIDAR, Laser scanners e atuadores como os servos Dynamixel, podem ser integrados ao ROS sem nenhum impedimento.
+    
+    \item\textbf{Múltiplas linguagens:} O framework ROS pode ser programado em algumas linguagens de programação modernas. Pdemos escrever código eficientes em C ou C++ e outra aplicação ser escrita em python. O ROS possui bibliotecas clientes para C/C++, Python, Java e Lisp. Este tipo de flexibilidade não é comum em outros frameworks.
+    
+\end{itemize}
+
+
 
 
 \subsection{Computacão distribuida}
+Many modern robot systems rely on software that spans many
+different processes and runs across several different computers. For example:
+
+Some robots carry multiple computers, each of which controls a subset of the robot’s
+sensors or actuators.
+Even within a single computer, it’s often a good idea to divide the robot’s software
+into small, stand-alone parts that cooperate to achieve the overall goal. This ap-
+proach is sometimes called “complexity via composition.”
+When multiple robots attempt to cooperate on a shared task, they often need to
+communicate with one another to coordinate their efforts.
+Human users often send commands to a robot from a laptop, a desktop computer,
+or mobile device. We can think of this human interface as an extension of the robot’s
+software.
+The common thread through all of these cases is a need for communication between mul-
+tiple processes that may or may not live on the same computer. ROS provides two relatively
+simple, seamless m
+
 \subsection{Reuso de Software}
+The rapid progress of robotics research has resulted in a growing collec-
+tion of good algorithms for common tasks such as navigation, motion planning, mapping,
+and many others. Of course, the existence of these algorithms is only truly useful if there is
+a way to apply them in new contexts, without the need to reimplement each algorithm for
+each new system. ROS can help to prevent this kind of pain in at least two important ways.
+R
+2
+ROS’s standard packages provide stable, debugged implementations of many impor-
+tant robotics algorithms.
+ROS’s message passing interface is becoming a de facto standard for robot software
+interoperability, which means that ROS interfaces to both the latest hardware and to
+implementations of cutting edge algorithms are quite often available. For example,
+the ROS website lists hundreds of publicly-available ROS packages. Í 2 This sort of
+uniform interface greatly reduces the need to write “glue” code to connect existing
+parts.
+As a result, developers that use ROS can expect—after, of course, climbing ROS’s initial
+learning curve—to focus more time on experimenting with new ideas, and less time rein-
+venting wheels.
+
 \subsection{Testes Rápidos}
+One of the reasons that software development for robots is often more
+challenging than other kinds of development is that testing can be time consuming and
+error-prone. Physical robots may not always be available to work with, and when they
+are, the process is sometimes slow and finicky. Working with ROS provides two effective
+workarounds to this problem.
+R
+R
+Well-designed ROS systems separate the low-level direct control of the hardware and
+high-level processing and decision making into separate programs. Because of this
+separation, we can temporarily replace those low-level programs (and their corre-
+sponding hardware) with a simulator, to test the behavior of the high-level part of
+the system.
+ROS also provides a simple way to record and play back sensor data and other kinds
+of messages. This facility means that we can obtain more leverage from the time
+we do spend operating a physical robot. By recording the robot’s sensor data, we
+can replay it many times to test different ways of processing that same data. In ROS
+parlance, these recordings are calle
+A crucial point for both of these features is that the change is seamless. Because the real
+robot, the simulator, and the bag playback mechanism can all provide identical (or at least
+very similar) interfaces, your software does not need to be modified to operate in these
+distinct scenarios, and indeed need not even “know” whether it is talking to a real robot or
+to something else.
+Of course, ROS is not the only platform that offers these capabilities. What is unique
+about ROS, at least in the author’s judgment, is the level of widespread support for ROS
+Í 2 http://www.ros.org/browse
+across the robotics community. This “critical mass” of support makes it reasonable to pre-
+dict that ROS will continue to evolve, expand, and improve in the fut
+
 
 \section{Sistemas de aquivos}
 ROS package
@@ -64,70 +147,27 @@ Workspace ROS
 
 
 
+% No ROS um processo é conhecido como nó, que pode receber e enviar mensagens para se comunicar com outros nós através de uma rede rodando o protocolo TCPROS [3].a busca por sistemas com um grau maior de autonomiaA robótica tem se caracterizádo pelo grande nível de percepção do ambiente e pelos sistemacomplexos de controle do movimentos 
+
+% Com essa distribuição de tarefas através de vários nós podemos criar sistemas cada vez mais complexos, apenas inserindo novos nós na rede, essa rede é gerenciada pelo ROS Master, que é apensas mais um nó do sistema, mas com a função de ser um servidor de nome e serviços para o restante dos nós. Ele identifica os nós na rede, assim todos os nós podem se comunicar com os outros através de conexões peer-to-peer, igura 1. Para desenvolver novas aplicações para o crescente grupo de pacotes ROS, o desenvolvedor deve respeitar os protocolos de comunicação da rede, as bibliotecas do ROS facilitam este trabalho, por já fornecer funções prontas para o desenvolvimento de novos códigos compatíveis e que possam se registrar na rede. Detalhes dos  rotocolos e interno podem ser visto em (ROS, 2011a), (ROS, 2018) e (ROS, 2011b).
+
+
+
+% Desenvolver um robô não é algo trivial, atividades que seriam facilmente executadas por nós, seres humnos, como por exemplo, andar de um ponto ao outro de uma sala, do ponto de vista de um robô pode ser um trabalho extremamente árduo. Montar o sistema que possibilite o robô executar as funções pra o qual foi projetado pode facilmente necessitar de um arranjo complexo entre componetes de software e hardware e que pode variar bastante dependendo do ambiente ao qual o robô será exposto. Sendo assim, o desenvolvimento de um sistema robôtico completo necessita de uma conhecimento abrangente e de áreas distintas.  
+
+% Nesse paronama que o ROS foi concebido, com o objetivo de  ser um um ambiente completo para desenvolvimento de sistemas robôticos, facilitando o desenvolvimento com o máximo de reuso de código possibilitando o mínimo de mudanças na adaptação um sistema a um novo ambiente ou até mesmo no desenvolvimento de uma nova plataforma. Atualmente o ROS é um framework bem aceito e amplamente utilizado não apenas na comunidade acadêmica mas também na industria. Desenvolvido originalmente em 2007 no \textit{Stanford Artificial Intelligence Laboratory - SAIL}, a partir de 2008 o ROS foi continuado pela Willow Garage, entretanto em 2012 com a criação da \textit{Open Source Robotics Foundation, Inc. - OSRF} os ROS e projetos parceiros como o Gazebo passaram a ser mantidos pela própria OSRF, que continua o desenvolvimento adicionando novas fancionalidades ao projeto. Além disso muitas instituições de pesquisa adaptaram seus projeto ao ROS, aumentando a cada ano o número de pesquisadores e desenvolvedores trabalhando no aperfeiçoamento do ROS. No site oficial do ROS podemos ver uma lista com diverssas plataformas que utilizam o ROS em seus projetos. http://wiki.ros.org/Robots
 
 
 
 
 
-
-
-No ROS um processo é conhecido como nó, que pode receber e enviar mensagens para se comunicar com outros nós através de uma rede rodando o protocolo TCPROS [3].
-
-
+% It uses graph architecture with a centralized topology, where processing takes place in nodes that may receive and send messages to communicate with other nodes on the graph net. A node is any process that can read data from a sensor, control an actuator, or run high level, complex robotic or vision algorithms for mapping or navigating autonomously in the
+% environment.\cite{rosEfetiveProgram}
 
 
 
 
-
-
-
-
-a busca por sistemas com um grau maior de autonomiaA robótica tem se caracterizádo pelo grande nível de percepção do ambiente e pelos sistemacomplexos de controle do movimentos 
-
-Com essa distribuição de tarefas através de vários nós podemos criar sistemas cada vez mais complexos, apenas inserindo novos nós na rede, essa rede é gerenciada pelo ROS Master, que é apensas mais um nó do sistema, mas com a função de ser um servidor de nome e serviços para o restante dos nós. Ele identifica os nós na rede, assim todos os nós podem se comunicar com os outros através de conexões peer-to-peer, igura 1. Para desenvolver novas aplicações para o crescente grupo de pacotes ROS, o desenvolvedor deve respeitar os protocolos de comunicação da rede, as bibliotecas do ROS facilitam este trabalho, por já fornecer funções prontas para o desenvolvimento de novos códigos compatíveis e que possam se registrar na rede. Detalhes dos  rotocolos e interno podem ser visto em (ROS, 2011a), (ROS, 2018) e (ROS, 2011b).
-
-% \chapter{Robot Operating System - ROS}\label{cap:ros}
-
-Desenvolver um robô não é algo trivial, atividades que seriam facilmente executadas por nós, seres humnos, como por exemplo, andar de um ponto ao outro de uma sala, do ponto de vista de um robô pode ser um trabalho extremamente árduo. Montar o sistema que possibilite o robô executar as funções pra o qual foi projetado pode facilmente necessitar de um arranjo complexo entre componetes de software e hardware e que pode variar bastante dependendo do ambiente ao qual o robô será exposto. Sendo assim, o desenvolvimento de um sistema robôtico completo necessita de uma conhecimento abrangente e de áreas distintas.  
-
-Nesse paronama que o ROS foi concebido, com o objetivo de  ser um um ambiente completo para desenvolvimento de sistemas robôticos, facilitando o desenvolvimento com o máximo de reuso de código possibilitando o mínimo de mudanças na adaptação um sistema a um novo ambiente ou até mesmo no desenvolvimento de uma nova plataforma. Atualmente o ROS é um framework bem aceito e amplamente utilizado não apenas na comunidade acadêmica mas também na industria. Desenvolvido originalmente em 2007 no \textit{Stanford Artificial Intelligence Laboratory - SAIL}, a partir de 2008 o ROS foi continuado pela Willow Garage, entretanto em 2012 com a criação da \textit{Open Source Robotics Foundation, Inc. - OSRF} os ROS e projetos parceiros como o Gazebo passaram a ser mantidos pela própria OSRF, que continua o desenvolvimento adicionando novas fancionalidades ao projeto. Além disso muitas instituições de pesquisa adaptaram seus projeto ao ROS, aumentando a cada ano o número de pesquisadores e desenvolvedores trabalhando no aperfeiçoamento do ROS. No site oficial do ROS podemos ver uma lista com diverssas plataformas que utilizam o ROS em seus projetos. http://wiki.ros.org/Robots
-
-Muitos dos sensores e atuadores usados na robótica já são suportados pelo ros e o número de dispositivos compatíveis aumenta a cada ano. Algumas companias se beneficiam pelo fato de muitos deste dispositivos fazerem uso de hardware aberto e o software exitente também pode ser reutilizado a custo zero. Fazendo com que o processo de desenvolvimento de novos hardware periféricos usados na robótica também acelere.
-
-
-
-
-Um sistema operacional para robôs
-
-De forma simplificada um sistema operacional tem como objetivo gerenciar os recursos de um sistema computacional, ele atua como uma ponte entre esses recursos e o ultilizador, ou seja, o sistema operacional se faz necessário para disponibilizar às aplicações os recursos 
-funcionais do sistema de forma padrinzada, se tornando uma verdadeira camada de abstração entre os programas e o hardware. Windows, Ubuntun, para computadores pessoais e Android para smartphones, são exemplos de sistemas operacionais populares.
-
-O nome ROS vem da abrviação de Robot Operating System, mas seria o ROS um sistema operacional para robôs? Ele fornece abstração de hardware, controle de baixo nível para dispositivos, implementações de funcionalidades de uso comum, troca de mensagens entre processos, até um sistema de gerenciamento de pacotes. Além destas características o ROS está equipado com bibliotecas e ferramentas para escrever, compilar e rodar seus códigos. %http://www.ros.org/ROBOT PROGRAMMING \cite{rosPYO}%
-
-Apesar de todos estes atributos, que caracterizam um sistema operacional, o ROS ainda precisa rodar sobre um outro sistema operacional previamente instalado, o que faz com que o ROS seja conhecido como um meta-sistema operacional. Antes de ter o ROS em execução no robô é necessário instalar um sistema operacional, como por exemplo o Ubuntu. Com a distribuição linux rodando é possível executar a instalação completa do ROS, sendo assim, todos os recursos fornecidos por um sistema operacional convencional podem ser utilizados pelo ROS, como sistema de genrenciamento de processos, sistema de arquivos, interface do usuário, compiladores entre outros. Para complementar esses recursos básicos do sistema operacional o ROS fornecer funcionalidades especificar para o uso na robótica, tal como libares para transmissão e recepção de dados para uma variedade de hardwares comumnete utilizados em sistemas robóticos. 
-
-In addition to the basic features provided by Linux, ROS provides essential functions required for robot application programs as libraries such as data transmission/reception 
-%among heterogeneous hardware, scheduling, and error handling.
-
-
-This type of software is also called middleware or software framework. As a meta-operating system, ROS is developing, managing, and providing application packages for various purposes, and it has formed an ecosystem that distributes packages developed by users. 
-As described in Figure 2-1, ROS is a supporting system for controlling a robot and sensor with a 
-% hardware abstraction and developing robot application based on existing conventional operating systems.
-
-% Tendo uma visão geral da função de um sistema operacional, podemos apontar porque o ROS é
-% chamado de um meta-sistema operacional para robôs e não um sistema operacional verdadeiro
-% como seu próprio nome indica, que é a abreviação de Robot Operating System. Apesar de fornecer 
-% serviços que um sistema operacional precisa fornercer o ROS ainda precisa de um sistema 
-% operacional padrão, como por exemplo o Ubuntu, para ser executado
-Conceitos importantes
-
-It uses graph architecture with a centralized topology, where processing takes place in nodes that may receive and send messages to communicate with other nodes on the graph net. A node is any process that can read data from a sensor, control an actuator, or run high level, complex robotic or vision algorithms for mapping or navigating autonomously in the
-environment.\cite{rosEfetiveProgram}
-
-One of the most frequently asked questions I received over the years in ROS-related seminars is to compare ROS with other robot software platforms (OpenRTM, OPRoS, Player, YARP, Orocos, CARMEN, Orca, MOOS, Microsoft Robotics Studio). A simple comparison with these platforms may be possible, but the comparison is not meaningful because they each have different purposes. As a user of ROS, I felt that the goal of ROS is to “build the development environment that allows robotic software development to collaborate on a global level!” That is to say, ROS is focused on maximizing code reuse in the robotics research and development, rather than orienting towards the so-called robot software platform, middleware, and framework. To support this, ROS has the following characteristics.
-
-
-Distributed process: It is programmed in the form of the minimum units of executable processes (nodes), and each process runs independently and exchanges data systematically. Package management: Multiple processes having the same purpose are managed as a package so that it is easy to use and develop, as well as convenient to share, modify, and redistribute. Public repository: Each package is made public to the developer’s preferred public repository (e.g., GitHub) and specifies their license. API: When developing a program that uses ROS, ROS is designed to simply call an API and insert it easily into the code being used. In the source code introduced in each chapter, you will see that ROS programming is not much different from C++ and Python. These characteristics of ROS have allowed users to establish an environment where it is possible to collaborate on robotics software development on a global level. Reusing a code in robot 
+% Distributed process: It is programmed in the form of the minimum units of executable processes (nodes), and each process runs independently and exchanges data systematically. Package management: Multiple processes having the same purpose are managed as a package so that it is easy to use and develop, as well as convenient to share, modify, and redistribute. Public repository: Each package is made public to the developer’s preferred public repository (e.g., GitHub) and specifies their license. API: When developing a program that uses ROS, ROS is designed to simply call an API and insert it easily into the code being used. In the source code introduced in each chapter, you will see that ROS programming is not much different from C++ and Python. These characteristics of ROS have allowed users to establish an environment where it is possible to collaborate on robotics software development on a global level. Reusing a code in robot 
 
 
 
