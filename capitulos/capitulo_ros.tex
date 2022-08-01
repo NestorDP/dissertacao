@@ -25,7 +25,7 @@ Para complementar esses recursos básicos do sistema operacional o ROS fornece f
 \begin{figure}[ht]
 	\caption{ROS um meta-sistema operacional}
 	\begin{center}
-		\includegraphics[scale=0.47]{imagens/metaOS.png}\\
+		\includegraphics[scale=0.6]{imagens/metaOS.png}\\
 		{\small \textbf{Fonte:} \citeonline{rosPYO}}
     \end{center}\label{fig:rosmeta}
 \end{figure}
@@ -55,71 +55,15 @@ A seguir serão listadas algumas características que incentivam a colaboração
 
 
 \subsection{Computacão distribuida}
-Many modern robot systems rely on software that spans many
-different processes and runs across several different computers. For example:
+Grande parte de robôs modernos possuem diferentes unidades de processamentos, que podem estar localizados em diferentes computadores. Desde sensores microprocessados até mesmo controles específicos para motores, podem possuir suas próprias unidades computacionais. Mesmo possuindo apenas um computador, dividir o processamento em processos individuais específicos para cada função e fazer com que eles trabalhem em conjunto para se afim de resolverem um problema maior é uma excelente abordagem para a arquitetura de robôs modernos. Além disso, múltiplos robôs podem trabalhar de forma colaborativa dividindo atividades entre eles, ou até mesmo interagindo com seres humanos que poderiam enviar comandos através de um computador ou celular. Em todos estes casos é necessário a comunicação entre processos, que podem ou não estarem no mesmo computador. 
 
-Some robots carry multiple computers, each of which controls a subset of the robot’s
-sensors or actuators.
-Even within a single computer, it’s often a good idea to divide the robot’s software
-into small, stand-alone parts that cooperate to achieve the overall goal. This ap-
-proach is sometimes called “complexity via composition.”
-When multiple robots attempt to cooperate on a shared task, they often need to
-communicate with one another to coordinate their efforts.
-Human users often send commands to a robot from a laptop, a desktop computer,
-or mobile device. We can think of this human interface as an extension of the robot’s
-software.
-The common thread through all of these cases is a need for communication between mul-
-tiple processes that may or may not live on the same computer. ROS provides two relatively
-simple, seamless m
+O ROS é um Inter-process communication framework e de fato ele usa uma rede TCP/IP para realizar essa comunicação entre processos. Ele usa sockets TCP/IP para transportar dados entre os processos. Esta abordagem proporciona grande flexibilidade na troca de mensagem, processos podem se comunicar com outros mesmo se eles não estiverem na mesma máquina, ou até mesmo em robôs separados, bastando para isso, todas as máquinas que compartilham processos estarem na mesma rede. Isso faz com que até mesmo processos rodando na internet possam participar da comunicação e realizar uma parte do processamento de um robô.
+
 
 \subsection{Reuso de Software}
-The rapid progress of robotics research has resulted in a growing collec-
-tion of good algorithms for common tasks such as navigation, motion planning, mapping,
-and many others. Of course, the existence of these algorithms is only truly useful if there is
-a way to apply them in new contexts, without the need to reimplement each algorithm for
-each new system. ROS can help to prevent this kind of pain in at least two important ways.
-R
-2
-ROS’s standard packages provide stable, debugged implementations of many impor-
-tant robotics algorithms.
-ROS’s message passing interface is becoming a de facto standard for robot software
-interoperability, which means that ROS interfaces to both the latest hardware and to
-implementations of cutting edge algorithms are quite often available. For example,
-the ROS website lists hundreds of publicly-available ROS packages. Í 2 This sort of
-uniform interface greatly reduces the need to write “glue” code to connect existing
-parts.
-As a result, developers that use ROS can expect—after, of course, climbing ROS’s initial
-learning curve—to focus more time on experimenting with new ideas, and less time rein-
-venting wheels.
+
 
 \subsection{Testes Rápidos}
-One of the reasons that software development for robots is often more
-challenging than other kinds of development is that testing can be time consuming and
-error-prone. Physical robots may not always be available to work with, and when they
-are, the process is sometimes slow and finicky. Working with ROS provides two effective
-workarounds to this problem.
-R
-R
-Well-designed ROS systems separate the low-level direct control of the hardware and
-high-level processing and decision making into separate programs. Because of this
-separation, we can temporarily replace those low-level programs (and their corre-
-sponding hardware) with a simulator, to test the behavior of the high-level part of
-the system.
-ROS also provides a simple way to record and play back sensor data and other kinds
-of messages. This facility means that we can obtain more leverage from the time
-we do spend operating a physical robot. By recording the robot’s sensor data, we
-can replay it many times to test different ways of processing that same data. In ROS
-parlance, these recordings are calle
-A crucial point for both of these features is that the change is seamless. Because the real
-robot, the simulator, and the bag playback mechanism can all provide identical (or at least
-very similar) interfaces, your software does not need to be modified to operate in these
-distinct scenarios, and indeed need not even “know” whether it is talking to a real robot or
-to something else.
-Of course, ROS is not the only platform that offers these capabilities. What is unique
-about ROS, at least in the author’s judgment, is the level of widespread support for ROS
-Í 2 http://www.ros.org/browse
-across the robotics community. This “critical mass” of support makes it reasonable to pre-
-dict that ROS will continue to evolve, expand, and improve in the fut
 
 
 \section{Sistemas de aquivos}
