@@ -77,9 +77,58 @@ Nos repositórios oficiais do ROS estão disponíveis centenas de pacotes públi
 
 
 \section{Sistemas de aquivos}
-ROS package
-ROS Mensagens
-ROS services
+Como era de se esperar de um sistema operacional, o ROS também possui um sistema de arquivos padronizado. É de extrema importância para o desenvolvimento de novas aplicações conhecer a organização dessa estrutura de arquivos. A Figura~\ref{fig:rosfile} apresenta um diagrama de blocos do sistema de arquivo do ROS\@.
+
+\begin{figure}[ht]
+	\caption{Sistema de arquivos ROS}
+	\begin{center}
+		\includegraphics[scale=0.7]{imagens/fileSiystem.png}\\
+		{\small \textbf{Fonte:} \citeonline{rosMastering}}
+    \end{center}\label{fig:rosfile}
+\end{figure}
+
+A seguir são apresentados a definição de cada bloco da estrutura de arquivos do ROS\@:
+\begin{itemize}
+    \item \textbf{Pacotes:} Pacotes são a unidade de software principal do ROS\@. Um pacote pode conter nós, dependências, bibliotecas, datasets, arquivos de configuração, ou qualquer coisa que seja útil organizar de forma agrupada~\cite{RosPKG}.
+
+    \item \textbf{Manifesto do pacote:} O arquivo package.xml é conhecido como manifesto do pacote, ele fornece os metadados a respeito do pacotes, incluindo nome, versão, descrição, licença, dependências e outras informações. Os padrões do package.xml são definidos no REP-0127.
+    
+    \item \textbf{Metapackages:} Metapackages são pacotes especializados que serve apenas como representante de um grupo de outros pacotes relacionados entre si.
+    
+    \item \textbf{Meta packages manifest:} O manifesto de um metapackage é semelhante ao manifesto de um pacote comum, a diferença entre eles é que no manifesto devemos incluir as dependências encontradas no mesmo repositório do meta package
+    
+    \item \textbf{Message (msg) types:} É o arquivo de descrição de um tipo de mensagem, é armazenado no diretório my\underline{ }package/msg/MyMessageType.msg e define toda a estrutura de dados enviados a partir deste tipo de mensagem.
+    
+    \item \textbf{Service (srv) types:} É o arquivo de descrição de um tipo de mensagem, é armazenado no diretório my\underline{ }package/srv/MyServiceType.msg e define toda a estrutura de dados enviados a partir deste tipo de serviço.
+    
+    \item \textbf{Repositórios:} Pacotes ROS são compartilhados usando algum tipo de Version Control System (VCS), como o gti. Cada repositório pode conter apenas um pacote ou um metapackage 
+\end{itemize}
+
+
+\subsection{Pacotes ROS}
+
+A unidade básica para configuração do software no ROS é conhecida como pacote, isso quer dizer que todas as aplicações desenvolvidas para ROS são estruturadas como um pacote. Na Figura XX podemos ter uma visão da estrutura típica de uma pacote ROS
+
+\begin{figure}[ht]
+	\caption{Estrutura típica de um pacote ROS ROS}
+	\begin{center}
+		\includegraphics[scale=0.8]{imagens/rospackagestruture.png}\\
+		{\small \textbf{Fonte:} \citeonline{rosMastering}}
+    \end{center}\label{fig:rospacotestrut}
+\end{figure}
+
+Nos pacotes estão contidos um ou mais nós, como são chamadas as unidades de processamento no ROS, ou podem incluir arquivos de configuração para a execução de nós de outros pacotes. Existem milhares de pacotes ROS oficiais e uma quantidade ainda maior de pacotes desenvolvidos por seus usuários. 
+
+Cada metapackage possui um arquivo chamado package.xml, este arquivo é responsável por reunir informações importantes sobre o pacote, nele podemos encontrar o nome do pacote, seu autor, dependências e licença de uso. O sistema de compilação do ROS é o Catkin, ele usa o CMake e o arquivo CMakeLists.txt que deve estar dentro da pasta de cada pacote com as suas instruções de compilação. 
+
+Os pacotes são as menores unidades que podem ser compiladas no ROS, são também  a maneira com que podemos organizar o software para ser lançado. No caso dos pacotes oficiais do ROS, por exemplo, existe um pacote Debian, que são os pacotes utilizados pelo Ubuntu, para cada pacote ROS. Apesar do conceito ser semelhante, e mesmo que ao instalar um pacote Debian, você possa incluí-lo à sua lista de pacotes ao ROS instalado no sistema, os pacotes debian e ROS não são equivalentes. 
+
+A principal função dos pacotes é ser uma maneira funcional, de fácil configuração e um caminho descomplicado para possibilitar o reuso de software. De maneira geral o pacotes ROS devem conter funcionalidades suficientes para serem úteis, mas não muito para torná-los muito grande e confuso, tornando seu uso difícil por outro software 
+
+
+
+\subsection{Mensagens ROS}
+
 
 \section{Sistemas computacional ROS Graph level}
 entendendo ROS node
