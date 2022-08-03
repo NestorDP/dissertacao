@@ -9,7 +9,6 @@ O ROS foi idealizado com o objetivo de ser um ambiente completo, de código aber
 A cada ano o ROS vem se consolidando como o framework padrão para o desenvolvimento de novos projetos de robótica, apesar de já possuir este status, o ROS possui uma história relativamente curta. O ROS teve início no Laboratório de Inteligência Artificial de Standord e em 2007 a companhia Willow Garage assumiu o seu desenvolvimento. A Willow Garage é uma empresa que desenvolve robôs pessoais e de serviços. Ela também é responsável pelo desenvolvimento de suporte a \textit{Point Cloud Library (PCL)}, que é uma biblioteca de software largamente usada para processamento de nuvens de pontos. Em Janeiro de 2010 a primeira versão do ROS foi lançada, desde então muitas outras versões foram lançadas. O ROS está sob as licenças BSD 3-Clause e Apache 2.0, que permite qualquer um modificar, reusar e distribuir códigos ROS~\cite{rosPYO}. Atualmente o ROS se encontra com uma versão estável do ROS2 e o ROS uma tem seu fim marcada para maio de 2015.
 
 
-
 \section{Um sistema operacional para robôs}
 
 De forma simplificada um sistema operacional tem como objetivo gerenciar os recursos do sistema computacional, ele atua como uma ponte entre esses recursos e o seu usuário, ou seja, o sistema operacional se faz necessário para disponibilizar às aplicações os recursos funcionais do sistema de forma padronizada, se tornando uma verdadeira camada de abstração entre os programas e o hardware. Windows, Ubuntu, para computadores pessoais e Android para smartphones, são exemplos de sistemas operacionais populares.
@@ -31,7 +30,6 @@ Para complementar esses recursos básicos do sistema operacional o ROS fornece f
 \end{figure}
 
 
-
 \section{Vantagens do ROS}
 Até agora descrevemos o ROS como uma ferramenta ideal para o desenvolvimento de novos projetos de robótica, apesar disto, aprender a usar um novo framework é uma atividade árdua, principalmente um tão abrangente e complexo como o ROS\@. Esse tipo de questão deve ser levada em consideração na escolha das ferramentas no inicio de um novo projeto. 
 
@@ -44,14 +42,11 @@ A seguir serão listadas algumas características que incentivam a colaboração
 
     \item\textbf{Ferramentas de desenvolvimento:} O ROS é disponibilizado com uma grande quantidade de ferramentas para debugging, visualização, incluindo ferramentas para simulação. Algumas das ferramentas open source mais poderosas para visualização, debugging e  simulação, respectivamente, rqt\underline{ }gui, RViz e Gazebo, são nativas do ambiente ROS\@.
     
-    
     \item\textbf{Suporte sensores e atuadores:} Muitos dos sensores e atuadores usados na robótica já são suportados pelo ROS e o número de dispositivos compatíveis aumenta a cada ano. Algumas companhias se beneficiam pelo fato de muitos desses dispositivos fazerem uso de hardware aberto e o software existente também pode ser reutilizado a custo zero. Fazendo com que o processo de desenvolvimento de novos hardware periféricos usados na robótica também acelere. Sensores como Velodyne-LIDAR, Laser scanners e atuadores como os servos Dynamixel, podem ser integrados ao ROS sem nenhum impedimento.
     
     \item\textbf{Múltiplas linguagens:} O framework ROS pode ser programado em algumas linguagens de programação modernas. Pdemos escrever código eficientes em C ou C++ e outra aplicação ser escrita em python. O ROS possui bibliotecas clientes para C/C++, Python, Java e Lisp. Este tipo de flexibilidade não é comum em outros frameworks.
     
 \end{itemize}
-
-
 
 
 \subsection{Computacão distribuida}
@@ -69,11 +64,10 @@ O uso do ROS pode diminuir a necessidade de implementar algoritmos que já foram
     \item \textbf{Interface de troca de mensagens:} A interface utilizada pelo ROS vem se tornando um padrão na comunicação entre processos em robôs.
 \end{itemize}
 
-
 Nos repositórios oficiais do ROS estão disponíveis centenas de pacotes públicos que utilizam a interface de troca de mensagens padronizada do ROS possibilitando uma redução significativa do esforço necessário para o desenvolvimento de uma lógica para integrar estes pacotes ao seu sistema. Logo desenvolvedores que usam o ROS podem concentrar mais tempo e esforços no desenvolvimento de suas novas ideias, aproveitando algoritmos consolidados dos repositórios oficiais do ROS, sem a necessidade de reescrevê-los para adaptá-los ao seu projeto.
 
 
-\subsection{Testes Rápidos}
+% \subsection{Testes Rápidos}
 
 
 \section{Sistemas de aquivos}
@@ -126,7 +120,6 @@ Os pacotes são as menores unidades que podem ser compiladas no ROS, são també
 A principal função dos pacotes é ser uma maneira funcional, de fácil configuração e um caminho descomplicado para possibilitar o reuso de software. De maneira geral o pacotes ROS devem conter funcionalidades suficientes para serem úteis, mas não muito para torná-los muito grande e confuso, tornando seu uso difícil por outro software 
 
 
-
 \subsection{Mensagens ROS}
 Os nós do ROS podem publicar apenas dados de tipos predeterminados. Estes tipos são definidos usando uma linguagem de descrição de mensagens, conhecida como ROS messages. Esta simples descrição permite que as ferramentas do ROS gerem automaticamente o código fonte para mensagens para todas as linguagens aceitas no ROS\@. As descrições das mensagens são armazenadas no arquivo .msg localizada no subdiretório msg/ dentro de um pacote ROS\@.
 
@@ -139,7 +132,7 @@ O ROS possui um grande número de mensagens predefinidas, o que não impede que 
     \begin{center}
         \begin{tabular}{llll}
         \hline
-        \textbf{Primitive type} & \textbf{Serialization} & \textbf{C++} & \textbf{Python} \\ \hline
+        \textbf{Primitive type} & \textbf{Serialization} & \textbf{C++} & \textbf{Python} \\ \hline\hline
         bool(1)     & unsigned8-bitint              & uint8\_t(2)  & bool            \\ 
         int8        & signed8-bitint                & int8\_t      & int             \\ 
         uint8       & unsigned8-bitint              & uint8\_t     & int             \\ 
@@ -152,13 +145,14 @@ O ROS possui um grande número de mensagens predefinidas, o que não impede que 
         float32     & 32-bitIEEEfloat               & float        & float           \\ 
         float64     & 64-bitIEEEfloat               & double       & float           \\ 
         string      & asciistring(4)                & std::string  & string          \\ 
-        time        &Secs/nsecs signed 32bit ints   & ros::Time    & rospy.Time      \\ 
-        duration    &Secs/nsecs signed 32bit ints   & ros::Duration& rospy.Duration  \\ \hline
+        time        & Secs/nsecs signed 32bit ints  & ros::Time    & rospy.Time      \\ 
+        duration    &S ecs/nsecs signed 32bit ints  & ros::Duration& rospy.Duration  \\ \hline
         \end{tabular}
         \\{\small \textbf{Fonte:} \citeonline{rosLearning}}
     \end{center}\label{tab:rostype}
 
 \end{table}
+
 
 \subsection{Workspace ROS}
 De forma geral, o workspace é uma pasta no computador que contém todos os pacotes que estão sendo usados no desenvolvimento de uma nova aplicação. Estes pacotes contêm os arquivos fontes e o workspace fornece um local para que os pacotes sejam compilados. O workspace se torna ainda mais útil quando é necessário compilar vários pacotes ao mesmo tempo, todos os pacotes poderão estar contidos no mesmo workspace centralizando todo processo de desenvolvimento. Não existe um diretor específico para que o workspace seja criado, logo, ele pode ser criado no local de preferência do desenvolvedor e sua equipe. Um workspace típico é mostrado na Figura~\ref{fig:rosworkspace}. 
@@ -181,9 +175,7 @@ Cada pasta dentro do workspace é um diferente espaço diferente, cada um com um
     \item \textbf{O espaço de desenvolvimento:} Na pasta de que se encontra o espaço de desenvolvimento, aqui são armazenados os programas compilados. Assim você pode testar seus programas sem a necessidade de instalá-los no sistema.
 \end{itemize}
 
-
 Outra função importante do ROS que pode ser usada através de um workspace é o overlays. Se você tiver um pacote instalado em seu sistema, mas quiser testar uma versão mais atual do mesmo pacote, não é necessário instalar a versão mais atual, você pode baixar o código fonte do pacote dentro do seu workspace, após compilar o workspace o ROS entende que deverá usar a versão presente no workspace e não a versão instalada no sistema.
-   
 
 
 \section{Sistemas computacional ROS Graph level}
