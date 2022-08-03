@@ -33,7 +33,7 @@ Para complementar esses recursos básicos do sistema operacional o ROS fornece f
 
 
 \section{Vantagens do ROS}
-Até agora descrevemos o ROS como uma ferramenta ideal para o desenvolvimento de novos projetos de robótica, apesar disto, aprender a usar um novo framework é uma atividade árdua, principalmente um tão abrangente e complexo como o ROS. Esse tipo de questão deve ser levada em consideração na escolha das ferramentas no inicio de um novo projeto. 
+Até agora descrevemos o ROS como uma ferramenta ideal para o desenvolvimento de novos projetos de robótica, apesar disto, aprender a usar um novo framework é uma atividade árdua, principalmente um tão abrangente e complexo como o ROS\@. Esse tipo de questão deve ser levada em consideração na escolha das ferramentas no inicio de um novo projeto. 
 
 O objetivo do ROS não é ser um framework com o maior número de recursos, seu principal objetivo é oferecer o máximo de reuso de softwares usados no desenvolvimento de novos robôs. O ROS é um framework de computação distribuída, isso que dizer que os seus processos podem ser projetados individualmente e podem ser integrados ao sistema livremente e em tempo de execução. Estes processos podem ser agrupados em pacotes, facilitando o compartilhamento e a sua distribuição. Outra iniciativa para incentivar a colaboração e o compartilhamento de código são os repositórios oficiais do ROS, que estão disponíveis de forma livre. 
 
@@ -132,7 +132,7 @@ Os nós do ROS podem publicar apenas dados de tipos predeterminados. Estes tipos
 
 Existem dois segmentos em um arquivo .msg, são eles: Fields e constants. Filds são os dados que serão enviados dentro da mensagens. Constants define os valores, ou tipo de dados, que poderão ser usados em cada campo. Os tipos de mensagens são referenciados a partir do nome do seu respectivo pacote, como ilustração, podemos usar o arquivo de descrição geometry\underline{ }msgs/msg/Twist.msg, que será referencido como geometry\underline{ }msgs/Twist. 
 
-O ROS possui um grande número de mensagens predefinidas, o que não impede que o programador escreva seus próprios arquivos .msg com a descrição de uma mensagem específica para atender a sua aplicação. A tabela a seguir lista os tipos de dados padrão do ROS que podem ser usados na criação de novas mensagens: 
+O ROS possui um grande número de mensagens predefinidas, o que não impede que o programador escreva seus próprios arquivos .msg com a descrição de uma mensagem específica para atender a sua aplicação. A Tabela~\ref{tab:rostype} a seguir lista os tipos de dados padrão do ROS que podem ser usados na criação de novas mensagens: 
 
 \begin{table}[ht]
 	\caption{Estrutura típica de um pacote ROS }
@@ -160,16 +160,45 @@ O ROS possui um grande número de mensagens predefinidas, o que não impede que 
 
 \end{table}
 
+\subsection{Workspace ROS}
+De forma geral, o workspace é uma pasta no computador que contém todos os pacotes que estão sendo usados no desenvolvimento de uma nova aplicação. Estes pacotes contêm os arquivos fontes e o workspace fornece um local para que os pacotes sejam compilados. O workspace se torna ainda mais útil quando é necessário compilar vários pacotes ao mesmo tempo, todos os pacotes poderão estar contidos no mesmo workspace centralizando todo processo de desenvolvimento. Não existe um diretor específico para que o workspace seja criado, logo, ele pode ser criado no local de preferência do desenvolvedor e sua equipe. Um workspace típico é mostrado na Figura~\ref{fig:rosworkspace}. 
+
+\begin{figure}[ht]
+	\caption{Estrutura típica de workspace ROS}
+	\begin{center}
+		\includegraphics[scale=0.43]{imagens/rosworkspace.png}\\
+		{\small \textbf{Fonte:} do Autor}
+    \end{center}\label{fig:rosworkspace}
+\end{figure}
+
+Cada pasta dentro do workspace é um diferente espaço diferente, cada um com uma função específica:
+
+\begin{itemize}
+    \item \textbf{O espaço das fontes:} No espaço das fontes, localizada na pasta src do workspace, estão localizados todos os pacotes do projetos. O arquivo mais importante dessa área do workspace é o CMakeLists.txt. Este arquivo é gerado na primeira vez em que o workspace é compilado
+
+    \item \textbf{O espaço de compilação:} Localizado na pasta build,é neste local que são armazenadas as informações de cache, configurações e outros arquivos intermediário para que os pacotes sejam compilados corretamente.
+
+    \item \textbf{O espaço de desenvolvimento:} Na pasta de que se encontra o espaço de desenvolvimento, aqui são armazenados os programas compilados. Assim você pode testar seus programas sem a necessidade de instalá-los no sistema.
+\end{itemize}
+
+
+Outra função importante do ROS que pode ser usada através de um workspace é o overlays. Se você tiver um pacote instalado em seu sistema, mas quiser testar uma versão mais atual do mesmo pacote, não é necessário instalar a versão mais atual, você pode baixar o código fonte do pacote dentro do seu workspace, após compilar o workspace o ROS entende que deverá usar a versão presente no workspace e não a versão instalada no sistema.
+   
+
 
 \section{Sistemas computacional ROS Graph level}
-entendendo ROS node
-ROS TOPIC
-ROS master
-ROS Parameters
-Workspace ROS
+
+\subsection{ROS node}
+
+\subsection{ROS TOPIC}
+
+\subsection{ROS master}
+
+\subsection{ROS Parameters}
 
 
-\section{Community level- ROS ecosistema}
+
+
 
 
 
