@@ -181,6 +181,15 @@ Outra função importante do ROS que pode ser usada através de um workspace é 
 \section{Sistemas computacional ROS Graph level}
 
 \subsection{ROS node}
+No ROS os executáveis são chamados de nós, eles podem se comunicar com outros processos por meio dos tópicos, serviços ou pelo servidor de parâmetros. Os nós proporcionam grande modularidade aos sistemas robóticos que usam o ROS, isso faz com que o desenvolvimento destes sistemas se tornem bem mais simples.
+
+Ao ser executado o nó possui um nome único no sistema. Através desse nome o nó pode se comunicar com outros nós. O ROS permite que os nós sejam escritos em diferentes linguagens de programação, as bibliotecas que fornecem a interface do ROS com uma linguagem específica é chamada de biblioteca cliente, as mais populares são: roscpp, para a linguagem C++ e a rospy para a linguagem Python.
+
+Uma característica bastante interessante dos nós ROS é a possibilidade de parâmetros serem modificados no momento em que o nó é iniciado. Esta característica proporciona maior flexibilidade aos nós, já que o uso de parâmetros oferece a possibilidade de o código ser reconfigurado sem a necessidade de recompilar o código fonte, sendo assim podemos adaptar o nó a diferentes cenários sem conhecer detalhes de sua implementação. 
+
+
+A powerful feature of ROS nodes is the possibility of changing parameters while you start the node. This feature gives us the power to change the node name, topic names, and parameter names. We use this to reconfigure the node without recompiling the code so that we can use the node in different scenes.
+
 
 \subsection{ROS TOPIC}
 
