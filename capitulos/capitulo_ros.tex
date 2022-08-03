@@ -128,6 +128,37 @@ A principal função dos pacotes é ser uma maneira funcional, de fácil configu
 
 
 \subsection{Mensagens ROS}
+Os nós do ROS podem publicar apenas dados de tipos predeterminados. Estes tipos são definidos usando uma linguagem de descrição de mensagens, conhecida como ROS messages. Esta simples descrição permite que as ferramentas do ROS gerem automaticamente o código fonte para mensagens para todas as linguagens aceitas no ROS\@. As descrições das mensagens são armazenadas no arquivo .msg localizada no subdiretório msg/ dentro de um pacote ROS\@.
+
+Existem dois segmentos em um arquivo .msg, são eles: Fields e constants. Filds são os dados que serão enviados dentro da mensagens. Constants define os valores, ou tipo de dados, que poderão ser usados em cada campo. Os tipos de mensagens são referenciados a partir do nome do seu respectivo pacote, como ilustração, podemos usar o arquivo de descrição geometry\underline{ }msgs/msg/Twist.msg, que será referencido como geometry\underline{ }msgs/Twist. 
+
+O ROS possui um grande número de mensagens predefinidas, o que não impede que o programador escreva seus próprios arquivos .msg com a descrição de uma mensagem específica para atender a sua aplicação. A tabela a seguir lista os tipos de dados padrão do ROS que podem ser usados na criação de novas mensagens: 
+
+\begin{table}[ht]
+	\caption{Estrutura típica de um pacote ROS }
+    \begin{center}
+        \begin{tabular}{llll}
+        \hline
+        \textbf{Primitive type} & \textbf{Serialization} & \textbf{C++} & \textbf{Python} \\ \hline
+        bool(1)     & unsigned8-bitint              & uint8\_t(2)  & bool            \\ 
+        int8        & signed8-bitint                & int8\_t      & int             \\ 
+        uint8       & unsigned8-bitint              & uint8\_t     & int             \\ 
+        int16       & signed16-bitint               & int16\_t     & int             \\ 
+        uint16      & unsigned16-bitint             & uint16\_t    & int             \\ 
+        int32       & signed32-bitint               & int32\_t     & int             \\ 
+        uint32      & unsigned32-bitint             & uint32\_t    & int             \\ 
+        int64       & signed64-bitint               & int64\_t     & long            \\ 
+        uint64      & unsigned64-bitint             & uint64\_t    & long            \\ 
+        float32     & 32-bitIEEEfloat               & float        & float           \\ 
+        float64     & 64-bitIEEEfloat               & double       & float           \\ 
+        string      & asciistring(4)                & std::string  & string          \\ 
+        time        &Secs/nsecs signed 32bit ints   & ros::Time    & rospy.Time      \\ 
+        duration    &Secs/nsecs signed 32bit ints   & ros::Duration& rospy.Duration  \\ \hline
+        \end{tabular}
+        \\{\small \textbf{Fonte:} \citeonline{rosLearning}}
+    \end{center}\label{tab:rostype}
+
+\end{table}
 
 
 \section{Sistemas computacional ROS Graph level}
