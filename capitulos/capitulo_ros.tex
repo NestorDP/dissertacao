@@ -178,7 +178,7 @@ Cada pasta dentro do workspace é um diferente espaço diferente, cada um com um
 Outra função importante do ROS que pode ser usada através de um workspace é o overlays. Se você tiver um pacote instalado em seu sistema, mas quiser testar uma versão mais atual do mesmo pacote, não é necessário instalar a versão mais atual, você pode baixar o código fonte do pacote dentro do seu workspace, após compilar o workspace o ROS entende que deverá usar a versão presente no workspace e não a versão instalada no sistema.
 
 
-\section{Sistemas computacional ROS Graph level}
+\section{Compunentes ROS}
 
 \subsection{ROS node}
 No ROS os executáveis são chamados de nós, eles podem se comunicar com outros processos por meio dos tópicos, serviços ou pelo servidor de parâmetros. Os nós proporcionam grande modularidade aos sistemas robóticos que usam o ROS, isso faz com que o desenvolvimento destes sistemas se tornem bem mais simples.
@@ -191,7 +191,7 @@ Uma característica bastante interessante dos nós ROS é a possibilidade de par
 A powerful feature of ROS nodes is the possibility of changing parameters while you start the node. This feature gives us the power to change the node name, topic names, and parameter names. We use this to reconfigure the node without recompiling the code so that we can use the node in different scenes.
 
 
-\subsection{ROS TOPIC}
+\subsection{ROS Topic}
 
 Os tópicos são a maneira com que os nós enviam dados no ROS\@. Mesmo sem uma conexão direta entre dois nós, os tópicos podem ser transmitidos, isso faz com que a geração e o consumo de dados sejam desacoplados. Um tópico pode ser lido por vários nós e de maneira igual, também pode ser publicado por vários nós, mas não é uma boa prática um mesmo tópico ser publicado por nós distintos, isso pode causar conflitos nas informações enviadas. A Figura~\ref{fig:rostopic} ilustra o processo de comunicação com tópico.
 
