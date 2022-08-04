@@ -193,7 +193,28 @@ A powerful feature of ROS nodes is the possibility of changing parameters while 
 
 \subsection{ROS TOPIC}
 
+Os tópicos são a maneira com que os nós enviam dados no ROS\@. Mesmo sem uma conexão direta entre dois nós, os tópicos podem ser transmitidos, isso faz com que a geração e o consumo de dados sejam desacoplados. Um tópico pode ser lido por vários nós e de maneira igual, também pode ser publicado por vários nós, mas não é uma boa prática um mesmo tópico ser publicado por nós distintos, isso pode causar conflitos nas informações enviadas. A Figura~\ref{fig:rostopic} ilustra o processo de comunicação com tópico.
+
+\begin{figure}[ht]
+	\caption{Comunicação a partir de tópicos ROS}
+	\begin{center}
+		\includegraphics[scale=0.51]{imagens/rostopic.png}\\
+		{\small \textbf{Fonte:} \citeonline{rosPYO}}
+    \end{center}\label{fig:rostopic}
+\end{figure}
+
+As mensagens ROS determinam os tipos de dados que poderão ser transportados através dos tópicos, isso faz com que os tópicos sejam fortemente tipados, consequentemente os mesmo tipo de mensagem deve ser obrigatoriamente o mesmo, para o nó que publica e para o nó que ler um determinado tópico. Sendo assim uma comunicação entre nós, por meio de tópicos apenas ocorrerá se ambos, nó de leitura e nó de publicação, estiverem registrados no ROS master com tópicos de mesmo nome e usando a mesma mensagem.
+
+
 \subsection{ROS master}
+
+\begin{figure}[ht]
+	\caption{Gerenciamento de comunicação através do ROS master}
+	\begin{center}
+		\includegraphics[scale=0.51]{imagens/rosmaster.png}\\
+		{\small \textbf{Fonte:} \citeonline{rosEfetiveProgram}}
+    \end{center}\label{fig:rosMastering}
+\end{figure}
 
 \subsection{ROS Parameters}
 
