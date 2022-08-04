@@ -225,13 +225,9 @@ Na Figura~/ref{fig:rosMastering} podemos ver como se da a interação entre o ma
 
 \subsection{ROS Parameters}
 
+Parameters are global variables used in nodes and in the larger context, they can also be considered as a message communication. Parâmetros são variáveis globais que podem ser usadas por nós. Os parâmetros são criados com valores padrões, que podem ser lidos ou escritos por algum processo dentro do sistema ROS. 
 
-
-
-
-
-
-
+O principal objetivo dos parâmetros é fornecer ao sistema a capacidade de se adaptar a cenários distintos de maneira ágil. Por exemplo, o desenvolvedor pode criar um nó para leitura de uma câmera USB, dando à esse nós parâmetros para que usuários desse nós possam configurar o frame rate em que os dados serão publicados, o nome da porta USB em que a câmera está conectada, entre outros, sempre ficando a critério do desenvolvedor. Em casos especiais os parâmetros poderão ser atualizados em tempo de execução, uma função muito útil principalmente em sistemas dinâmicos, que opera em constante mudança.
 
 
 
