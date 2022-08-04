@@ -208,6 +208,13 @@ As mensagens ROS determinam os tipos de dados que poderão ser transportados atr
 
 \subsection{ROS master}
 
+O ROS master é o responsável por registrar nomes dos elementos que fazem parte do sistema, entre eles estão os nós, tópicos, serviços, action, tipos de mensagens, URI w as portas para conexões diretas entre nós, ele também é o encarregado por fornecer o servidor de parâmetros. Por gerenciar as informações das conexões entre as trocas de mensagens entre os nós, o mater ŕ o primeiro elemento que deve ser executado no ROS. Afunção do master é permitir que um determinado nó encontre outro, uma vez localizados os nós poderão se comunicar através de uma conexão per-to-per.
+
+No momento em que um nós é executado no sistema, ele registra seu nome no master. Sendo assim, o ROS master possui os detalhes de todos os nós rodando no sistema. No momento em que qualquer detalhes de um nós muda, ele gera um callback para atualizar as novas informações no master. Quando um nó inicia a publicação de um tópico ele informará todos os detalhes ao master, desde do nome até o tipo de dados que serão enviado, em seguida, o master verifica se existe algum outro nó lendo o mesmo tópico, se algum nó estão querendo fazer a leitura deste tópico o ROS master irá compartilhar detalhes do nó que está publicando com o nós que quer ler o tópico.
+
+Na Figura~/ref{fig:rosMastering} podemos ver como se da a interação entre o master e os nós que farão a comunicação.
+
+
 \begin{figure}[ht]
 	\caption{Gerenciamento de comunicação através do ROS master}
 	\begin{center}
