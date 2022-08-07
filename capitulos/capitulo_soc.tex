@@ -2,17 +2,41 @@
 
 % Definição simples de SoC, dois ou três parágrafos e uma imagem
 %================================
-``A system-on-chip (SOC) architecture is an ensemble of processors, memories, and interconnects tailored to an application domain''~\cite{MichelSoC}.
+SoC é um acrônimo de System-on-a-Chip ou apenas System on Chip, como o nome já indica, um SoC é um sistema computacional inteiro contido em apenas um circuito integrado. Sendo assim, um SoC pode combinar diferentes elementos, em diferentes configurações, para formar um sistema completo.  Portando um SoC não se restringe à apenas um processador, além da CPU,  ele integra memória, periféricos de controle, como por exemplo, barramento de comunicação USB, unidade de processamento gráfico, e outros periféricos específicos para uma determinada aplicação.  
+
+Para \citeonline{MichelSoC}, um system-on-chip é uma arquitetura que estabelece uma montagem de processadores, memórias, e interconexões feitos sobre medida para uma determinada aplicação. A figura~\ref{fig:socbasic} ilustra um SoC com alguns elementos básicos, que pode incluir múltiplos processadores  de diferentes arquiteturas, interconectados com uma ou mais memórias, isso pode oferecer meios de se criar sistemas reconfiguráveis, adicionando maior flexibilidade a um SoC.  Em muitas ocasiões um SoC pode ser equipado com componentes analógicos, como conversores analógicos digitais.
+
 
 \begin{figure}[ht]
 	\caption{Esquema SoC básico}
 	\begin{center}
-		\includegraphics[scale=0.75]{imagens/basicsoc.png}\\
+		\includegraphics[scale=0.68]{imagens/basicsoc.png}\\
 		{\small \textbf{Fonte:} \citeonline{MichelSoC}}
     \end{center}\label{fig:socbasic}
 \end{figure}
 
+% Descrição Cyclone V pincipais característica, famílias, imagem 
+%================================
 
+Dentre os dispositivos classificados como SoC, a Intel fornece uma linha de produtos classificados como SoC-FPGA, estes dispositivos se caracterizam por possuir um rede de FPGA integrados a um Processador ARM\@. Uma família de produtos que possuem essa característica é a Cyclone V SoC-FPGA\@. Estes componentes são constituídos por um Hardware Processor System que possui processadores ARM Cortex-A9 de um ou dois núcleos e um FPGA\@. A Figura~\ref{fig:socfpga} oferece uma visão global da integração entre os dois componetes principais do SoC-FPGA da família Cyclone V. 
+
+\begin{figure}[ht]
+	\caption{Diagrama de blocos simplificado Cyclone V}
+	\begin{center}
+		\includegraphics[scale=0.46]{imagens/socfpga.png}\\
+		{\small \textbf{Fonte:} \citeonline{alteraCV}}
+    \end{center}\label{fig:socfpga}
+\end{figure}
+
+Lançada iniciante pela Altera que foi adquirida em 2015 pela Intel, estes SoC-FPGA aliam o poder de processamento do processador Cortex-A9 à versatilidade e flexibilidade do FPGA, o que faz os  componentes da Família Cyclone V SoC-FPGA produtos com alto poder de processamento aliado a um baixo consumo. Os caminhos de interconexão entre o HPS e o FPGA do Cyclone V proporciona altas taxas de transferência, o que seria inviável em sistemas com dois chips. Esta estratégia de integração em um único circuito integrado oferece~\cite{CycloneV}:
+
+\begin{itemize}
+    \item Largura de banda de pico de mais de 100 Gbps.
+    \item Coerência de dados integrada.
+    \item Significativa economia de energia do sistema, eliminando caminhos de E/S externos entre o processador e o FPGA\@.
+\end{itemize}
+
+Este nível de integração entre os dois componentes que formam o SoC FPGA, provê um sistema com baixa potência dissipada, aliado a um reduzido custo e  espaço da placa necessária para a montagem do sistema. Ou seja o uso dos SoC-FPGA, com processador ARM combinado com FPGA, interligados através de um backbone de alta largura de banda e baixa potência, disponíveis nos produtos da linha da família Cyclone V da Intel, possibilita o desenvolvimento de aplicações com excelente desempenho, alta flexibilidade, além de baixo custo e baixo consumo de energia. 
 
 
 \section{Arquitetura ARM Cortex-A9}
@@ -21,7 +45,7 @@
 
 \subsection{Generic Interrupt Control - GIC}
 
-\section{Field Programmable Gate Array - FPGA Fabric}
+\section{Field Programmable Gate Array - FPGA}
 
 
 \section{Hardware Processos System}
