@@ -28,7 +28,7 @@ Dentre os dispositivos classificados como SoC, a Intel fornece uma linha de prod
     \end{center}\label{fig:socfpga}
 \end{figure}
 
-Lançada iniciante pela Altera que foi adquirida em 2015 pela Intel, estes SoC-FPGA aliam o poder de processamento do processador Cortex-A9 à versatilidade e flexibilidade do FPGA, o que faz os  componentes da Família Cyclone V SoC-FPGA produtos com alto poder de processamento aliado a um baixo consumo. Os caminhos de interconexão entre o HPS e o FPGA do Cyclone V proporciona altas taxas de transferência, o que seria inviável em sistemas com dois chips. Esta estratégia de integração em um único circuito integrado oferece~\cite{CycloneV}:
+Lançada iniciante pela Altera que foi adquirida em 2015 pela Intel~\cite{intelbuyaltera}, a família Cyclone V SoC-FPGA alia o poder de processamento do processador Cortex-A9 à versatilidade e flexibilidade do FPGA, o que faz desta linha de componentes possuirem um alto poder de processamento aliado a um baixo consumo. Os caminhos de interconexão entre o HPS e o FPGA do Cyclone V proporciona altas taxas de transferência, o que seria inviável em sistemas com dois chips. Esta estratégia de integração em um único circuito integrado oferece~\cite{CycloneV}:
 
 \begin{itemize}
     \item Largura de banda de pico de mais de 100 Gbps.
@@ -38,11 +38,71 @@ Lançada iniciante pela Altera que foi adquirida em 2015 pela Intel, estes SoC-F
 
 Este nível de integração entre os dois componentes que formam o SoC FPGA, provê um sistema com baixa potência dissipada, aliado a um reduzido custo e  espaço da placa necessária para a montagem do sistema. Ou seja o uso dos SoC-FPGA, com processador ARM combinado com FPGA, interligados através de um backbone de alta largura de banda e baixa potência, disponíveis nos produtos da linha da família Cyclone V da Intel, possibilita o desenvolvimento de aplicações com excelente desempenho, alta flexibilidade, além de baixo custo e baixo consumo de energia. 
 
+\section{ARM Cortex-A9}
+O processador Cortex A9 é uma linha de processadores ARM otimizados para alcançarem maior desempenho aliado a um baixo consumo. Esta linha de processadores ARM é uma das mais utilizadas, nas mais diversas aplicações, fazendo com que o ARM Cortex A9 seja um processador confiável e robusto. O Cortex A9 possui uma estrutura interna configurável, o que oferece flexibilidade ideal para o desenvolvimento de um novo SoC.  Na Tabela~\ref{tab:cortexA9config} são listadas algumas das configurações básicas do processador Cortex A9.
 
-\section{Arquitetura ARM Cortex-A9}
+\begin{table}[ht]
+    \caption{Estrutura típica de um pacote ROS }
+    \begin{center}    
+        \begin{tabular}{ll}
+        \hline \hline
+        Arquitetura                     & Armv7-A                                     \\ \hline \hline
+        Multicore                       & 1-4 cores                                   \\ \hline \hline
+        \multirow{7}{*}{Suporte ISA}    & Armv7-A                                     \\ \cline{2-2} 
+                                        & Thumb-2 or Thumb                            \\ \cline{2-2}
+                                        & TrustZone security technology               \\ \cline{2-2}
+                                        & Jazelle DBX and RCT technologies            \\ \cline{2-2}
+                                        & DSP extention                               \\ \cline{2-2}
+                                        & Neon (Opcional)                             \\ \cline{2-2}
+                                        & Floating Point (Opcional)                   \\ \hline \hline
+        Memory Management Unit (MMU)    & Armv7 Memory Management Unit                \\ \hline \hline
+        Debug and Trace                 & CoreSight                                   \\ \hline \hline
+        \multirow{4}{*}{Characteristics}& Dual-issue, partially out-of-order pipeline \\ \cline{2-2}
+                                        & \begin{tabular}[c]{@{}l@{}}Arquitetura do sistema flexível com
+                                            \\caches configuráveis\end{tabular}       \\ \cline{2-2}
+                                        & System coherency com ACP port               \\ \cline{2-2}
+                                        & \begin{tabular}[c]{@{}l@{}}Desempenho 50\% maior do que  
+                                            \\ o processador Cortex-A8  configurado 
+                                            \\ como single-core\end{tabular}          \\ \hline\hline
+        \end{tabular}
+        \\{\small \textbf{Fonte:} \citeonline{armCortexA9}}
+    \end{center}\label{tab:cortexA9config}
+\end{table}
+
+\subsection{Cortex-A9 MPCore Processor}
+O Cortex-A9 MPCore processor é formado por três partes. Estas partes são componentes configuráveis que proporcionam a flexibilidade necessária para implementação de sistemas dedicados sobre medida para determinada aplicação. Os componentes do Cortex-A9 MPCore são \cite{mpcore}:
+
+\begin{itemize}
+    \item De um a quatro processadores Cortex-A9, que podem ser agrupados em um cluster, e um Snoop Control Unit (SCU) que pode ser usado para assegurar a coerência do cluster.
+
+    \item Um conjunto de periféricos de memória mapeada, incluindo timer global, watchdog e timer privativo para cada processador contido no cluster
+    
+    \item Um controlador de interrupção integrado que é uma implementação do Generic Interrupt Controller. 
+\end{itemize}
+
+É possível implementar apenas um processador no cluster do Cortex-A9 MPCore, para isso, o processador deve ser implementado com suas próprias configurações de hardware. Mesmo contendo apenas um processador un SCU ainda estaré disponível, bem como ACP como um opcional. A Figura~\ref{fig:mpcore} apresenta um diagrama que representa o Cortex-A9 MPCore processor.
+
+\begin{figure}[ht]
+	\caption{Cortex-A9 MPCore Processor}
+	\begin{center}
+		\includegraphics[scale=0.76]{imagens/mpcoreA9.png}\\
+		{\small \textbf{Fonte:} \citeonline{mpcore}}
+    \end{center}\label{fig:mpcore}
+\end{figure}
+
+\subsection{Arquitetura ARM}
+The Cortex-A9 processor implements the ARMv7-A architecture profile that includes the several
+architecture extensions.
+These architecture extensions are the following:
+• Advanced Single Instruction Multiple Data (SIMD) architecture extension for integer and floating-
+point vector operations.
+• Vector Floating-Point version 3 (VFPv3) architecture extension for floating-point computation that is
+fully compliant with the IEEE 754 standard.
+• Security Extensions for enhanced security.
+• Multiprocessing Extensions for multiprocessing functionality.
+See the ARM ® Architecture Reference Manual, ARMv7-A and ARMv7-R edition.
 
 \subsection{Protocolo AMBA 3}
-
 \subsection{Generic Interrupt Control - GIC}
 
 \section{Field Programmable Gate Array - FPGA}
@@ -56,6 +116,7 @@ Este nível de integração entre os dois componentes que formam o SoC FPGA, pro
 \subsection{HPS-FPGA Bridge}
 \subsection{System Interconnect}
 \subsection{Cortex-A9 Microprocessor Unit Subsystem}
+ARM processors are the standard in embedded systems. Altera SoC FPGAs leverage one of ARM's latest, high-performance Cortex-A9 processor architectures.
 \subsection{DMA Controller }
 \subsection{Booting}
 
