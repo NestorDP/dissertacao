@@ -85,7 +85,7 @@ O Cortex-A9 MPCore processor é formado por três partes. Estas partes são comp
 \begin{figure}[ht]
 	\caption{Cortex-A9 MPCore Processor}
 	\begin{center}
-		\includegraphics[scale=0.76]{imagens/mpcoreA9.png}\\
+		\includegraphics[scale=0.7]{imagens/mpcoreA9.png}\\
 		{\small \textbf{Fonte:} \citeonline{mpcore}}
     \end{center}\label{fig:mpcore}
 \end{figure}
@@ -94,19 +94,101 @@ O Cortex-A9 MPCore processor é formado por três partes. Estas partes são comp
 % \subsection{Generic Interrupt Control - GIC}
 
 \section{Field Programmable Gate Array - FPGA}
+Field Programmable Gate Arrays, ou simplesmente FPGA, são dispositivos semicondutores construídos através de uma matriz de blocos lógicos configuráveis, os CLBs~\cite{FPGAXilinx}. Estes blocos lógicos são interconectados a partir de conexões programáveis, isto permite que o projetista possa conectar esses blocos em configurações capazes de executar qualquer tarefa, desde simples portas lógicas até complexas funções.
+
+Os FPGAs foram batizados como dispositivos programáveis em campo devido a capacidade de terem seu hardware reconfigurado pelo usuário, para executar uma função desejada, mesmo após seu processo de fabricação. Esta característica permite que atualizações e soluções de possíveis erros de projetos sejam executadas em campo. São estas características que diferem os FPGAs do circuitos integrados de aplicação específicas, também conhecidos como ASICs - Application Specific Integrated Circuits, que como o nome já sugere, são circuitos desenvolvidos e fabricados para desempenharem apenas uma tarefa específica.
+
+Extremamente versáteis, os FPGAs permitem que desenvolvedores testem inúmeras aplicações mesmo depois que o próprio FPGA e todo o hardware auxiliar já estarem montados em suas placas. Se por algum motivo uma nova configuração é necessária, novos arquivos de configuração podem ser transferidos para o FPGA, fornecendo ao dispositivo novas funcionalidades, ou mesmo correção de defeitos. FPGAs são poderosas ferramentas de prototipagem devido à sua flexibilidade, mesmo depois do hardware já está montado. Aplicações comerciais normalmente usam FPGAs em produtos finais quando há a necessidade de computação paralela e requerimentos dinâmicos são um requisito do sistema~\cite{FPGAarm}.
+
 
 
 \section{Hardware Processos System}
-% Introdução, comentar sobre a família de processadores arm
-%%================================
+Como foi mencionado no início deste capítulo, a família de dispositivos Cyclone V system-on-a-chip (SoC) é formada por duas partições, uma malha de FPGA e um processador Arm Cortex-A9, que pode estar organizado em dois ou apenas um núcleo. Esta última partição é chamada de Hard Processor System. 
+
+Os principais módulos do HPS são:
+
+\begin{itemize}
+    \item Microprocessador Unit - MPU, subsistema com um single ou dual ARM Cortex-A9 (MPCore Processor)
+    \item Controladores de memória Flash
+    \item Controladores de SDRAM
+    \item Sistema de interconexão
+    \item On-chip memória 
+    \item Phase-locked loops (PLLs) 
+\end{itemize}
+
+
 \subsection{FPGA Manager}
-\subsection{HPS-FPGA Manager}
+O FPGA manager é o bloco do Hard Processor System responsável por gerenciar e monitorar a malha de FPGA presente no SoC. Através do FPGA manager o projetista é capaz de configurar o FPGA, monitoras seu estado, além de enviar entre o HPS e o FPGA\@. 
+
+\begin{figure}[ht]
+	\caption{Diagrama de blocos FPGA Manager }
+	\begin{center}
+		\includegraphics[scale=0.3]{imagens/fpgamanager.png}\\
+		{\small \textbf{Fonte:} \citeonline{alteraCV}}
+    \end{center}\label{fig:fpgamanager}
+\end{figure}
+
+O FPGA manager possui as seguintes funcionalidades:
+
+\begin{itemize}
+    \item Capacidade de realizar configuração parcial ou completa de toda a malha do FPGA
+    \item Enviar 32 sinais de uso geral  do HPS para o FPGA
+    \item Receber 32 sinais de uso geral do FPGA para o HPS
+    \item Monitorar o status de configuração e potência do FPGA
+    \item Gerar interrupções para o HPS a partir das mudanças de status do FPGA
+    \item Capacidade de resetar o FPGA 
+\end{itemize}
+
+Na Figura~\ref{fig:fpgamanager} podemos ver os principais blocos que formam o sistema do FPGA manager, O Registrer Slave Interface se conecta ao L4 Master Peripheral Bus fornecendo acesso ao registro de status da malha do FPGA. Ja o Configuration slave interface se conecta ao L3 interconnect da MPU fornecendo um caminho para que o FPGA possa ser reconfigurado a partir do HPS\@.
+
+Do lado da malha do FPGA o FPGA manager possui dois blocos, o fabric I/O e o monitor. No bloco fabric I/O os registradores General-purpose input register (gpi), eneral-purpose output register (gpo) e Boot handshaking input register (misci) possibilitam a comunicação entre o HPS e a malha do FPGA\@. Estes registradores só são acessíveis quando o FPGA está no modo usuário, modo ao qual o FPGA pode ser reconfigurado a partir do HPS\@. O bloco monitor, como pode ser deduzido pelo seu nome, fornece uma interface para o monitoramento da malha do FPGA, este bloco monitora sinais relacionados com a configuração do FPGA 
+
+
 \subsection{HPS-FPGA Bridge}
-\subsection{System Interconnect}
+O HPS pode se comunicar com a malha do FPGA a partir de barramentos de alta performance, que podem alcançar largura de banda superiores a 100Gbps. Estes barramentos são chamados de HPS-FPGA Bridge eles usam o protocolo Advanced Microcontroller Bus Architecture (AMBA) Advanced eXtensible Interface (AXI), este protocolo foi desenvolvido pela própria ARM é um padrão na conexão dos blocos internos dos dispositivos ARM\@. A Figura~\ref{fig:hpsfpgabridge}
+
+\begin{figure}[ht]
+	\caption{Diagrama de blocos HPS-FPGA Bridge}
+	\begin{center}
+		\includegraphics[scale=0.35]{imagens/hps-fpga_bridge.png}\\
+		{\small \textbf{Fonte:} \citeonline{alteraCV}}
+    \end{center}\label{fig:hpsfpgabridge}
+\end{figure}
+
+O HPS possui três pontes, são elas: FPGA-to-HPS Bridge, HPS-to-FPGA Bridge e a Lightweight HPS-to-FPGA Bridge. Estas pontes permitem a comunicação entre o HPS e o FPGA e vice-versa, ou seja, quando o projetista incorpora periféricos ao seu projeto no FPGA, o processador pode acessar esses periféricos através de um barramento de alta velocidade. Como foi dito, essa comunicação também funciona no sentido inverso, do FPGA para o HPS, isso quer dizer que um componente implementado no FPGA pode acessar regiões de memória e/ou periféricos do HPS.
+
+
+% \subsection{System Interconnect}
+% \begin{figure}[ht]
+% 	\caption{Diagrama de blocos Interconnect System}
+% 	\begin{center}
+% 		\includegraphics[scale=0.35]{imagens/interconnect.png}\\
+% 		{\small \textbf{Fonte:} \citeonline{alteraCV}}
+%     \end{center}\label{fig:interconnect}
+% \end{figure}
+
+
+
+
 \subsection{Cortex-A9 Microprocessor Unit Subsystem}
-ARM processors are the standard in embedded systems. Altera SoC FPGAs leverage one of ARM's latest, high-performance Cortex-A9 processor architectures.
-\subsection{DMA Controller }
-\subsection{Booting}
+Os SoCs da família Cyclone V incluem um Hard Processor System formado por um Arm Cortex-A9 MPCore, com processador de uso geral de 32 bits com um ou dois núcleos, um L2 cache, um Accelerator Coherency Port (ACP) e módulo de debugging. Tanto o processador como outros módulos no HPS podem acessar IPs no FPGA através do HPS-to-FPGA bridge. Na Figura~\ref{fig:mpusubsystem} é apresentado um diagrama de blocos simplificado do MPU.
+\begin{figure}[ht]
+	\caption{Cortex-A9 Microprocessor Unit Subsystem com bloco do sistema de interconexão}
+	\begin{center}
+		\includegraphics[scale=0.37]{imagens/mpusubsystem.png}\\
+		{\small \textbf{Fonte:} \citeonline{alteraCV}}
+    \end{center}\label{fig:mpusubsystem}
+\end{figure}
 
 
 \section{Kit de desenvolvimento DE10-nano}
+
+Para o desenvolvimento deste trabalho foi escolhido o kit de desenvolvimento DE10-Nano da Terasic. Construído com base no SoC Cyclone® V SE 5CSEBA6U23I7 integrado com um processador ARM Cortex-A9 dual-core. O kit disponibiliza toda a estrutura básica de hardware necessário para que usuários possam aproveitar todo o poder do hardware reconfigurável oferecido pelo FPGA, combinado com um processador de alto desempenho. Além do SoC Intel a placa DE10-Nano, Figura \ref{fig:de10-nano} oferece excelentes recursos, alguns deles são: memória DDR3 de alta velocidade, conversor analógico-digital, interface USB e interface de rede gigabit ethernet, que dão ao kit grande flexibilidade no desenvolvimento de novas aplicações. 
+
+\begin{figure}[ht]
+	\caption{Kit de desenvolvimento DE10-Nano}
+	\begin{center}
+		\includegraphics[scale=0.65]{imagens/de10nano.png}\\
+		{\small \textbf{Fonte:}\cite{DE10nano}}
+    \end{center}\label{fig:de10-nano}
+\end{figure}
