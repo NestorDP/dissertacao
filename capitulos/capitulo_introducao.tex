@@ -1,30 +1,20 @@
 \chapter{Introdução}\label{cap:intro}
 
-% Apresentação do Tema e Contexto
-% Nesta parte do documento, o pesquisador precisa explicar no texto a respeito do contexto 
-% em que o tema está inserido. É bom imaginar que o leitor não conhece da área então 
-% antes de explicar o assunto específico que será abordado, você deve explicar onde ele 
-% está inserido.
+Nos últimos anos novas técnicas para construção de robôs t se destacado, em especial áreas como robótica móvel e robótica colaborativa. Uma das principais características dessas áreas é a exigência de um alto grau de percepção do ambiente que rodeia o robô, além de uma execução mais precisa em seus movimentos, isto devido ao fato de que as atividades desempenhadas por estes robôs estão exigindo um nível cada vez maior de interação com aquelas desempenhadas por seres humanos.
 
-Nos últimos anos novas técnicas para construção de robôs tem estado em muita evidência, em especial áreas como robótica móvel e robótica colaborativa têm chamado bastante atenção dos pesquisadores. Uma das principais características dessas áreas é a exigência de um alto grau de percepção do ambiente que rodeia o robô, além de uma execução mais precisa em seus movimentos, isto devido ao fato de que as atividades desempenhadas por estes robôs estão exigindo um nível cada vez maior de interação com as atividades desempenhadas por seres humanos.
+Este grau de precisão requerido no desenvolvimento de novos robôs exige sistemas robóticos cada vez mais complexos que precisam de processadores igualmente mais poderosos, consequentemente demandando um maior consumo de energia. Este aumento de consumo provoca uma verdadeira disputa entre poder de processamento e consumo, já na fase de levantamento dos requisitos de um novo projeto, o que pode vir a ser um problema principalmente em sistemas que fazem uso de baterias. 
 
-Este grau de precisão requerido no desenvolvimento de novos robôs exigem sistemas robóticos cada vez mais complexos que precisam de processadores igualmente mais poderosos, consequentemente demandando um maior consumo de energia. Este aumento de consumo, provoca uma verdadeira disputa entre poder de processamento e consumo, no momento do levantamento dos requisitos de um novo projeto, o que pode vir a ser um problema principalmente em sistemas que fazem uso de baterias. 
+O FPGA é uma excelente alternativa para resolver este impasse, por oferecer um aumento do poder de processamento associado a um baixo consumo de energia. O potencial que os FPGAs possuem para melhorar o desempenho de sistemas computacionais já é bem conhecido há algum tempo. \citeonline{dspFPGA} descreve algumas vantagens dos FPGAs modernos para uso em processamento digitais de sinais, como as cadeias de \textit{fast-carry} usadas para implementar MACs de alta velocidade e o paralelismo tipicamente encontrado em projetos implementados em FPGA\@. 
 
-O FPGA é uma excelente alternativa para resolver este impasse, por oferecer um aumento do poder de processamento associado a um baixo consumo de energia. O potencial que os FPGAs possuem para melhorar o desempenho de sistemas computacionais já é bem conhecido há algum tempo. \citeonline{dspFPGA} descreve algumas vantagens dos FPGAs modernos para uso em processamento digitais de sinais, como as cadeias de fast-carry usadas para implementar MACs de alta velocidade e o paralelismo tipicamente encontrado em designs implementados em FPGA\@. 
+Por essas características, FPGAs necessitam de frequências menores de trabalho para alcançar desempenho equivalente ou superior às soluções baseadas unicamente em processadores, diminuindo a dissipação térmica e, consequentemente, necessitando um consumo de energia consideravelmente menor. Todas estas características oferecidas pelo hardware configurável o tornam um recurso bastante interessante para o uso em projetos de robótica.
 
-Por essas características o FPGA necessita de frequências menores de trabalho para alcançar desempenho equivalente ou superior às soluções baseadas unicamente em processadores, diminuindo a dissipação térmica, e consequentemente, necessitando um consumo de energia consideravelmente menor. Todas estas características oferecidas pelo hardware configurável o tornam um recurso bastante interessante para o uso em projetos de robótica.
+Entretanto, apesar de oferecer grandes vantagens, as facilidades de desenvolvimento encontradas em aplicações que fazem uso de softwares não estão disponíveis na mesma proporção no mundo do hardware configurável. As maiores dificuldades no desenvolvimento de soluções baseadas em FPGAs referem-se ao longo tempo de projeto e à necessidade de mão-de-obra extremamente especializada, o que aumenta consideravelmente o custo final de tais projetos. Desta forma, o uso de FPGAs em projetos de robótica acaba sendo desencorajado.
 
-Entretanto, apesar de oferecer grandes vantagens, as facilidades de desenvolvimento encontradas em aplicações que fazem uso de softwares não estão disponíveis na mesma proporção no mundo do hardware configurável. A maior dificuldade no desenvolvimento de soluções que fazem uso do FPGA tornam os seus projetos mais longos e requerem a necessidade de mão de obra extremamente especializada, aumentando consideravelmente o custo final de projetos com FPGA. Isso faz com que o seu uso em projetos de robótica seja pouco usado ou até mesmo desencorajado. 
+Atualmente o \textit{framework} ROS está se consolidando como o padrão na criação de novas plataformas robóticas, tanto no desenvolvimento de manipuladores colaborativos quanto na robótica móvel. O objetivo do ROS é facilitar a elaboração de novos robôs, através de um conjunto completo de ferramentas para desenvolvimento, como \textit{drivers} para sensores e atuadores, bibliotecas e, principalmente, reuso de código. Agrupar inúmeros ``blocos'' de software usados em robótica, fornecer driver para componentes de hardwares específicos (sensores e atuadores), gerenciar troca de mensagens entre os nós que fazem parte do sistema, são as funções do ROS\@. 
 
-Atualmente o \textit{framework} ROS está se consolidando como o padrão na criação de novas plataformas robóticas, tanto no desenvolvimento de manipuladores colaborativos quanto na robótica móvel. O objetivo do ROS é facilitar a elaboração de novos robôs, através de um conjunto completo de ferramentas para desenvolvimento, como \textit{drivers} para sensores e atuadores, bibliotecas e principalmente reuso de código. Agrupar inúmeros ``blocos'' de softwares usados em robótica, fornecer drivers para hardwares específicos (sensores e atuadores), gerenciar troca de mensagens entre os nós que fazem parte do sistema, são as função do ROS\@. 
+Estas características fazem com que o ROS seja reconhecido com um pseudo sistema operacional~\cite{rosPYO}. Dessa maneira o ROS se tornou muito ágil no desenvolvimento de novas aplicações para robótica. Usando aplicações já desenvolvidas e testadas por outros desenvolvedores, pode-se criar novos sistemas completos apenas gerenciando estas aplicações na estrutura interna do ROS\@. Essa abordagem fez com que o número de pacotes para o ROS cresça a uma taxa muito rápida, desde o ano de seu lançamento, em 2007, até 2020, o ROS aumentou de 1 para 2647 pacotes~\cite{ecosystemros}.
 
-Estas características fazem com que o ROS seja reconhecido com um pseudo sistema operacional~\cite{rosPYO}. Dessa maneira o ROS se tornou muito ágil no desenvolvimento de novas aplicações para robótica. Usando aplicações já desenvolvidas e testadas por outros desenvolvedores, podem criar novos sistemas completos apenas gerenciando estas aplicações na estrutura interna do ROS\@. Essa abordagem fez com que o número de pacotes para o ROS cresça em uma taxa muito rápida, desde o ano de seu lançamento, em 2007, até 2012 o ROS aumentou de 1 para 3699 pacotes~\cite{fpgarobotics}.
-
-Aproveitar as facilidades de desenvolvimento proporcionadas pelo ROS em conjunto com o alto poder de processamento e baixo consumo que o FPGA oferece, seria um cenário ideal no desenvolvimento de novas aplicações com robôs. Para isso, precisamos estabelecer uma conexão com uma taxa de transferência de dados alta o suficiente para não influenciar de forma negativa no tempo de processamento e, que torne relativamente fácil seu uso por desenvolvedores especializados em robótica, mas sem grande experiência em FPGA. Portanto, este trabalho tem como objetivo estabelecer uma comunicação de alto desempenho entre ROS e um FPGA para que se possa aproveitar o melhor das duas tecnologias em projetos de robótica. 
-
-explicar a parte da comunicação entre o computador/ros e o SoC melhorar a comunicação, comunicação eficiente, pacote pronto e de fácil integração com qualquer sistema ros, O mais genérico possível para se enquadrar a qualquer projeto é que o desenvolvedor tenha interesse em incluir um FPGA ao sistema
-
-
+Aproveitar as facilidades de desenvolvimento proporcionadas pelo ROS em conjunto com o alto poder de processamento e baixo consumo que FPGAs oferecem, seria um cenário ideal no desenvolvimento de novas aplicações com robôs. Para isso, precisamos estabelecer uma conexão com uma taxa de transferência de dados alta o suficiente para não influenciar de forma negativa no tempo de processamento e, adicionalmente, tornar relativamente fácil seu uso por desenvolvedores especializados em robótica, mas sem grande experiência em FPGA\@. Portanto, este trabalho tem como objetivo estabelecer uma comunicação de alto desempenho entre ROS e um FPGA para que se possa aproveitar o melhor das duas tecnologias em projetos de robótica. 
 
 \begin{itemize}
     \item \textbf{Como estabelecer a comunicação entre o ROS e um sistema de processamento auxiliar 
@@ -32,37 +22,35 @@ embarcado em um FPGA?}
 
 \end{itemize}
 
-Este problema é o que o trabalho vai tentar resolver, possibilitando assim, o uso de aceleração por hardware através do fpga, ser incluída no desenvolvimento de novos projetos de robótica. Projetistas especializados em robótica poderão aproveitar dos benefícios do uso do hardware dedicado em seus projetos e profissionais que trabalham com descrição de hardware poderão desenvolver novas soluções para problemas de robótica de forma modularizada. 
-
-
+Este problema é o que este trabalho busca resolver, possibilitando assim, o uso de aceleração por hardware através do FPGA, para inclusão de tal dispositivo no desenvolvimento de novos projetos de robótica. Projetistas especializados em robótica poderão aproveitar dos benefícios do uso do hardware dedicado em seus projetos, enquanto profissionais que trabalham com descrição de hardware poderão desenvolver novas soluções para problemas de robótica de forma modularizada. 
 
 
 \section{Objetivos}
 
 \subsection{Objetivo Geral}
 
-Desenvolver uma solução para estabelecer comunicação entre \textit{Field Programmable Gate Array - FPGA}, 
+Desenvolver uma solução para estabelecer comunicação entre \textit{Field-Programmable Gate Array - FPGA}, 
 configurado como um co-processador de vídeo.
 
 \subsection{Objetivos Específicos}
 
 \begin{itemize}
-    \item Estudar teoria dos assuntos relevantes ao projeto: Verilog HDL, embedded linx,  Cyclone V, 
+    \item Estudar teoria dos assuntos relevantes ao projeto: Verilog HDL, Embedded Linx,  Cyclone V, 
     TCP/IP Stack, ROS\@;
-    \item Estudar conceito de programação de redes usando sockets em liguagem C++ e detalhes dos protocolos da rede TCP/IP usada para comunicação interna dos nós e serviços ROS\@;
-    \item Implementar distribuição embedded linux para processador ARM embarcado no SoC Cyclone V da Intel;
+    \item Estudar conceitos de programação de redes usando sockets em liguagem C++ e detalhes dos protocolos da rede TCP/IP usada para comunicação interna dos nós e serviços ROS\@;
+    \item Implementar distribuição Embedded Linux para processador ARM embarcado no SoC Cyclone V da Intel;
     \item Estabelecer comunicação entre o ROS e o Cyclone V, através da tecnologia Gigabit Ethernet;
     \item Desenvolver aplicação em Verilog para testar comunicação;
-    \item Avaliar a performance da rede entre o computador e o protótipo após a inclusão do FPGA ao sistema.
+    \item Avaliar o desempenho da rede entre o computador e o protótipo após a inclusão do FPGA ao sistema.
 \end{itemize}
 
 
 \section{Organização}
 
-No Capítulo~\ref{cap:intro} é apresentada a introdução do texto, com uma breve contextualização do tema, além do problema ao qual o trabalho se propõe a resolver. Neste capítulo também são apresentados a justificativa e os objetivos gerais e específicos. Na sequência o texto é dividido em três partes, são elas: Referencial teórico, Desenvolvimento e Resultados.
+No Capítulo~\ref{cap:intro} é apresentada a introdução do texto, com uma breve contextualização do tema, além do problema ao qual o trabalho se propõe a resolver. Neste capítulo também são apresentados a justificativa e os objetivos gerais e específicos. Na sequência o texto é dividido em três partes: Referencial teórico, Desenvolvimento e Resultados.
 
-No Referencial teórico temos dois capítulos onde são apresentadas as tecnologias utilizadas no trabalho, no Capítulo~\ref{cap:soc} é discorrido sobre o System on Chip - SoC, utilizado para o desenvolvimento do trabalho e no Capítulo~\ref{cap:ros} é falado sobre o Robot Operating System - ROS\@.
+No Referencial teórico temos dois capítulos onde são apresentadas as tecnologias utilizadas no trabalho: no Capítulo~\ref{cap:soc} é discorrido sobre o \textit{System on Chip} - SoC utilizado para o desenvolvimento do trabalho e no Capítulo~\ref{cap:ros} é falado sobre o \textit{Robot Operating System} - ROS\@.
 
-Na segunda parte deste trabalho, chamada de Desenvolvimento, são explicadas as etapas do desenvolvimento. A arquitetura do sistema é explicada no Capítulo~\ref{cap:arquitetura}, na sequência, no Capítulo~\ref{cap:cliente} é explicado o Cliente e o servidor é descrito no Capítulo~\ref{cap:server}
+Na segunda parte deste trabalho, chamada de Desenvolvimento, são explicadas as etapas do desenvolvimento. A arquitetura do sistema é explicada no Capítulo~\ref{cap:arquitetura}. No Capítulo~\ref{cap:cliente} é explicado o Cliente, enquanto o Servidor é descrito no Capítulo~\ref{cap:server}
 
-Na última parte deste documento são discutidos os Resultados alcançados, que são apresentados no Capítulo~\ref{cap:result}. Já O Capítulo~\ref{cap:conclusao} é apresentada a conclusão desta pesquisa e no Capítulo~\ref{cap:trabfut} são apresentadas algumas sugestões de trabalhos futuros 
+Na última parte deste documento são discutidos os Resultados alcançados, que são apresentados no Capítulo~\ref{cap:result}. Já no Capítulo~\ref{cap:conclusao} é apresentada a conclusão desta pesquisa e no Capítulo~\ref{cap:trabfut} são apresentadas algumas sugestões de trabalhos futuros.
