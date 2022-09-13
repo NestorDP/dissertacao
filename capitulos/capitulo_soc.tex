@@ -2,9 +2,9 @@
 
 % Definição simples de SoC, dois ou três parágrafos e uma imagem
 %================================
-SoC é um acrônimo de System-on-a-Chip ou apenas System on Chip, como o nome já indica, um SoC é um sistema computacional inteiro contido em apenas um circuito integrado. Sendo assim, um SoC pode combinar diferentes elementos, em diferentes configurações, para formar um sistema completo.  Portando um SoC não se restringe à apenas um processador, além da CPU,  ele integra memória, periféricos de controle, como por exemplo, barramento de comunicação USB, unidade de processamento gráfico, e outros periféricos específicos para uma determinada aplicação.  
+SoC é um acrônimo de \textit{System-on-a-Chip} ou apenas \textit{System on Chip}, o qual é um sistema computacional inteiro contido em apenas um circuito integrado. Sendo assim, um SoC pode combinar diferentes elementos, em diferentes configurações, para formar um sistema completo.  Portanto um SoC não se restringe à apenas um processador: além da CPU,  ele integra memória, periféricos de controle (por exemplo, barramento de comunicação USB), unidade de processamento gráfico e outros periféricos específicos para uma determinada aplicação.  
 
-Para \citeonline{MichelSoC}, um system-on-chip é uma arquitetura que estabelece uma montagem de processadores, memórias, e interconexões feitos sobre medida para uma determinada aplicação. A figura~\ref{fig:socbasic} ilustra um SoC com alguns elementos básicos, que pode incluir múltiplos processadores  de diferentes arquiteturas, interconectados com uma ou mais memórias, isso pode oferecer meios de se criar sistemas reconfiguráveis, adicionando maior flexibilidade a um SoC.  Em muitas ocasiões um SoC pode ser equipado com componentes analógicos, como conversores analógicos digitais.
+Para \citeonline{MichelSoC}, um system-on-chip é uma arquitetura que estabelece uma montagem de processadores, memórias, e interconexões feitos sobre medida para uma determinada aplicação. A figura~\ref{fig:socbasic} ilustra um SoC com alguns elementos básicos, que pode incluir múltiplos processadores  de diferentes arquiteturas, interconectados com uma ou mais memórias, o que pode oferecer meios de se criar sistemas reconfiguráveis, adicionando maior flexibilidade a um SoC.  Em muitas ocasiões um SoC pode ser equipado com componentes analógicos, como conversores analógico-digitais.
 
 
 \begin{figure}[ht]
@@ -18,7 +18,7 @@ Para \citeonline{MichelSoC}, um system-on-chip é uma arquitetura que estabelece
 % Descrição Cyclone V pincipais característica, famílias, imagem 
 %================================
 
-Dentre os dispositivos classificados como SoC, a Intel fornece uma linha de produtos classificados como SoC-FPGA, estes dispositivos se caracterizam por possuir um rede de FPGA integrados a um Processador ARM\@. Uma família de produtos que possuem essa característica é a Cyclone V SoC-FPGA\@. Estes componentes são constituídos por um Hardware Processor System que possui processadores ARM Cortex-A9 de um ou dois núcleos e um FPGA\@. A Figura~\ref{fig:socfpga} oferece uma visão global da integração entre os dois componetes principais do SoC-FPGA da família Cyclone V. 
+Dentre os dispositivos classificados como SoC, a Intel fornece uma linha de produtos classificados como SoC-FPGA, os quais se caracterizam por possuir um rede de FPGA integrados a um Processador ARM\@. Uma família de produtos que possuem essa característica é a Cyclone V SoC-FPGA\@. Estes componentes são constituídos por um \textit{Hardware Processor System} (HPS) que possui processadores ARM Cortex-A9 de um ou dois núcleos e um FPGA\@. A Figura~\ref{fig:socfpga} oferece uma visão global da integração entre os dois componetes principais do SoC-FPGA da família Cyclone V. 
 
 \begin{figure}[ht]
 	\caption{Diagrama de blocos simplificado Cyclone V}
@@ -28,59 +28,59 @@ Dentre os dispositivos classificados como SoC, a Intel fornece uma linha de prod
     \end{center}\label{fig:socfpga}
 \end{figure}
 
-Lançada iniciante pela Altera que foi adquirida em 2015 pela Intel~\cite{intelbuyaltera}, a família Cyclone V SoC-FPGA alia o poder de processamento do processador Cortex-A9 à versatilidade e flexibilidade do FPGA, o que faz desta linha de componentes possuirem um alto poder de processamento aliado a um baixo consumo. Os caminhos de interconexão entre o HPS e o FPGA do Cyclone V proporciona altas taxas de transferência, o que seria inviável em sistemas com dois chips. Esta estratégia de integração em um único circuito integrado oferece~\cite{CycloneV}:
+Lançada iniciante pela Altera que foi adquirida em 2015 pela Intel~\cite{intelbuyaltera}, a família Cyclone V SoC-FPGA alia o poder de processamento do processador Cortex-A9 à versatilidade e flexibilidade do FPGA, o que faz desta linha de componentes possuir um alto poder de processamento aliado a um baixo consumo. Os caminhos de interconexão entre o HPS e o FPGA do Cyclone V proporciona altas taxas de transferência, o que seria inviável em sistemas com dois chips. Esta estratégia de integração em um único circuito integrado oferece~\cite{CycloneV}:
 
 \begin{itemize}
-    \item Largura de banda de pico de mais de 100 Gbps.
-    \item Coerência de dados integrada.
+    \item Largura de banda de pico de mais de 100 Gbps;
+    \item Coerência de dados integrada;
     \item Significativa economia de energia do sistema, eliminando caminhos de E/S externos entre o processador e o FPGA\@.
 \end{itemize}
 
-Este nível de integração entre os dois componentes que formam o SoC FPGA, provê um sistema com baixa potência dissipada, aliado a um reduzido custo e  espaço da placa necessária para a montagem do sistema. Ou seja o uso dos SoC-FPGA, com processador ARM combinado com FPGA, interligados através de um backbone de alta largura de banda e baixa potência, disponíveis nos produtos da linha da família Cyclone V da Intel, possibilita o desenvolvimento de aplicações com excelente desempenho, alta flexibilidade, além de baixo custo e baixo consumo de energia. 
+Este nível de integração entre os dois componentes que formam o SoC FPGA provê uma solução com baixa potência dissipada, aliado a um reduzido custo e  espaço da placa necessária para a montagem do sistema. Ou seja, o uso dos SoC-FPGA, com processador ARM combinado com FPGA, interligados através de um \textit{backbone} de alta largura de banda e baixa potência, disponíveis nos produtos da linha da família Cyclone V da Intel, possibilita o desenvolvimento de aplicações com excelente desempenho, alta flexibilidade, além de baixo custo e baixo consumo de energia. 
 
 \section{ARM Cortex-A9}
-O processador Cortex A9 é uma linha de processadores ARM otimizados para alcançarem maior desempenho aliado a um baixo consumo. Esta linha de processadores ARM é uma das mais utilizadas, nas mais diversas aplicações, fazendo com que o ARM Cortex A9 seja um processador confiável e robusto. O Cortex A9 possui uma estrutura interna configurável, o que oferece flexibilidade ideal para o desenvolvimento de um novo SoC.  Na Tabela~\ref{tab:cortexA9config} são listadas algumas das configurações básicas do processador Cortex A9.
+O processador Cortex A9 é uma linha de processadores ARM otimizados para alcançarem maior desempenho aliado a um baixo consumo. Esta linha de processadores ARM é uma das mais utilizadas, nas mais diversas aplicações. O Cortex A9 possui uma estrutura interna configurável, o que oferece flexibilidade ideal para o desenvolvimento de um novo SoC.  Na Tabela~\ref{tab:cortexA9config} são listadas algumas das configurações básicas do processador Cortex A9.
 
 \begin{table}[ht]
-    \caption{Estrutura típica de um pacote ROS }
+    \caption{Confi básicas do ARM Cortex A9 }
     \begin{center}    
         \begin{tabular}{ll}
         \hline \hline
         Arquitetura                     & Armv7-A                                     \\ \hline \hline
         Multicore                       & 1-4 cores                                   \\ \hline \hline
         \multirow{7}{*}{Suporte ISA}    & Armv7-A                                     \\ \cline{2-2} 
-                                        & Thumb-2 or Thumb                            \\ \cline{2-2}
-                                        & TrustZone security technology               \\ \cline{2-2}
-                                        & Jazelle DBX and RCT technologies            \\ \cline{2-2}
-                                        & DSP extention                               \\ \cline{2-2}
+                                        & Thumb-2 ou Thumb                            \\ \cline{2-2}
+                                        & Tecnologia de segurança TrustZone               \\ \cline{2-2}
+                                        & Jazelle DBX e Tecnologia RCT            \\ \cline{2-2}
+                                        & Extensão DSP                               \\ \cline{2-2}
                                         & Neon (Opcional)                             \\ \cline{2-2}
-                                        & Floating Point (Opcional)                   \\ \hline \hline
-        Memory Management Unit (MMU)    & Armv7 Memory Management Unit                \\ \hline \hline
-        Debug and Trace                 & CoreSight                                   \\ \hline \hline
-        \multirow{4}{*}{Characteristics}& Dual-issue, partially out-of-order pipeline \\ \cline{2-2}
+                                        & Ponto Flutuante (Opcional)                   \\ \hline \hline
+        Unidade de Gerenciamento de Memória (MMU)    & Armv7 MMU                \\ \hline \hline
+        Depuração                  & CoreSight                                   \\ \hline \hline
+        \multirow{4}{*}{Caracteristicas}& Dual-issue, partially out-of-order pipeline \\ \cline{2-2}
                                         & \begin{tabular}[c]{@{}l@{}}Arquitetura do sistema flexível com
                                             \\caches configuráveis\end{tabular}       \\ \cline{2-2}
-                                        & System coherency com ACP port               \\ \cline{2-2}
+                                        & Sistema de coerência com ACP port               \\ \cline{2-2}
                                         & \begin{tabular}[c]{@{}l@{}}Desempenho 50\% maior do que  
                                             \\ o processador Cortex-A8  configurado 
-                                            \\ como single-core\end{tabular}          \\ \hline\hline
+                                            \\ como \textit{single-core}\end{tabular}          \\ \hline\hline
         \end{tabular}
         \\{\small \textbf{Fonte:} \citeonline{armCortexA9}}
     \end{center}\label{tab:cortexA9config}
 \end{table}
 
 \subsection{Cortex-A9 MPCore Processor}
-O Cortex-A9 MPCore processor é formado por três partes. Estas partes são componentes configuráveis que proporcionam a flexibilidade necessária para implementação de sistemas dedicados sobre medida para determinada aplicação. Os componentes do Cortex-A9 MPCore são \cite{mpcore}:
+O Cortex-A9 MPCore processor é formado por três partes. Estas partes são componentes configuráveis que proporcionam a flexibilidade necessária para implementação de sistemas dedicados sob medida para determinada aplicação. Os componentes do Cortex-A9 MPCore são~\cite{mpcore}:
 
 \begin{itemize}
-    \item De um a quatro processadores Cortex-A9, que podem ser agrupados em um cluster, e um Snoop Control Unit (SCU) que pode ser usado para assegurar a coerência do cluster.
+    \item De um a quatro processadores Cortex-A9, que podem ser agrupados em um cluster, e um \textit{Snoop Control Unit} (SCU) que pode ser usado para assegurar a coerência do cluster;
 
-    \item Um conjunto de periféricos de memória mapeada, incluindo timer global, watchdog e timer privativo para cada processador contido no cluster
+    \item Um conjunto de periféricos de memória mapeada, incluindo timer global, watchdog e timer privativo para cada processador contido no cluster; e
     
     \item Um controlador de interrupção integrado que é uma implementação do Generic Interrupt Controller. 
 \end{itemize}
 
-É possível implementar apenas um processador no cluster do Cortex-A9 MPCore, para isso, o processador deve ser implementado com suas próprias configurações de hardware. Mesmo contendo apenas um processador un SCU ainda estaré disponível, bem como ACP como um opcional. A Figura~\ref{fig:mpcore} apresenta um diagrama que representa o Cortex-A9 MPCore processor.
+É possível implementar apenas um processador no cluster do Cortex-A9 MPCore, para isso, o processador deve ser implementado com suas próprias configurações de hardware. Mesmo contendo apenas um processador um SCU ainda estaré disponível, bem como ACP como um opcional. A Figura~\ref{fig:mpcore} apresenta um diagrama que representa o Cortex-A9 MPCore processor.
 
 \begin{figure}[ht]
 	\caption{Cortex-A9 MPCore Processor}
@@ -93,32 +93,32 @@ O Cortex-A9 MPCore processor é formado por três partes. Estas partes são comp
 % \subsection{Protocolo AMBA 3}
 % \subsection{Generic Interrupt Control - GIC}
 
-\section{Field Programmable Gate Array - FPGA}
-Field Programmable Gate Arrays, ou simplesmente FPGA, são dispositivos semicondutores construídos através de uma matriz de blocos lógicos configuráveis, os CLBs~\cite{FPGAXilinx}. Estes blocos lógicos são interconectados a partir de conexões programáveis, isto permite que o projetista possa conectar esses blocos em configurações capazes de executar qualquer tarefa, desde simples portas lógicas até complexas funções.
+\section{Field-Programmable Gate Array - FPGA}
+\textit{Field-Programmable Gate Arrays}, ou simplesmente FPGA, são dispositivos semicondutores construídos através de uma matriz de blocos lógicos configuráveis, os CLBs~\cite{FPGAXilinx}. Estes blocos lógicos são interconectados a partir de conexões programáveis, o que permite ao projetista conectar esses blocos em configurações capazes de executar qualquer tarefa, desde simples portas lógicas até complexas funções.
 
-Os FPGAs foram batizados como dispositivos programáveis em campo devido a capacidade de terem seu hardware reconfigurado pelo usuário, para executar uma função desejada, mesmo após seu processo de fabricação. Esta característica permite que atualizações e soluções de possíveis erros de projetos sejam executadas em campo. São estas características que diferem os FPGAs do circuitos integrados de aplicação específicas, também conhecidos como ASICs - Application Specific Integrated Circuits, que como o nome já sugere, são circuitos desenvolvidos e fabricados para desempenharem apenas uma tarefa específica.
+Os FPGAs foram batizados como dispositivos programáveis em campo devido a capacidade de terem seu hardware reconfigurado pelo usuário, para executar uma função desejada, mesmo após seu processo de fabricação. Esta característica permite que atualizações e soluções de possíveis erros de projetos sejam executadas em campo. São estas características que diferem os FPGAs dos circuitos integrados de aplicação específicas, também conhecidos como ASICs - \textit{Application Specific Integrated Circuits}, que como o nome já sugere, são circuitos desenvolvidos e fabricados para desempenharem apenas uma tarefa específica.
 
-Extremamente versáteis, os FPGAs permitem que desenvolvedores testem inúmeras aplicações mesmo depois que o próprio FPGA e todo o hardware auxiliar já estarem montados em suas placas. Se por algum motivo uma nova configuração é necessária, novos arquivos de configuração podem ser transferidos para o FPGA, fornecendo ao dispositivo novas funcionalidades, ou mesmo correção de defeitos. FPGAs são poderosas ferramentas de prototipagem devido à sua flexibilidade, mesmo depois do hardware já está montado. Aplicações comerciais normalmente usam FPGAs em produtos finais quando há a necessidade de computação paralela e requerimentos dinâmicos são um requisito do sistema~\cite{FPGAarm}.
+Extremamente versáteis, os FPGAs permitem que desenvolvedores testem inúmeras aplicações mesmo depois que o próprio FPGA e todo o hardware auxiliar já estarem montados em suas placas. Se por algum motivo uma nova configuração for necessária, novos arquivos de configuração podem ser transferidos para o FPGA, fornecendo ao dispositivo novas funcionalidades ou mesmo correção de defeitos. FPGAs são poderosas ferramentas de prototipagem devido à sua flexibilidade, mesmo depois do hardware já estar montado. Aplicações comerciais normalmente usam FPGAs em produtos finais quando a necessidade de computação paralela e requerimentos dinâmicos são um requisito do sistema~\cite{FPGAarm}.
 
 
 
 \section{Hardware Processos System}
-Como foi mencionado no início deste capítulo, a família de dispositivos Cyclone V system-on-a-chip (SoC) é formada por duas partições, uma malha de FPGA e um processador Arm Cortex-A9, que pode estar organizado em dois ou apenas um núcleo. Esta última partição é chamada de Hard Processor System. 
+Como foi mencionado no início deste capítulo, a família de dispositivos Cyclone V system-on-a-chip (SoC) é formada por duas partições, uma malha de FPGA e um processador Arm Cortex-A9, que pode estar organizado em dois ou apenas um núcleo. Esta última partição é chamada de \textit{Hard Processor System} (HPS). 
 
 Os principais módulos do HPS são:
 
 \begin{itemize}
-    \item Microprocessador Unit - MPU, subsistema com um single ou dual ARM Cortex-A9 (MPCore Processor)
-    \item Controladores de memória Flash
-    \item Controladores de SDRAM
-    \item Sistema de interconexão
-    \item On-chip memória 
-    \item Phase-locked loops (PLLs) 
+    \item Microprocessador Unit - MPU, subsistema com um ou dois ARM Cortex-A9 (MPCore Processor)
+    \item Controladores de memória Flash;
+    \item Controladores de SDRAM;
+    \item Sistema de interconexão;
+    \item On-chip memória; e
+    \item Phase-locked loops (PLLs).
 \end{itemize}
 
 
 \subsection{FPGA Manager}
-O FPGA manager é o bloco do Hard Processor System responsável por gerenciar e monitorar a malha de FPGA presente no SoC. Através do FPGA manager o projetista é capaz de configurar o FPGA, monitoras seu estado, além de enviar entre o HPS e o FPGA\@. 
+O \textit{FPGA Manager} é o bloco do \textit{Hard Processor System} responsável por gerenciar e monitorar a malha de FPGA presente no SoC. Através do \textit{FPGA Manager} o projetista é capaz de configurar o FPGA, monitora seu estado, além de enviar dados entre o HPS e o FPGA\@. 
 
 \begin{figure}[ht]
 	\caption{Diagrama de blocos FPGA Manager }
@@ -128,20 +128,20 @@ O FPGA manager é o bloco do Hard Processor System responsável por gerenciar e 
     \end{center}\label{fig:fpgamanager}
 \end{figure}
 
-O FPGA manager possui as seguintes funcionalidades:
+O \textit{FPGA manager} possui as seguintes funcionalidades:
 
 \begin{itemize}
-    \item Capacidade de realizar configuração parcial ou completa de toda a malha do FPGA
-    \item Enviar 32 sinais de uso geral  do HPS para o FPGA
-    \item Receber 32 sinais de uso geral do FPGA para o HPS
-    \item Monitorar o status de configuração e potência do FPGA
-    \item Gerar interrupções para o HPS a partir das mudanças de status do FPGA
-    \item Capacidade de resetar o FPGA 
+    \item Capacidade de realizar configuração parcial ou completa de toda a malha do FPGA\@;
+    \item Enviar 32 sinais de uso geral  do HPS para o FPGA\@;
+    \item Receber 32 sinais de uso geral do FPGA para o HPS\@;
+    \item Monitorar o status de configuração e potência do FPGA\@;
+    \item Gerar interrupções para o HPS a partir das mudanças de status do FPGA\@; e
+    \item Capacidade de resetar o FPGA\@.
 \end{itemize}
 
-Na Figura~\ref{fig:fpgamanager} podemos ver os principais blocos que formam o sistema do FPGA manager, O Registrer Slave Interface se conecta ao L4 Master Peripheral Bus fornecendo acesso ao registro de status da malha do FPGA. Ja o Configuration slave interface se conecta ao L3 interconnect da MPU fornecendo um caminho para que o FPGA possa ser reconfigurado a partir do HPS\@.
+Na Figura~\ref{fig:fpgamanager} podemos ver os principais blocos que formam o sistema do \textit{FPGA Manager}, O \textit{Registrer Slave Interface} se conecta ao L4 \textit{Master Peripheral Bus} fornecendo acesso ao registro de \textit{status} da malha do FPGA\@. Já o \textit{Configuration slave interface} se conecta ao \textit{L3 interconnect} da MPU fornecendo um caminho para que o FPGA possa ser reconfigurado a partir do HPS\@.
 
-Do lado da malha do FPGA o FPGA manager possui dois blocos, o fabric I/O e o monitor. No bloco fabric I/O os registradores General-purpose input register (gpi), eneral-purpose output register (gpo) e Boot handshaking input register (misci) possibilitam a comunicação entre o HPS e a malha do FPGA\@. Estes registradores só são acessíveis quando o FPGA está no modo usuário, modo ao qual o FPGA pode ser reconfigurado a partir do HPS\@. O bloco monitor, como pode ser deduzido pelo seu nome, fornece uma interface para o monitoramento da malha do FPGA, este bloco monitora sinais relacionados com a configuração do FPGA 
+Do lado da malha do FPGA, o \textit{FPGA Manager} possui dois blocos, o \textit{fabric I/O} e o \textit{monitor}. No bloco \textit{fabric I/O} os registradores \textit{General-purpose input register} (gpi), \textit{General-purpose output register} (gpo) e \textit{Boot handshaking input register} (misci) possibilitam a comunicação entre o HPS e a malha do FPGA\@. Estes registradores só são acessíveis quando o FPGA está no modo usuário, modo ao qual o FPGA pode ser reconfigurado a partir do HPS\@. O bloco \textit{monitor}, como pode ser deduzido pelo seu nome, fornece uma interface para o monitoramento da malha do FPGA, este bloco monitora sinais relacionados com a configuração do FPGA 
 
 
 \subsection{HPS-FPGA Bridge}
