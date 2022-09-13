@@ -145,7 +145,7 @@ Do lado da malha do FPGA, o \textit{FPGA Manager} possui dois blocos, o \textit{
 
 
 \subsection{HPS-FPGA Bridge}
-O HPS pode se comunicar com a malha do FPGA a partir de barramentos de alta performance, que podem alcançar largura de banda superiores a 100Gbps. Estes barramentos são chamados de HPS-FPGA Bridge eles usam o protocolo Advanced Microcontroller Bus Architecture (AMBA) Advanced eXtensible Interface (AXI), este protocolo foi desenvolvido pela própria ARM é um padrão na conexão dos blocos internos dos dispositivos ARM\@. A Figura~\ref{fig:hpsfpgabridge}
+O HPS pode se comunicar com a malha do FPGA a partir de barramentos de alto desempenho, que podem alcançar larguras de banda superiores a 100Gbps. Estes barramentos, chamados de HPS-FPGA Bridge, usam o protocolo \textit{Advanced Microcontroller Bus Architecture} (AMBA) \textit{Advanced eXtensible Interface} (AXI), o qual foi desenvolvido pela própria ARM, constituindo-se num padrão de conexão dos blocos internos dos dispositivos ARM\@. A Figura~\ref{fig:hpsfpgabridge} exibe o diagrama de blocos das conexões de todas a pontes presentes do Cyclone V.
 
 \begin{figure}[ht]
 	\caption{Diagrama de blocos HPS-FPGA Bridge}
@@ -155,23 +155,12 @@ O HPS pode se comunicar com a malha do FPGA a partir de barramentos de alta perf
     \end{center}\label{fig:hpsfpgabridge}
 \end{figure}
 
-O HPS possui três pontes, são elas: FPGA-to-HPS Bridge, HPS-to-FPGA Bridge e a Lightweight HPS-to-FPGA Bridge. Estas pontes permitem a comunicação entre o HPS e o FPGA e vice-versa, ou seja, quando o projetista incorpora periféricos ao seu projeto no FPGA, o processador pode acessar esses periféricos através de um barramento de alta velocidade. Como foi dito, essa comunicação também funciona no sentido inverso, do FPGA para o HPS, isso quer dizer que um componente implementado no FPGA pode acessar regiões de memória e/ou periféricos do HPS.
-
-
-% \subsection{System Interconnect}
-% \begin{figure}[ht]
-% 	\caption{Diagrama de blocos Interconnect System}
-% 	\begin{center}
-% 		\includegraphics[scale=0.35]{imagens/interconnect.png}\\
-% 		{\small \textbf{Fonte:} \citeonline{alteraCV}}
-%     \end{center}\label{fig:interconnect}
-% \end{figure}
-
-
+O HPS possui três pontes, são elas: \textit{FPGA-to-HPS Bridge}, \textit{HPS-to-FPGA Bridge} e a \textit{Lightweight HPS-to-FPGA Bridge}. Estas pontes permitem a comunicação entre o HPS e o FPGA e vice-versa, ou seja, quando o projetista incorpora periféricos ao seu projeto no FPGA, o processador pode acessar esses periféricos através de um barramento de alta velocidade. Como foi dito, essa comunicação também funciona no sentido inverso, do FPGA para o HPS, significando que um componente implementado no FPGA pode acessar regiões de memória e/ou periféricos do HPS\@.
 
 
 \subsection{Cortex-A9 Microprocessor Unit Subsystem}
-Os SoCs da família Cyclone V incluem um Hard Processor System formado por um Arm Cortex-A9 MPCore, com processador de uso geral de 32 bits com um ou dois núcleos, um L2 cache, um Accelerator Coherency Port (ACP) e módulo de debugging. Tanto o processador como outros módulos no HPS podem acessar IPs no FPGA através do HPS-to-FPGA bridge. Na Figura~\ref{fig:mpusubsystem} é apresentado um diagrama de blocos simplificado do MPU.
+Os SoCs da família Cyclone V incluem um \textit{Hard Processor System} formado por um Arm Cortex-A9 MPCore, com processador de uso geral de 32 bits com um ou dois núcleos, um L2 cache, um \textit{Accelerator Coherency Port} (ACP) e módulo de depuração. Tanto o processador como outros módulos no HPS podem acessar blocos lógicos instaciados no FPGA através do \textit{HPS-to-FPGA bridge}. Na Figura~\ref{fig:mpusubsystem} é apresentado um diagrama de blocos simplificado do MPU\@.
+
 \begin{figure}[ht]
 	\caption{Cortex-A9 Microprocessor Unit Subsystem com bloco do sistema de interconexão}
 	\begin{center}
@@ -183,7 +172,7 @@ Os SoCs da família Cyclone V incluem um Hard Processor System formado por um Ar
 
 \section{Kit de desenvolvimento DE10-nano}
 
-Para o desenvolvimento deste trabalho foi escolhido o kit de desenvolvimento DE10-Nano da Terasic. Construído com base no SoC Cyclone® V SE 5CSEBA6U23I7 integrado com um processador ARM Cortex-A9 dual-core. O kit disponibiliza toda a estrutura básica de hardware necessário para que usuários possam aproveitar todo o poder do hardware reconfigurável oferecido pelo FPGA, combinado com um processador de alto desempenho. Além do SoC Intel a placa DE10-Nano, Figura \ref{fig:de10-nano} oferece excelentes recursos, alguns deles são: memória DDR3 de alta velocidade, conversor analógico-digital, interface USB e interface de rede gigabit ethernet, que dão ao kit grande flexibilidade no desenvolvimento de novas aplicações. 
+Para o desenvolvimento deste trabalho foi escolhido o kit de desenvolvimento DE10-Nano da Terasic. Construído com base no SoC Cyclone® V SE 5CSEBA6U23I7 integrado com um processador ARM Cortex-A9 dual-core. O kit disponibiliza toda a estrutura básica de hardware necessário para que usuários possam aproveitar todo o poder do hardware reconfigurável oferecido pelo FPGA, combinado com um processador de alto desempenho. Além do SoC Intel, a placa DE10-Nano (Figura~\ref{fig:de10-nano}) oferece excelentes recursos, como memória DDR3 de alta velocidade, conversor analógico-digital, interface USB e interface de rede gigabit ethernet, os quais dão ao kit grande flexibilidade no desenvolvimento de novas aplicações. 
 
 \begin{figure}[ht]
 	\caption{Kit de desenvolvimento DE10-Nano}
