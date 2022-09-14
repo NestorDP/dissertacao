@@ -64,7 +64,7 @@ O uso do ROS pode diminuir a necessidade de implementar algoritmos que já foram
     \item \textbf{Interface de troca de mensagens:} A interface utilizada pelo ROS vem se tornando um padrão na comunicação entre processos em robôs.
 \end{itemize}
 
-Nos repositórios oficiais do ROS estão disponíveis centenas de pacotes públicos que utilizam a interface de troca de mensagens padronizada do ROS, o que possibilitando uma redução significativa do esforço necessário para o desenvolvimento de uma lógica para integrar estes pacotes ao seu sistema. Assin, desenvolvedores que usam o ROS podem concentrar mais tempo e esforços no desenvolvimento de suas novas ideias, aproveitando algoritmos consolidados dos repositórios oficiais do ROS, sem a necessidade de reescrevê-los para adaptá-los ao seu projeto.
+Nos repositórios oficiais do ROS, estão disponíveis centenas de pacotes públicos que utilizam a interface de troca de mensagens padronizada do ROS, o que possibilitando uma redução significativa do esforço necessário para o desenvolvimento de uma integração destes pacotes ao seu sistema. Assin, desenvolvedores que usam o ROS podem concentrar mais tempo e esforços no desenvolvimento de suas novas ideias, aproveitando algoritmos consolidados dos repositórios oficiais do ROS, sem a necessidade de reescrevê-los para adaptá-los ao seu projeto.
 
 
 \section{Sistema de aquivos}
@@ -187,7 +187,7 @@ Uma característica bastante interessante dos nós ROS é a possibilidade de par
 
 \subsection{Tópicos ROS}
 
-Os tópicos são a maneira com que os nós enviam dados no ROS\@. Mesmo sem uma conexão direta entre dois nós, os tópicos podem ser transmitidos, fazendo com que a geração e o consumo de dados sejam desacoplados. Um tópico pode ser lido por vários nós e, de maneira igual, também pode ser publicado por vários nós, mas não é uma boa prática um mesmo tópico ser publicado por nós distintos, o que pode causar conflitos nas informações enviadas. A Figura~\ref{fig:rostopic} ilustra o processo de comunicação com tópico.
+Os tópicos são a maneira com que os nós enviam dados no ROS\@. Mesmo sem uma conexão direta entre dois nós, os tópicos podem ser transmitidos, fazendo com que a geração e o consumo de dados sejam desacoplados. Um tópico pode ser lido por vários nós e, de maneira igual, também pode ser publicado por vários nós, mas não é uma boa prática um mesmo tópico ser publicado por nós distintos, o que pode causar conflitos nas informações enviadas. A Figura~\ref{fig:rostopic} ilustra o processo de comunicação por meio de tópicos.
 
 \begin{figure}[ht]
 	\caption{Comunicação a partir de tópicos ROS}
@@ -197,7 +197,7 @@ Os tópicos são a maneira com que os nós enviam dados no ROS\@. Mesmo sem uma 
     \end{center}\label{fig:rostopic}
 \end{figure}
 
-As mensagens ROS determinam os tipos de dados que poderão ser transportados através dos tópicos, isso faz com que os tópicos sejam fortemente tipados, consequentemente os mesmo tipo de mensagem deve ser obrigatoriamente o mesmo, para o nó que publica e para o nó que ler um determinado tópico. Sendo assim uma comunicação entre nós, por meio de tópicos apenas ocorrerá se ambos, nó de leitura e nó de publicação, estiverem registrados no ROS \textit{master} com tópicos de mesmo nome e usando a mesma mensagem.
+As mensagens ROS são estruturas de dados simples que descrevem os tipos de dados que poderão ser transportados através dos tópicos. Isso faz com que os tópicos sejam fortemente tipados, consequentemente, o tipo de mensagem ROS deve ser o mesmo. Sendo assim, uma comunicação entre nós, por tópicos, ocorrerá se ambos, nó de leitura e nó de publicação, estiverem registrados no ROS \textit{master}, com tópicos de mesmo nome e mesmo tipo de mensagem ROS\@.
 
 
 \subsection{ROS \textit{master}}
