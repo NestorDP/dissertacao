@@ -45,21 +45,21 @@ Essas aplicações simplificam a comunicação com o FPGA a partir de simples co
 
 A seguir são listadas algumas características da distribuição linux rsyocto que fizeram dela uma excelente escolha para uso neste trabalho:
 \begin{itemize}
-	\item Embedded Linux specially developed for Intel SoC-FPGAs
-	\item Linux Kernel 5.11 (Source)
-	\item Full usage of the Dual-Core ARM (ARMv7-A) Cortex-A9 with
-	\item FPGA Fabric configuration during the boot and with a single Linux command
-	\item All Bridge Interfaces between the HPS and FPGA are enabled and ready for use!
-	\item Tools to interact with the FPGA Fabric via the ARM AXI HPS-to-FPGA bridges
-	\item HPS Hard IP components (I²C-,SPI-, CAN-BUS or UART) are routed to FPGA 
-	\item USB Host support with test tools (e.g. lsusb)
-	\item Full Linux Network stack with dynamic and static iPv4 is supported
-	\item OpenSSH-Server starts automatically during boot
-	\item gcccompiler 9.3.0; glibc and glib-2.0(The GNU C Library) cmake 3.16.5
-	\item Python 3.8 Python3-dev and Python-dev
-	\item git 2.31, wget 1.20.3, curl 7.69.1
-	\item opkg package manager enables to add packages from different Linux Distributions.
-	\item Changing the running FPGA-Configuration of the FPGA-Fabric
+	\item Linux embarcado especialmente desenvolvido para SoC-FPGAda Intel;
+	\item Linux Kernel 5.11;
+	\item Acesso total ao Dual-Core ARM (ARMv7-A) Cortex-A9;
+	\item Configuração da malha FPGA durante o \textit{boot} e com comandos Linux simples;
+	\item Todas as interfaces entre o HPS e o FPGA estão habilitadas e prontas para uso;
+	\item Ferramentas para interagir com a malha do FPGA a partir das \textit{ARM AXI HPS-toFPGA bridges};
+	\item Componentes Hard IP (I²C-,SPI-, CAN-BUS or UART) do HPS estão roteados para o FPGA\@;
+	\item Suporte para o USB \textit{Host} com ferramentas de teste (lsusb);
+	\item Interface de rede com suporte ao iPv4 dinâmico e estático;
+	\item OpenSSH-Server inicia automaticamente durante o \textit{boot};
+	\item Compilador gcc 9.3.0; glibc e glib-2.0 da \textit{GNU C Library}, cmake 3.16.5
+	\item Python 3.8 Python3-dev e Python-dev;
+	\item git 2.31, wget 1.20.3, curl 7.69.1; 
+	\item Gerenciador de pacotes opkg configurado para pacotes de diferentes distribuições Linux; e
+	\item Checagem e execução do \textit{FPGA-Configuration} da malha do FPGA\@.
 	\end{itemize}
 
 % Explicar o códgo do servidor
