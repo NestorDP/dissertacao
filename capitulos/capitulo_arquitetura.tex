@@ -1,6 +1,16 @@
 \chapter{Arquitetura do sistema}\label{cap:arquitetura}
 
-Para conseguirmos estabelecer a comunicação entre o computador e o SoC precisaremos efetuar programação de \textit{sockets} e bibliotecas específicas para trabalho em redes, desenvolver um pacote ROS para disponibilizar os dados recebidos através da interface de rede para os outros pacotes ROS do sistema robótico, além de um programa rodando no HPS do SoC para estabelecer esta comunicação entre a interface de rede da placa De10-nano e a aplicação sendo executada no FPGA\@. Já a aplicação que estará embarcada no FPGA contido no SoC deverá ser descrita por alguma linguagem de descrição de hardware, como por exemplo, Verilog ou VHDL\@.
+Para conseguirmos estabelecer a comunicação entre o computador e o SoC precisaremos:
+
+\begin{enumerate}
+	\item Efetuar programação de \textit{sockets} e bibliotecas específicas para trabalho em redes; 
+	
+	\item Desenvolver um pacote ROS para disponibilizar os dados recebidos dos outros pacotes ROS do sistema para o SoC, por meio da interface de rede. 
+	
+	\item Estabelecer a comunicação entre a interface de rede da placa DE10-nano através de um programa executado no HPS do SoC, que realizará a captura dos dados recebidos através da rede, enviando-os à aplicação sendo executada no FPGA e devouvemdo-os ao ROS através da rede. 
+\end{enumerate}
+
+Em relação à embarcada no FPGA contido no SoC deverá ser descrita por alguma linguagem de descrição de hardware, como por exemplo, Verilog ou VHDL\@.
 
 Todas essas etapas descritas anteriormente são necessárias para a construção completa do sistema proposto, o que torna o desenvolvimento da solução completa um desafio devido às diferentes ferramentas de software e hardware necessárias para sua conclusão. Tendo em vista este problema, a solução foi idealizada para conter o maior grau de modularidade possível, ou seja, cada uma dessas etapas será tratada com um projeto independente, apenas tendo cuidado para garantir a correta comunicação entre cada uma delas.
 
