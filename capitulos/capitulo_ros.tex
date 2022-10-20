@@ -38,7 +38,7 @@ O objetivo do ROS não é ser um \textit{framework} com o maior número de recur
 A seguir serão listadas algumas características que incentivam a colaboração da comunidade e são responsáveis pelo sucesso do ROS\@:
 
 \begin{itemize}
-    \item\textbf{Recursos Nativos:} O ROS oferece, de forma nativa, muitos recursos prontos, testados e validados pela comunidade. Podemos citar como exemplos o \textit{Simultaneous Localization and Mapping (SLAM)} e o \textit{Adaptive Monte Carlo Localization (AMCL)} que são usados para navegação autônoma de plataformas robóticas móveis. Outro pacote oferecido pelo ROS é o MoveIt, pacote usado para planejamento de movimento de manipuladores. Estes recursos podem ser usados sem problema algum e são altamente configuráveis, podendo ser adaptados em vários modelos de robôs e atender a inúmeras aplicações. 
+    \item\textbf{Recursos Nativos:} O ROS oferece, de forma nativa, muitos recursos prontos, testados e validados pela comunidade. Podemos citar como exemplos o \textit{Simultaneous Localization and Mapping (SLAM)} e o \textit{Adaptive Monte Carlo Localization (AMCL)}, que são usados para navegação autônoma de plataformas robóticas móveis. Outro pacote oferecido pelo ROS é o MoveIt, pacote usado para planejamento de movimento de manipuladores. Estes recursos podem ser usados pelos usuários em novos projetos e são altamente configuráveis, podendo ser adaptados em vários modelos de robôs e atender a inúmeras aplicações. 
 
     \item\textbf{Ferramentas de desenvolvimento:} O ROS é disponibilizado com uma grande quantidade de ferramentas para debugging, visualização, incluindo ferramentas para simulação. Algumas das ferramentas open source mais poderosas para visualização, debugging e  simulação, respectivamente, rqt\underline{ }gui, RViz e Gazebo, são nativas do ambiente ROS\@.
     
@@ -64,7 +64,7 @@ O uso do ROS pode diminuir a necessidade de implementar algoritmos que já foram
     \item \textbf{Interface de troca de mensagens:} A interface utilizada pelo ROS vem se tornando um padrão na comunicação entre processos em robôs.
 \end{itemize}
 
-Nos repositórios oficiais do ROS, estão disponíveis centenas de pacotes públicos que utilizam a interface de troca de mensagens padronizada do ROS, o que possibilitando uma redução significativa do esforço necessário para o desenvolvimento de uma integração destes pacotes ao seu sistema. Assin, desenvolvedores que usam o ROS podem concentrar mais tempo e esforços no desenvolvimento de suas novas ideias, aproveitando algoritmos consolidados dos repositórios oficiais do ROS, sem a necessidade de reescrevê-los para adaptá-los ao seu projeto.
+Nos repositórios oficiais do ROS, estão disponíveis centenas de pacotes públicos que utilizam a interface de troca de mensagens padronizada do ROS, o que possibilita uma redução significativa do esforço necessário para o desenvolvimento de uma integração destes pacotes ao seu sistema. Assin, desenvolvedores que usam o ROS podem concentrar mais tempo e esforços no desenvolvimento de suas novas ideias, aproveitando algoritmos consolidados dos repositórios oficiais do ROS, sem a necessidade de reescrevê-los para adaptá-los ao seu projeto.
 
 
 \section{Sistema de aquivos}
@@ -92,7 +92,7 @@ A seguir são apresentadas as definições de cada bloco da estrutura de arquivo
     
     \item \textbf{Arquivo .srv:} É o arquivo de descrição de um tipo de mensagem, é armazenado no diretório meu\underline{ }pacote/srv/Servico.msg e define toda a estrutura de dados enviados a partir deste tipo de serviço.
     
-    \item \textbf{Repositórios:} Pacotes ROS são compartilhados usando algum tipo de sistema de controle de versão, como o gti. Cada repositório pode conter apenas um pacote ou um metapackage 
+    \item \textbf{Repositórios:} Pacotes ROS são compartilhados usando algum tipo de sistema de controle de versão, como o git. Cada repositório pode conter apenas um pacote ou um metapackage 
 \end{itemize}
 
 
@@ -112,7 +112,24 @@ Nos pacotes estão contidos um ou mais nós, como são chamadas as unidades de p
 
 Cada \textit{metapackage} possui um arquivo chamado package.xml, o qual é responsável por reunir informações importantes sobre o pacote. Nele podemos encontrar o nome do pacote, seu autor, dependências e licença de uso. O sistema de compilação do ROS é o Catkin, o qual usa o CMake e o arquivo CMakeLists.txt que deve estar dentro da pasta de cada pacote com as suas instruções de compilação. 
 
-Os pacotes são as menores unidades que podem ser compiladas no ROS, são também  a maneira com que podemos organizar o software para ser lançado. No caso dos pacotes oficiais do ROS, por exemplo, existe um pacote Debian, que são os pacotes utilizados pelo Ubuntu, para cada pacote ROS. Apesar do conceito ser semelhante, e mesmo que ao instalar um pacote Debian, você possa incluí-lo à sua lista de pacotes ao ROS instalado no sistema, os pacotes Debian e ROS não são equivalentes. 
+Os pacotes são as menores unidades de código que podem ser compiladas no ROS\@. Os pacotes também fornecem uma maneira padronizada de organização, não só de dos códigos fontes, mas também de todo o material, desde de arquivos de configaração até aquivos dos modelos 3D do robô, necessário no desenvolvimento de uma nova aplicação dentro do ROS\@. 
+
+
+
+
+
+
+No caso dos pacotes oficiais do ROS, exitem versões que são os pacotes utilizados pelo Ubuntu, para cada pacote ROS\@. Apesar do conceito ser semelhante, e mesmo que ao instalar um pacote Debian, você possa incluí-lo à sua lista de pacotes ao ROS instalado no sistema, os pacotes Debian e ROS não são equivalentes. 
+
+
+
+
+
+
+
+
+
+
 
 A principal função dos pacotes é ser uma maneira funcional, de fácil configuração e um caminho descomplicado para possibilitar o reuso de software. De maneira geral, os pacotes ROS devem conter funcionalidades suficientes para serem úteis, mas não muito para torná-los muito grande e confusos, dificultando seu uso por outro software 
 
@@ -120,7 +137,7 @@ A principal função dos pacotes é ser uma maneira funcional, de fácil configu
 \subsection{Mensagens ROS}
 Os nós do ROS podem publicar apenas dados de tipos predeterminados. Estes tipos são definidos usando uma linguagem de descrição de mensagens, conhecida como mensagens ROS\@. Esta simples descrição permite que as ferramentas do ROS gerem automaticamente o código fonte para mensagens para todas as linguagens aceitas no ROS\@. As descrições das mensagens são armazenadas no arquivo .msg localizado no subdiretório msg/ dentro de um pacote ROS\@.
 
-Existem dois segmentos em um arquivo .msg, são eles: campos e constantes. Campos são os dados que serão enviados dentro da mensagens. Constantes define os valores, ou tipo de dados, que poderão ser usados em cada campo. Os tipos de mensagens são referenciados a partir do nome do seu respectivo pacote-como ilustração, podemos usar o arquivo de descrição geometry\underline{ }msgs/msg/Twist.msg, que será referencido como geometry\underline{ }msgs/Twist. 
+Existem dois segmentos em um arquivo .msg, são eles: campos e constantes. Campos são os dados que serão enviados dentro da mensagens. Constantes define os valores, ou tipo de dados, que poderão ser usados em cada campo. Os tipos de mensagens são referenciados a partir do nome do seu respectivo pacote, como ilustração, podemos usar o arquivo de descrição geometry\underline{ }msgs/msg/Twist.msg, que será referencido como geometry\underline{ }msgs/Twist. 
 
 O ROS possui um grande número de mensagens predefinidas, o que não impede que o programador escreva seus próprios arquivos .msg com a descrição de uma mensagem específica para atender a sua aplicação. A Tabela~\ref{tab:rostype} lista os tipos de dados padrão do ROS que podem ser usados na criação de novas mensagens: 
 
@@ -162,7 +179,7 @@ De forma geral, o \textit{workspace} é uma pasta no computador que contém todo
     \end{center}\label{fig:rosworkspace}
 \end{figure}
 
-Cada pasta dentro do workspace é um diferente espaço diferente, cada um com uma função específica:
+Cada pasta dentro do workspace é um diferente espaço, cada um com uma função específica:
 
 \begin{itemize}
     \item \textbf{O espaço dos fontes:} No espaço dos fontes, localizada na pasta src do \textit{workspace}, estão localizados todos os pacotes do projetos. O arquivo mais importante dessa área do \textit{workspace} é o CMakeLists.txt. Este arquivo é gerado na primeira vez em que o \textit{workspace} é compilado
@@ -180,7 +197,7 @@ Outra função importante do ROS que pode ser usada através de um \textit{works
 \subsection{Nós ROS}
 No ROS os executáveis são chamados de nós, eles podem se comunicar com outros processos por meio dos tópicos, serviços ou pelo servidor de parâmetros. Os nós proporcionam grande modularidade aos sistemas robóticos que usam o ROS, isso faz com que o desenvolvimento destes sistemas se torne bem mais simples.
 
-Ao ser executado, o nó possui um nome único no sistema, o que possibilita a sua comunicação com os demais nós. O ROS permite que os nós sejam escritos em diferentes linguagens de programação-as bibliotecas que fornecem a interface do ROS com uma linguagem específica são chamadas de clientes. As mais populares são: roscpp, para a linguagem C++ e a rospy para a linguagem Python.
+Ao ser executado, o nó possui um nome único no sistema, o que possibilita a sua comunicação com os demais nós. O ROS permite que os nós sejam escritos em diferentes linguagens de programação. As bibliotecas que fornecem a interface do ROS com uma linguagem específica são chamadas de clientes, as mais populares são: roscpp, para a linguagem C++ e a rospy para a linguagem Python.
 
 Uma característica bastante interessante dos nós ROS é a possibilidade de parâmetros serem modificados no momento em que o nó é iniciado. Esta característica proporciona maior flexibilidade aos nós, já que o uso de parâmetros oferece a possibilidade de o código ser reconfigurado sem a necessidade de recompilar o código fonte, sendo assim podemos adaptar o nó a diferentes cenários sem conhecer detalhes de sua implementação. 
 
@@ -204,9 +221,9 @@ As mensagens ROS são estruturas de dados simples que descrevem os tipos de dado
 
 O ROS \textit{master} é o responsável por registrar nomes dos elementos que fazem parte do sistema, entre eles estão os nós, tópicos, serviços, action, tipos de mensagens, ele também é o encarregado por fornecer o servidor de parâmetros. Por gerenciar as informações das conexões entre as trocas de mensagens entre os nós, o \textit{master} é o primeiro elemento que deve ser executado no ROS. Afunção do \textit{master} é permitir que um determinado nó encontre outro, uma vez localizados os nós poderão se comunicar através de uma conexão per-to-per.
 
-No momento em que um nós é executado no sistema, ele registra seu nome no \textit{master}. Sendo assim, o ROS \textit{master} possui os detalhes de todos os nós rodando no sistema. No momento em que qualquer detalhes de um nós muda, ele gera um callback para atualizar as novas informações no \textit{master}. Quando um nó inicia a publicação de um tópico ele informará todos os detalhes ao \textit{master}, desde do nome até o tipo de dados que serão enviado, em seguida, o \textit{master} verifica se existe algum outro nó lendo o mesmo tópico, se algum nó estão querendo fazer a leitura deste tópico o ROS \textit{master} irá compartilhar detalhes do nó que está publicando com o nós que quer ler o tópico.
+No momento em que um no é executado no sistema, ele registra seu nome no \textit{master}. Sendo assim, o ROS \textit{master} possui os detalhes de todos os nós rodando no sistema. No momento em que qualquer detalhes de um nós muda, ele gera um callback para atualizar as novas informações no \textit{master}. Quando um nó inicia a publicação de um tópico ele informará todos os detalhes ao \textit{master}, desde do nome até o tipo de dados que serão enviados, em seguida, o \textit{master} verifica se existe algum outro nó lendo o mesmo tópico, se algum nó estão querendo fazer a leitura deste tópico o ROS \textit{master} irá compartilhar detalhes do nó que está publicando com o nós que querem ler o tópico.
 
-Na Figura~/ref{fig:rosMastering} podemos ver como se da a interação entre o \textit{master} e os nós que farão a comunicação.
+Na Figura~\ref{fig:rosMastering} podemos ver como se da a interação entre o \textit{master} e os nós que farão a comunicação.
 
 
 \begin{figure}[ht]
