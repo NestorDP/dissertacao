@@ -17,9 +17,9 @@ A comunidade da robótica em todo mundo tem feito grande progresso nos últimos 
 
 O nome ROS vem da abreviação de \textit{Robot Operating System}, mas seria o ROS um sistema operacional para robôs? Ele fornece abstração de hardware, controle de baixo nível para dispositivos, implementações de funcionalidades de uso comum, troca de mensagens entre processos, até um sistema de gerenciamento de pacotes. Além destas características o ROS está equipado com bibliotecas e ferramentas para escrever, compilar e rodar seus códigos~\cite{RosIntro}.
 
-Apesar de todos os atributos que o caracterizam como um sistema operacional, o ROS não é um sistema operacional convencional, por ainda precisar rodar em um outro sistema operacional previamente instalado, o que faz com que o ROS seja conhecido como um meta-sistema operacional. Antes de ter o ROS em execução no robô é necessário instalar um sistema operacional, como por exemplo o Ubuntu. Com a distribuição Linux rodando é possível executar a instalação completa do ROS, sendo assim, todos os recursos fornecidos por um sistema operacional convencional podem ser utilizados pelo ROS, como sistema de gerenciamento de processos, sistema de arquivos, interface do usuário e compiladores, dentre outros. 
+Apesar de todos os atributos que o caracterizam como um sistema operacional, o ROS não é um sistema operacional convencional, por ainda precisar rodar em um outro sistema operacional previamente instalado, o que faz com que o ROS seja conhecido como um meta-sistema operacional~\cite{rosPYO}. Antes de ter o ROS em execução no robô é necessário instalar um sistema operacional, como por exemplo o Ubuntu. Com a distribuição Linux rodando é possível executar a instalação completa do ROS, sendo assim, todos os recursos fornecidos por um sistema operacional convencional podem ser utilizados pelo ROS, como sistema de gerenciamento de processos, sistema de arquivos, interface do usuário e compiladores, dentre outros. 
 
-Para complementar esses recursos básicos do sistema operacional, o ROS fornece funcionalidades específicas para o uso na robótica, tal como bibliotecas para transmissão e recepção de dados para uma variedade de dispositivos de hardwares comumente utilizados em sistemas robóticos. Esse tipo de software é conhecido como \textit{middleware} ou \textit{framework}. Como pode ser visto na Figura~\ref{fig:rosmeta}, o ROS é o sistema auxiliar para controlar atuadores e sensores, com um nível de abstração de hardware dando suporte para o desenvolvimento de novas aplicações de robótica em sistemas operacionais convencionais.
+Para complementar esses recursos básicos do sistema operacional, o ROS fornece funcionalidades específicas para o uso na robótica, tal como bibliotecas para transmissão e recepção de dados para uma variedade de dispositivos de hardwares comumente utilizados em sistemas robóticos. Esse tipo de software é conhecido como \textit{middleware} ou \textit{framework}~\cite{rosPYO}. Como pode ser visto na Figura~\ref{fig:rosmeta}, o ROS é o sistema auxiliar para controlar atuadores e sensores, com um nível de abstração de hardware dando suporte para o desenvolvimento de novas aplicações de robótica em sistemas operacionais convencionais.
 
 \begin{figure}[ht]
 	\caption{ROS: um meta-sistema operacional}
@@ -52,16 +52,16 @@ A seguir serão listadas algumas características que incentivam a colaboração
 \subsection{Computacão distribuida}
 Grande parte de robôs modernos possuem diferentes unidades de processamento, que podem estar localizadas em diferentes computadores. Desde sensores microprocessados até mesmo controles específicos para motores, tais dispositivos podem possuir suas próprias unidades computacionais. Mesmo possuindo apenas um computador, dividir o processamento em processos individuais específicos para cada função e fazer com que eles trabalhem em conjunto na resolução de um problema maior, é uma excelente abordagem para a arquitetura de robôs modernos. Além disso, múltiplos robôs podem trabalhar de forma colaborativa dividindo atividades entre eles, ou até mesmo interagindo com seres humanos que poderiam enviar comandos através de um computador ou celular. Em todos estes casos, é necessário a comunicação entre processos, que podem ou não estarem no mesmo computador. 
 
-O ROS é um \textit{Inter-process communication framework} e de fato ele usa uma rede TCP/IP para realizar essa comunicação entre processos. Ele usa sockets TCP/IP para transportar dados entre os processos. Esta abordagem proporciona grande flexibilidade na troca de mensagem: processos podem se comunicar com outros mesmo se eles não estiverem na mesma máquina, ou até mesmo em robôs separados, bastando para tal que todas as máquinas que compartilham estejam na mesma rede. Isso faz com que até mesmo processos rodando na internet possam participar da comunicação e realizar uma parte do processamento de um robô.
+O ROS é um \textit{Inter-process communication framework} e de fato ele usa uma rede TCP/IP para realizar essa comunicação entre processos. Ele usa sockets TCP~\cite{RosTCP}, ou UDP quando a latência for mais importante que a gartia de entrega~\cite{RosUDP}, para transportar dados entre os processos. Esta abordagem proporciona grande flexibilidade na troca de mensagem: processos podem se comunicar com outros mesmo se eles não estiverem na mesma máquina, ou até mesmo em robôs separados, bastando para tal que todas as máquinas que compartilham estejam na mesma rede. Isso faz com que até mesmo processos rodando na internet possam participar da comunicação e realizar uma parte do processamento de um robô.
 
 
 \subsection{Reuso de Software}
 O uso do ROS pode diminuir a necessidade de implementar algoritmos que já foram testados e validados por outros pesquisadores. Algoritmos de navegação, planejamento de rotas e mapeamento, dentre outros, são usados em diferentes projetos, e o ROS permite que estes algoritmos sejam reaproveitados de duas maneiras possíveis:
 
 \begin{itemize}
-    \item \textbf{Pacotes padrão:} São pacotes de software de importantes algoritmos usados na robótica ou mesmo drivers de dispositivos comuns na robótica, que já foram implementados e testados.
+    \item \textbf{Pacotes padrão:} São pacotes de software de importantes algoritmos usados na robótica ou mesmo drivers de dispositivos comuns na robótica, que já foram implementados e testados~\cite{rosgentle}.
 
-    \item \textbf{Interface de troca de mensagens:} A interface utilizada pelo ROS vem se tornando um padrão na comunicação entre processos em robôs.
+    \item \textbf{Interface de troca de mensagens:} A interface utilizada pelo ROS vem se tornando um padrão na comunicação entre processos em robôs~\cite{rosgentle}.
 \end{itemize}
 
 Nos repositórios oficiais do ROS, estão disponíveis centenas de pacotes públicos que utilizam a interface de troca de mensagens padronizada do ROS, o que possibilita uma redução significativa do esforço necessário para o desenvolvimento de uma integração destes pacotes ao seu sistema. Assin, desenvolvedores que usam o ROS podem concentrar mais tempo e esforços no desenvolvimento de suas novas ideias, aproveitando algoritmos consolidados dos repositórios oficiais do ROS, sem a necessidade de reescrevê-los para adaptá-los ao seu projeto.
@@ -82,15 +82,15 @@ A seguir são apresentadas as definições de cada bloco da estrutura de arquivo
 \begin{itemize}
     \item \textbf{Pacotes:} Pacotes são a unidade de software principal do ROS\@. Um pacote pode conter nós, dependências, bibliotecas, \textit{datasets}, arquivos de configuração, ou qualquer coisa que seja útil organizar de forma agrupada~\cite{RosPKG}.
 
-    \item \textbf{Manifesto do pacote:} O arquivo package.xml é conhecido como manifesto do pacote, ele fornece os metadados a respeito do pacotes, incluindo nome, versão, descrição, licença, dependências e outras informações. Os padrões do package.xml são definidos no REP-0127.
+    \item \textbf{Manifesto do pacote:} O arquivo package.xml é conhecido como manifesto do pacote, ele fornece os metadados a respeito do pacotes, incluindo nome, versão, descrição, licença, dependências e outras informações. Os padrões do package.xml são definidos no REP-0127~\cite{RosPkgXml}.
     
-    \item \textbf{\textit{Metapackages}:} Metapackages são pacotes especializados que serve apenas como representante de um grupo de outros pacotes relacionados entre si.
+    \item \textbf{\textit{Metapackages}:} Metapackages são pacotes especializados que serve apenas como representante de um grupo de outros pacotes relacionados entre si~\cite{RosMtaPkg}.
     
-    \item \textbf{Manifesto do \textit{metapackage}:} O manifesto de um metapackage é semelhante ao manifesto de um pacote comum, a diferença entre eles é que no manifesto devemos incluir as dependências encontradas no mesmo repositório do meta package
+    \item \textbf{Manifesto do \textit{metapackage}:} O manifesto de um metapackage é semelhante ao manifesto de um pacote comum, a diferença entre eles é que no manifesto devemos incluir as dependências encontradas no mesmo repositório do meta package~\cite{RosPkgXml}.
     
-    \item \textbf{Arquivo .msg:} É o arquivo de descrição de um tipo de mensagem, é armazenado no diretório meu\underline{ }pacote/msg/Mensagem.msg e define toda a estrutura de dados enviados a partir deste tipo de mensagem.
+    \item \textbf{Arquivo .msg:} É o arquivo de descrição de um tipo de mensagem, é armazenado no diretório meu\underline{ }pacote/msg/Mensagem.msg e define toda a estrutura de dados enviados a partir deste tipo de mensagem~\cite{RosMessage}.
     
-    \item \textbf{Arquivo .srv:} É o arquivo de descrição de um tipo de mensagem, é armazenado no diretório meu\underline{ }pacote/srv/Servico.msg e define toda a estrutura de dados enviados a partir deste tipo de serviço.
+    \item \textbf{Arquivo .srv:} É o arquivo de descrição de um tipo de mensagem, é armazenado no diretório meu\underline{ }pacote/srv/Servico.msg e define toda a estrutura de dados enviados a partir deste tipo de serviço~\cite{RosService}.
     
     \item \textbf{Repositórios:} Pacotes ROS são compartilhados usando algum tipo de sistema de controle de versão, como o git. Cada repositório pode conter apenas um pacote ou um metapackage 
 \end{itemize}
@@ -98,7 +98,7 @@ A seguir são apresentadas as definições de cada bloco da estrutura de arquivo
 
 \subsection{Pacotes ROS}
 
-A unidade básica para configuração do software no ROS é conhecida como pacote, isso quer dizer que todas as aplicações desenvolvidas para ROS são estruturadas como um pacote. Na Figura \ref{fig:rospacotestrut} podemos ter uma visão da estrutura típica de um pacote ROS
+A unidade básica para configuração do software no ROS é conhecida como pacote, isso quer dizer que todas as aplicações desenvolvidas para ROS são estruturadas como um pacote. Na Figura~\ref{fig:rospacotestrut} podemos ter uma visão da estrutura típica de um pacote ROS
 
 \begin{figure}[ht]
 	\caption{Estrutura típica de um pacote ROS}
@@ -110,34 +110,17 @@ A unidade básica para configuração do software no ROS é conhecida como pacot
 
 Nos pacotes estão contidos um ou mais nós, como são chamadas as unidades de processamento no ROS, ou ainda arquivos de configuração para a execução de nós de outros pacotes. Existem milhares de pacotes ROS oficiais e uma quantidade ainda maior de pacotes desenvolvidos por seus usuários. 
 
-Cada \textit{metapackage} possui um arquivo chamado package.xml, o qual é responsável por reunir informações importantes sobre o pacote. Nele podemos encontrar o nome do pacote, seu autor, dependências e licença de uso. O sistema de compilação do ROS é o Catkin, o qual usa o CMake e o arquivo CMakeLists.txt que deve estar dentro da pasta de cada pacote com as suas instruções de compilação. 
+Cada \textit{metapackage} possui um arquivo chamado package.xml, o qual é responsável por reunir informações importantes sobre o pacote. Nele podemos encontrar o nome do pacote, seu autor, dependências e licença de uso~\cite{RosMtaPkg}. O sistema de compilação do ROS é o Catkin, o qual usa o CMake e o arquivo CMakeLists.txt que deve estar dentro da pasta de cada pacote com as suas instruções de compilação~\cite{RosCatkin}. 
 
-Os pacotes são as menores unidades de código que podem ser compiladas no ROS\@. Os pacotes também fornecem uma maneira padronizada de organização, não só de dos códigos fontes, mas também de todo o material, desde de arquivos de configaração até aquivos dos modelos 3D do robô, necessário no desenvolvimento de uma nova aplicação dentro do ROS\@. 
+Os pacotes fornecem uma maneira padronizada de organização, não só de dos códigos fontes, mas também de todo o material, desde de arquivos de configaração até aquivos dos modelos 3D do robô, necessário no desenvolvimento de uma nova aplicação ROS\@. Existem versões de pacotes Debian, os memos pacotes utilizados pelo Ubuntu, para cada pacote oficial ROS\@. Desta maneira eles pondem ser instalados no sistema, diretamente através do gerenciador de pacotes apt, ultilizado por distribuições baseadas em Debian, como é o caso do Ubuntu~\cite{RosPKG}. 
 
-
-
-
-
-
-No caso dos pacotes oficiais do ROS, exitem versões que são os pacotes utilizados pelo Ubuntu, para cada pacote ROS\@. Apesar do conceito ser semelhante, e mesmo que ao instalar um pacote Debian, você possa incluí-lo à sua lista de pacotes ao ROS instalado no sistema, os pacotes Debian e ROS não são equivalentes. 
-
-
-
-
-
-
-
-
-
-
-
-A principal função dos pacotes é ser uma maneira funcional, de fácil configuração e um caminho descomplicado para possibilitar o reuso de software. De maneira geral, os pacotes ROS devem conter funcionalidades suficientes para serem úteis, mas não muito para torná-los muito grande e confusos, dificultando seu uso por outro software 
+A principal função dos pacotes é ser uma maneira funcional, de fácil configuração e um caminho descomplicado para possibilitar o reuso de software. De maneira geral, os pacotes ROS devem conter funcionalidades suficientes para serem úteis, mas não muito para torná-los muito grande e confusos, dificultando seu uso por outro software~\cite{rosgentle}.
 
 
 \subsection{Mensagens ROS}
 Os nós do ROS podem publicar apenas dados de tipos predeterminados. Estes tipos são definidos usando uma linguagem de descrição de mensagens, conhecida como mensagens ROS\@. Esta simples descrição permite que as ferramentas do ROS gerem automaticamente o código fonte para mensagens para todas as linguagens aceitas no ROS\@. As descrições das mensagens são armazenadas no arquivo .msg localizado no subdiretório msg/ dentro de um pacote ROS\@.
 
-Existem dois segmentos em um arquivo .msg, são eles: campos e constantes. Campos são os dados que serão enviados dentro da mensagens. Constantes define os valores, ou tipo de dados, que poderão ser usados em cada campo. Os tipos de mensagens são referenciados a partir do nome do seu respectivo pacote, como ilustração, podemos usar o arquivo de descrição geometry\underline{ }msgs/msg/Twist.msg, que será referencido como geometry\underline{ }msgs/Twist. 
+Existem dois segmentos em um arquivo .msg, são eles: campos e constantes. Campos são os dados que serão enviados dentro da mensagens. Constantes define os valores, ou tipo de dados, que poderão ser usados em cada campo~\cite{RosMessage}. Os tipos de mensagens são referenciados a partir do nome do seu respectivo pacote, como ilustração, podemos usar o arquivo de descrição geometry\underline{ }msgs/msg/Twist.msg, que será referencido como geometry\underline{ }msgs/Twist. 
 
 O ROS possui um grande número de mensagens predefinidas, o que não impede que o programador escreva seus próprios arquivos .msg com a descrição de uma mensagem específica para atender a sua aplicação. A Tabela~\ref{tab:rostype} lista os tipos de dados padrão do ROS que podem ser usados na criação de novas mensagens: 
 
@@ -169,7 +152,7 @@ O ROS possui um grande número de mensagens predefinidas, o que não impede que 
 
 
 \subsection{Workspace ROS}
-De forma geral, o \textit{workspace} é uma pasta no computador que contém todos os pacotes que estão sendo usados no desenvolvimento de uma nova aplicação. Estes pacotes contêm os arquivos fontes e o \textit{workspace} fornece um local para que os pacotes sejam compilados. O \textit{workspace} é bastante útil quando é necessário compilar vários pacotes ao mesmo tempo: todos os pacotes poderão estar contidos no mesmo \textit{workspace}, centralizando todo processo de desenvolvimento. Não existe um diretório específico para que o \textit{workspace} seja criado, logo, ele pode ser criado no local de preferência do desenvolvedor e sua equipe. Um \textit{workspace} típico é mostrado na Figura~\ref{fig:rosworkspace}. 
+De forma geral, o \textit{workspace} é uma pasta no computador que contém todos os pacotes que estão sendo usados no desenvolvimento de uma nova aplicação. Estes pacotes contêm os arquivos fontes e o \textit{workspace} fornece um local para que os pacotes sejam compilados. O \textit{workspace} é bastante útil quando é necessário compilar vários pacotes ao mesmo tempo: todos os pacotes poderão estar contidos no mesmo \textit{workspace}, centralizando todo processo de desenvolvimento. Não existe um diretório específico para que o \textit{workspace} seja criado, logo, ele pode ser criado no local de preferência do desenvolvedor e sua equipe. Um \textit{workspace} típico é mostrado na Figura~\ref{fig:rosworkspace}~\cite{rosEfetiveProgram}. 
 
 \begin{figure}[ht]
 	\caption{Estrutura típica de workspace ROS}
@@ -182,24 +165,24 @@ De forma geral, o \textit{workspace} é uma pasta no computador que contém todo
 Cada pasta dentro do workspace é um diferente espaço, cada um com uma função específica:
 
 \begin{itemize}
-    \item \textbf{O espaço dos fontes:} No espaço dos fontes, localizada na pasta src do \textit{workspace}, estão localizados todos os pacotes do projetos. O arquivo mais importante dessa área do \textit{workspace} é o CMakeLists.txt. Este arquivo é gerado na primeira vez em que o \textit{workspace} é compilado
+    \item \textbf{O espaço dos fontes:} No espaço dos fontes, localizada na pasta src do \textit{workspace}, estão localizados todos os pacotes do projetos. O arquivo mais importante dessa área do \textit{workspace} é o CMakeLists.txt. Este arquivo é gerado na primeira vez em que o \textit{workspace} é compilado~\cite{rosEfetiveProgram}.
 
-    \item \textbf{O espaço de compilação:} Localizado na pasta build, é neste local que são armazenadas as informações de cache, configurações e outros arquivos intermediários para que os pacotes sejam compilados corretamente.
+    \item \textbf{O espaço de compilação:} Localizado na pasta build, é neste local que são armazenadas as informações de cache, configurações e outros arquivos intermediários para que os pacotes sejam compilados corretamente~\cite{rosEfetiveProgram}.
 
-    \item \textbf{O espaço de desenvolvimento:} Aqui são armazenados os programas compilados. Assim você pode testar seus programas sem a necessidade de instalá-los no sistema.
+    \item \textbf{O espaço de desenvolvimento:} Aqui são armazenados os programas compilados. Assim você pode testar seus programas sem a necessidade de instalá-los no sistema~\cite{rosEfetiveProgram}.
 \end{itemize}
 
-Outra função importante do ROS que pode ser usada através de um \textit{workspace} é o \textit{overlays}. Se você tiver um pacote instalado em seu sistema, mas quiser testar uma versão mais atual do mesmo pacote, não é necessário instalar a versão mais atual, você pode baixar o código fonte do pacote dentro do seu \textit{workspace}, após compilar o \textit{workspace} o ROS entende que deverá usar a versão presente no \textit{workspace} e não a versão instalada no sistema.
+Outra função importante do ROS que pode ser usada através de um \textit{workspace} é o \textit{overlays}. Se você tiver um pacote instalado em seu sistema, mas quiser testar uma versão mais atual do mesmo pacote, não é necessário instalar a versão mais atual, você pode baixar o código fonte do pacote dentro do seu \textit{workspace}, após compilar o \textit{workspace} o ROS entende que deverá usar a versão presente no \textit{workspace} e não a versão instalada no sistema~\cite{rosEfetiveProgram}.
 
 
 \section{Componentes ROS}
 
 \subsection{Nós ROS}
-No ROS os executáveis são chamados de nós, eles podem se comunicar com outros processos por meio dos tópicos, serviços ou pelo servidor de parâmetros. Os nós proporcionam grande modularidade aos sistemas robóticos que usam o ROS, isso faz com que o desenvolvimento destes sistemas se torne bem mais simples.
+No ROS os executáveis são chamados de nós, eles podem se comunicar com outros processos por meio dos tópicos, serviços ou pelo servidor de parâmetros~\cite{rosEfetiveProgram}. Os nós proporcionam grande modularidade aos sistemas robóticos que usam o ROS, isso faz com que o desenvolvimento destes sistemas se torne bem mais simples~\cite{RosNode}.
 
-Ao ser executado, o nó possui um nome único no sistema, o que possibilita a sua comunicação com os demais nós. O ROS permite que os nós sejam escritos em diferentes linguagens de programação. As bibliotecas que fornecem a interface do ROS com uma linguagem específica são chamadas de clientes, as mais populares são: roscpp, para a linguagem C++ e a rospy para a linguagem Python.
+Ao ser executado, o nó possui um nome único no sistema, o que possibilita a sua comunicação com os demais nós. O ROS permite que os nós sejam escritos em diferentes linguagens de programação. As bibliotecas que fornecem a interface do ROS com uma linguagem específica são chamadas de clientes, as mais populares são: roscpp, para a linguagem C++ e a rospy para a linguagem Python~\cite{rosLearning}.
 
-Uma característica bastante interessante dos nós ROS é a possibilidade de parâmetros serem modificados no momento em que o nó é iniciado. Esta característica proporciona maior flexibilidade aos nós, já que o uso de parâmetros oferece a possibilidade de o código ser reconfigurado sem a necessidade de recompilar o código fonte, sendo assim podemos adaptar o nó a diferentes cenários sem conhecer detalhes de sua implementação. 
+Uma característica bastante interessante dos nós ROS é a possibilidade de parâmetros serem modificados no momento em que o nó é iniciado. Esta característica proporciona maior flexibilidade aos nós, já que o uso de parâmetros oferece a possibilidade de o código ser reconfigurado sem a necessidade de recompilar o código fonte, sendo assim podemos adaptar o nó a diferentes cenários sem conhecer detalhes de sua implementação~\cite{rosLearning}. 
 
 
 \subsection{Tópicos ROS}
@@ -219,9 +202,9 @@ As mensagens ROS são estruturas de dados simples que descrevem os tipos de dado
 
 \subsection{ROS \textit{master}}
 
-O ROS \textit{master} é o responsável por registrar nomes dos elementos que fazem parte do sistema, entre eles estão os nós, tópicos, serviços, action, tipos de mensagens, ele também é o encarregado por fornecer o servidor de parâmetros. Por gerenciar as informações das conexões entre as trocas de mensagens entre os nós, o \textit{master} é o primeiro elemento que deve ser executado no ROS. Afunção do \textit{master} é permitir que um determinado nó encontre outro, uma vez localizados os nós poderão se comunicar através de uma conexão per-to-per.
+O ROS \textit{master} é o responsável por registrar nomes dos elementos que fazem parte do sistema, entre eles estão os nós, tópicos, serviços, action, tipos de mensagens, ele também é o encarregado por fornecer o servidor de parâmetros. Por gerenciar as informações das conexões entre as trocas de mensagens entre os nós, o \textit{master} é o primeiro elemento que deve ser executado no ROS. Afunção do \textit{master} é permitir que um determinado nó encontre outro, uma vez localizados os nós poderão se comunicar através de uma conexão per-to-per~\cite{RosMaster}.
 
-No momento em que um no é executado no sistema, ele registra seu nome no \textit{master}. Sendo assim, o ROS \textit{master} possui os detalhes de todos os nós rodando no sistema. No momento em que qualquer detalhes de um nós muda, ele gera um callback para atualizar as novas informações no \textit{master}. Quando um nó inicia a publicação de um tópico ele informará todos os detalhes ao \textit{master}, desde do nome até o tipo de dados que serão enviados, em seguida, o \textit{master} verifica se existe algum outro nó lendo o mesmo tópico, se algum nó estão querendo fazer a leitura deste tópico o ROS \textit{master} irá compartilhar detalhes do nó que está publicando com o nós que querem ler o tópico.
+No momento em que um no é executado no sistema, ele registra seu nome no \textit{master}. Sendo assim, o ROS \textit{master} possui os detalhes de todos os nós rodando no sistema. No momento em que qualquer detalhes de um nós muda, ele gera um callback para atualizar as novas informações no \textit{master}. Quando um nó inicia a publicação de um tópico ele informará todos os detalhes ao \textit{master}, desde do nome até o tipo de dados que serão enviados, em seguida, o \textit{master} verifica se existe algum outro nó lendo o mesmo tópico, se algum nó estão querendo fazer a leitura deste tópico o ROS \textit{master} irá compartilhar detalhes do nó que está publicando com o nós que querem ler o tópico~\cite{rosPYO}.
 
 Na Figura~\ref{fig:rosMastering} podemos ver como se da a interação entre o \textit{master} e os nós que farão a comunicação.
 
@@ -236,4 +219,4 @@ Na Figura~\ref{fig:rosMastering} podemos ver como se da a interação entre o \t
 
 \subsection{ROS Parameters}
 
-Parâmetros são variáveis globais que podem ser usadas por nós. Os parâmetros são criados com valores padrões, que podem ser lidos ou escritos por algum processo dentro do sistema ROS\@. O principal objetivo dos parâmetros é fornecer ao sistema a capacidade de se adaptar a cenários distintos de maneira ágil. Por exemplo, o desenvolvedor pode criar um nó para leitura de uma câmera USB, dando à esse nós parâmetros para que usuários desse nós possam configurar o frame rate em que os dados serão publicados, o nome da porta USB em que a câmera está conectada, entre outros, sempre ficando a critério do desenvolvedor. Em casos especiais os parâmetros poderão ser atualizados em tempo de execução, uma função muito útil principalmente em sistemas dinâmicos, que opera em constante mudança.
+Parâmetros são variáveis globais que podem ser usadas por nós. Os parâmetros são criados com valores padrões, que podem ser lidos ou escritos por algum processo dentro do sistema ROS\@. O principal objetivo dos parâmetros é fornecer ao sistema a capacidade de se adaptar a cenários distintos de maneira ágil. Por exemplo, o desenvolvedor pode criar um nó para leitura de uma câmera USB, dando à esse nós parâmetros para que usuários desse nós possam configurar o frame rate em que os dados serão publicados, o nome da porta USB em que a câmera está conectada, entre outros, sempre ficando a critério do desenvolvedor. Em casos especiais os parâmetros poderão ser atualizados em tempo de execução, uma função muito útil principalmente em sistemas dinâmicos, que opera em constante mudança~\cite{rosLearning}.
