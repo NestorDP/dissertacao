@@ -4,8 +4,7 @@
 %================================
 SoC é um acrônimo de \textit{System-on-a-Chip} ou apenas \textit{System on Chip}, o qual é um sistema computacional inteiro contido em apenas um circuito integrado. Sendo assim, um SoC pode combinar diferentes elementos, em diferentes configurações, para formar um sistema completo.  Portanto um SoC não se restringe à apenas um processador: além da CPU,  ele integra memória, periféricos de controle (por exemplo, barramento de comunicação USB), unidade de processamento gráfico e outros periféricos específicos para uma determinada aplicação.  
 
-Para \citeonline{MichelSoC}, um system-on-chip é uma arquitetura que estabelece uma montagem de processadores, memórias, e interconexões feitos sobre medida para uma determinada aplicação. A figura~\ref{fig:socbasic} ilustra um SoC com alguns elementos básicos, que pode incluir múltiplos processadores  de diferentes arquiteturas, interconectados com uma ou mais memórias, o que pode oferecer meios de se criar sistemas reconfiguráveis, adicionando maior flexibilidade a um SoC.  Em muitas ocasiões um SoC pode ser equipado com componentes analógicos, como conversores analógico-digitais.
-
+Para \citeonline{MichelSoC}, um system-on-chip é uma arquitetura que estabelece uma montagem de processadores, memórias, e interconexões feitos sobre medida para uma determinada aplicação. A figura~\ref{fig:socbasic} ilustra um SoC com alguns elementos básicos, que pode incluir múltiplos processadores  de diferentes arquiteturas, interconectados com uma ou mais memórias, o que pode oferecer meios de se criar sistemas reconfiguráveis, adicionando maior flexibilidade a um SoC.  
 
 \begin{figure}[ht]
 	\caption{Esquema SoC básico}
@@ -18,7 +17,7 @@ Para \citeonline{MichelSoC}, um system-on-chip é uma arquitetura que estabelece
 % Descrição Cyclone V pincipais característica, famílias, imagem 
 %================================
 
-Dentre os dispositivos classificados como SoC, a Intel fornece uma linha de produtos classificados como SoC-FPGA, os quais se caracterizam por possuir um rede de FPGA integrados a um Processador ARM\@. Uma família de produtos que possuem essa característica é a Cyclone V SoC-FPGA\@. Estes componentes são constituídos por um \textit{Hardware Processor System} (HPS) que possui processadores ARM Cortex-A9 de um ou dois núcleos e um FPGA\@. A Figura~\ref{fig:socfpga} oferece uma visão global da integração entre os dois componetes principais do SoC-FPGA da família Cyclone V. 
+Dentre os dispositivos classificados como SoC, a Intel fornece uma linha de produtos classificados como SoC-FPGA, os quais se caracterizam por possuir um rede de FPGA integrados a um processador ARM\@. Uma família de produtos que possuem essa característica é a Cyclone V SoC-FPGA\@. Estes componentes são constituídos por um \textit{Hardware Processor System} (HPS) que possui processadores ARM Cortex-A9 de um ou dois núcleos e um FPGA\@. A Figura~\ref{fig:socfpga} oferece uma visão global da integração entre os dois componentes principais do SoC-FPGA da família Cyclone V. 
 
 \begin{figure}[ht]
 	\caption{Diagrama de blocos simplificado Cyclone V}
@@ -28,7 +27,7 @@ Dentre os dispositivos classificados como SoC, a Intel fornece uma linha de prod
     \end{center}\label{fig:socfpga}
 \end{figure}
 
-Lançada iniciante pela Altera que foi adquirida em 2015 pela Intel~\cite{intelbuyaltera}, a família Cyclone V SoC-FPGA alia o poder de processamento do processador Cortex-A9 à versatilidade e flexibilidade do FPGA, o que faz desta linha de componentes possuir um alto poder de processamento aliado a um baixo consumo. Os caminhos de interconexão entre o HPS e o FPGA do Cyclone V proporciona altas taxas de transferência, o que seria inviável em sistemas com dois chips. Esta estratégia de integração em um único circuito integrado oferece~\cite{CycloneV}:
+Lançada iniciante pela Altera que foi adquirida em 2015 pela Intel~\cite{intelbuyaltera}, a família Cyclone V SoC-FPGA alia o poder de processamento do processador Cortex-A9 à versatilidade e flexibilidade do FPGA, o que faz desta linha de componentes possuir um alto poder de processamento aliado a um baixo consumo. Os caminhos de interconexão entre o HPS e o FPGA do Cyclone V proporcionam altas taxas de transferência, o que seria inviável em sistemas com dois chips. Esta estratégia de integração em um único circuito integrado oferece~\cite{CycloneV}:
 
 \begin{itemize}
     \item Largura de banda de pico de mais de 100 Gbps;
@@ -42,7 +41,7 @@ Este nível de integração entre os dois componentes que formam o SoC FPGA prov
 O processador Cortex A9 é uma linha de processadores ARM otimizados para alcançarem maior desempenho aliado a um baixo consumo. Esta linha de processadores ARM é uma das mais utilizadas, nas mais diversas aplicações. O Cortex A9 possui uma estrutura interna configurável, o que oferece flexibilidade ideal para o desenvolvimento de um novo SoC.  Na Tabela~\ref{tab:cortexA9config} são listadas algumas das configurações básicas do processador Cortex A9.
 
 \begin{table}[ht]
-    \caption{Confi básicas do ARM Cortex A9 }
+    \caption{Configurações básicas do ARM Cortex A9 }
     \begin{center}    
         \begin{tabular}{ll}
         \hline \hline
@@ -80,7 +79,33 @@ O Cortex-A9 MPCore processor é formado por três partes. Estas partes são comp
     \item Um controlador de interrupção integrado que é uma implementação do Generic Interrupt Controller. 
 \end{itemize}
 
+
+
+
+
+
+
+
+
+
+
+
+
 É possível implementar apenas um processador no cluster do Cortex-A9 MPCore, para isso, o processador deve ser implementado com suas próprias configurações de hardware. Mesmo contendo apenas um processador um SCU ainda estaré disponível, bem como ACP como um opcional. A Figura~\ref{fig:mpcore} apresenta um diagrama que representa o Cortex-A9 MPCore processor.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{figure}[ht]
 	\caption{Cortex-A9 MPCore Processor}
