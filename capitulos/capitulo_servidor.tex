@@ -4,7 +4,7 @@
 %=====================================
 No modelo cliente-servidor, o servidor é o elemento responsável por executar uma ação somente após um pedido realizado pelo cliente, sendo assim, o servidor deve estar sempre preparado para responder à uma solicitação de serviço. Deste modo, além da capacidade de se comunicar com o cliente, o servidor deve oferecer algum serviço de interesse do cliente. 
 
-Neste trabalho o programa servidor disponibiliza ao cliente a interface com o FPGA presente no SoC. Assim, ao receber o pedido do cliente, o servidor deve ser capaz de receber os dados vindos do cliente à unidade de processamento embarcada no FPGA e em seguida devolver esses dados já processados ao cliente. Entretanto, antes mesmo de iniciar o desenvolvimento do código do servidor, devemos compilar uma distribuição Linux e configurar o processo de boot desse sistema no processador ARM presente no SoC. Estas etapas no desenvolvimento do servidor serão descritas neste capítulo.
+Neste trabalho o programa servidor disponibiliza ao cliente a interface com o FPGA presente no SoC. Assim, ao receber o pedido do cliente, o servidor deve ser capaz de enviar os dados vindos do cliente à unidade de processamento embarcada no FPGA e em seguida devolver esses dados já processados ao cliente. Entretanto, antes mesmo de iniciar o desenvolvimento do código do servidor, devemos compilar uma distribuição Linux e configurar o processo de boot desse sistema no processador ARM presente no SoC. Estas etapas do desenvolvimento do servidor serão descritas neste capítulo.
 
 % explicar processo de boot
 %=====================================
@@ -38,7 +38,7 @@ Essas aplicações simplificam a comunicação com o FPGA a partir de simples co
 \begin{figure}[ht]
 	\caption{Visão geral da distribuição Linux \textit{rsyocto}}
 	\begin{center}
-		\includegraphics[scale=0.45]{imagens/rsYoctoLayers.jpg}\\
+		\includegraphics[scale=0.55]{imagens/rsYoctoLayers.jpg}\\
 		{\small \textbf{Fonte:}\cite{rsyocto}}
     \end{center}\label{fig:rsyocto}
 \end{figure}
@@ -54,7 +54,6 @@ A seguir são listadas algumas características da distribuição linux rsyocto 
 	\item Componentes Hard IP (I²C-,SPI-, CAN-BUS or UART) do HPS estão roteados para o FPGA\@;
 	\item Suporte para o USB \textit{Host} com ferramentas de teste (lsusb);
 	\item Interface de rede com suporte ao iPv4 dinâmico e estático;
-	\item OpenSSH-Server inicia automaticamente durante o \textit{boot};
 	\item Compilador gcc 9.3.0; glibc e glib-2.0 da \textit{GNU C Library}, cmake 3.16.5
 	\item Python 3.8 Python3-dev e Python-dev;
 	\item git 2.31, wget 1.20.3, curl 7.69.1; 
@@ -65,9 +64,10 @@ A seguir são listadas algumas características da distribuição linux rsyocto 
 % Explicar o códgo do servidor
 %=====================================
 \section{Servidor: \textit{Interface socket server}}
-Com o Linux já devidamente configurado, ele já pode ser inicializado no processador do SoC, assim podemos iniciar o desenvolvimento do servidor. No primeiro momento devemos realizar o download do código fonte da biblioteca de comunicação, a libinterfacesocket, que já foi detalhada anteriormente, o código fonte pode ser baixado em~\cite{interface-socket-server}. Com os arquivos já no sistema de diretórios do SoC devemos realizar a compilação e a instalação da libinterfacesocket, para que o servidor tenha acesso às suas funcionalidades. 
 
-Logo que é inicializado o servidor mantém uma porta aberta para estabelecer uma conexão com o cliente e, assim que a conexão é estabelecida, o cliente já pode começar a enviar os dados. Ao receber os dados do cliente, o servidor envia-os ao FPGA que os processa e os devolve ao servidor para que ele possa reenviar os dados já processados ao cliente. Um fluxograma simplificado desse processo pode ser visualizado na Figura \ref{fig:fluxoServidor}.
+Com o Linux já devidamente configurado, ele já pode ser inicializado no processador do SoC, assim podemos iniciar o desenvolvimento do servidor. Para manter o independência entre os componentes do sistema, afim de garantir a sua modularidade, o código do servidor não se baseia no ROS\@, ou seja, não é necessário haver o uma instância do ROS rodando no processador do SoC\@. 
+
+Através da biblioteca compartilhada libinterfacesocket, descrita anteriormente, podemos manter o padrão da comunicação de rede entre o servidor e o clientes. Sendo assim, para o desenvolmento do servidor, é preciso, inicialmente, realizar o download do código fonte da biblioteca de comunicação, a libinterfacesocket, o código fonte pode ser baixado em~\cite{interface-socket-server}. CApós o download, devemos realizar a compilação e a instalação da libinterfacesocket para que o servidor tenha acesso às suas funcionalidades. 
 
 \begin{figure}[ht]
 	\caption{Fluxograma simplificado do servidor}
@@ -77,9 +77,22 @@ Logo que é inicializado o servidor mantém uma porta aberta para estabelecer um
     \end{center}\label{fig:fluxoServidor}
 \end{figure} 
 
-O acesso do servidor ao FPGA é feito através de mapeamento de endereços do linux, uma vez que os SoCs da Intel possuem uma arquitetura de memória mapeada. Desta forma, além da biblioteca desenvolvida durante a pesquisa, um outro arquivo cabeçalho é necessário para facilitar o acesso aos endereços de memória do HPS\@. Quando uma instância do processador ARM é incluída no projeto do Platform Designer, é gerado um arquivo.sopcinfo no momento em que o projeto é compilado. Podemos usar esse arquivo como entrada da ferramenta \textit{sopc-create-header-files} presente no SoC EDS para gerar um novo arquivo com extensão \textit{.h}, que lista os endereços base de todos os módulos IP incluídos no FPGA\@. 
+Logo que é inicializado o servidor mantém uma porta aberta para estabelecer uma conexão com o cliente e, assim que a conexão é estabelecida, o cliente já pode começar a enviar os dados. Ao receber os dados do cliente, o servidor envia-os ao FPGA que os processa e os devolve ao servidor para que ele possa reenviar os estes dados, já processados, ao cliente. Um fluxograma simplificado desse processo pode ser visualizado na Figura \ref{fig:fluxoServidor}.
 
-Portanto, o arquivo cabeçalho gerado disponibiliza o \textit{offset} do endereço em que cada periférico está localizado para cada uma das FPGA-bridges disponíveis. Deste modo o servidor pode enviar ou receber dados ao periférico conhecendo o endereço da FPGA-bridge em que este periférico está conectado e o seu nome, sem a necessidade de se conhecer exatamente o seu endereço. Na Figura~\ref{fig:codigodobro} é apresentada uma parte do arquivo cabeçalho gerado pela ferramenta \textbf{sopc-create-reader-files}, neste trecho são realizadas algumas definições que facilitam o acesso ao IP dobro, que já está instanciado no FPGA\@. Este módulo IP foi usado para testar o processo completo de comunicação entre o tópico ROS até o FPGA\@.
+O acesso do servidor ao FPGA é feito através de mapeamento de endereços do linux, uma vez que os SoCs da Intel possuem uma arquitetura de memória mapeada. Desta forma, além da biblioteca desenvolvida durante a pesquisa, a libinterfacesocket, um outro arquivo cabeçalho é necessário para facilitar o acesso aos endereços de memória do HPS\@. 
+
+Quando uma instância do processador ARM é incluída no projeto do Platform Designer, Figura~\ref{fig:Platform}, é gerado um arquivo.sopcinfo no momento em que o projeto é compilado. Podemos usar esse arquivo como entrada da ferramenta \textit{sopc-create-header-files}, presente no \textit{SoC FPGA Embedded Development Suite} - SoC EDS, para gerar um novo arquivo com extensão \textit{.h}. Este arquivo cabeçalho lista os endereços base de todos os módulos IP incluídos no FPGA\@. 
+
+\begin{figure}[ht]
+	\caption{Platform Designer}
+	\begin{center}
+		\includegraphics[scale=0.35]{imagens/Platiform.png}\\
+		{\small \textbf{Fonte:}Elaborado pelo autor}
+    \end{center}\label{fig:Platform}
+\end{figure} 
+
+Portanto, o arquivo cabeçalho gerado disponibiliza o \textit{offset} do endereço em que cada periférico está localizado, incluindo os novos môdulos periféricos desenvolvidos, para cada uma das FPGA-bridges disponíveis. Deste modo o servidor pode enviar ou receber dados ao periférico conhecendo o endereço da FPGA-bridge em que este periférico está conectado e o seu nome, sem a necessidade de se conhecer exatamente o seu endereço. Na Figura~\ref{fig:codigodobro} é apresentada uma parte do arquivo cabeçalho gerado pela ferramenta \textbf{sopc-create-reader-files}, neste trecho são realizadas algumas definições que facilitam o acesso ao IP dobro, que já está instanciado no FPGA\@. Este módulo IP foi usado para testar o processo completo de comunicação entre o tópico ROS até o FPGA\@.
+
 
 \begin{figure}[ht]
 \caption{Definição de endereço presente no arquivo hps\underline{ }0.h}
@@ -101,42 +114,37 @@ Portanto, o arquivo cabeçalho gerado disponibiliza o \textit{offset} do endere�
 \end{figure}
 
 
-Para interagir com FPGA usando o recurso de memória mapeada, a primeira coisa que devemos fazer é abrir o dispositivo de memória do sistema. Em distribuições linux o acesso à memória física do sistema é realizado através do dispositivo /dev/mem, esse dispositivo funciona como um arquivo de texto que representa uma imagem da memória principal do computador~\cite{manmem}. Por se comportar como um arquivo no sistema, podemos no programa abri-lo como abriríamos qualquer arquivo de texto, com a funções \textit{open}, como pode ser visto na linha 2 da Figura~\ref{fig:codigomap}.
-
-Em seguida podemos usar o descritor de arquivo gerado como retorno da função open, para criar um ponteiro, que dará acesso à memória principal do sistema. Para gerarmos este ponteiro, podemos usar a função \textit{mmap}, a qual cria um mapeamento virtual no espaço de endereço passado como argumento da função. Nos dois primeiros argumentos da função \textit{mmap}, como pode ser visto na linha 10 da Figura~\ref{fig:codigomap},  podemos definir o espaço de endereços para o mapeamento. No código apresentado este espaço se inicial no endereço zero, NULL\@, e termina na constante HPS\underline{ }TO\underline{ }FPGA\underline{ }AXI\underline{ }SPAN (0x3C000000), que guarda o valor do alcance máximo do espaço de endereço das interfaces entre o HPS e o FPGA\@. O último argumento da função \textit{mmap} é o endereço base da \textit{Lightweight HPS-to-FPGA-Bridge} (0xC0000000), representado pela constante HPS\underline{ }TO\underline{ }FPGA\underline{ }AXI\underline{ }BASE\@.
-
-
+Para interagir com FPGA usando o recurso de memória mapeada, a primeira coisa que devemos fazer é abrir o dispositivo de memória do sistema. Em distribuições linux o acesso à memória física do sistema é realizado através do dispositivo /dev/mem, esse dispositivo funciona como um arquivo de texto que representa uma imagem da memória principal do computador~\cite{manmem}. Por se comportar como um arquivo no sistema, é possível assim, abri-lo como abriríamos qualquer arquivo de texto, com a funções \textit{open}, como pode ser visto na linha 2 da Figura~\ref{fig:codigomap}.
 
 \begin{figure}[ht]
-\caption{Memória mapeada}
-\begin{center}
-\begin{lstlisting}[language=C++, backgroundcolor=\color{gray!10}]
- // Open up the /dev/mem device
- devmem_fd = open("/dev/mem", O_RDWR | O_SYNC);
- if(devmem_fd < 0) {
-	perror("devmem open"); 
-	exit(EXIT_FAILURE);
- }	
+	\caption{Memória mapeada}
+	\begin{center}
+	\begin{lstlisting}[language=C++, backgroundcolor=\color{gray!10}]
+	 // Open up the /dev/mem device
+	 devmem_fd = open("/dev/mem", O_RDWR | O_SYNC);
+	 if(devmem_fd < 0) {
+		perror("devmem open"); 
+		exit(EXIT_FAILURE);
+	 }	
+	 lw_bridge_map = (uint32_t *)mmap( NULL, 
+					   HPS_TO_FPGA_AXI_SPAN, 
+					   PROT_READ|PROT_WRITE, 
+					   MAP_SHARED, 
+					   devmem_fd, 
+					   HPS_TO_FPGA_AXI_BASE ); 
+									
+	 if(lw_bridge_map == MAP_FAILED) {
+		perror("devmem mmap");
+		close(devmem_fd);
+		exit(EXIT_FAILURE);
+	 }
+	\end{lstlisting}
+	{\small \textbf{Fonte:}Elaborado pelo autor}	
+	\end{center}\label{fig:codigomap}
+	\end{figure} 
 
- // mmap() the entire address space of the Lightweight 
- // bridge so we can access our custom module 
- lw_bridge_map = (uint32_t *)mmap( 
-				NULL, 
-				HPS_TO_FPGA_AXI_SPAN, 
-				PROT_READ|PROT_WRITE, 
-				MAP_SHARED, 
-				devmem_fd, 
-				HPS_TO_FPGA_AXI_BASE ); 
-				
- if(lw_bridge_map == MAP_FAILED) {
-	perror("devmem mmap");
-	close(devmem_fd);
-	exit(EXIT_FAILURE);
- }
-\end{lstlisting}
-{\small \textbf{Fonte:}Elaborado pelo autor}	
-\end{center}\label{fig:codigomap}
-\end{figure} 
+	
+Em seguida podemos usar o descritor de arquivo gerado como retorno da função open, para criar um ponteiro, que dará acesso à memória principal do sistema. Para gerarmos este ponteiro, podemos usar a função \textit{mmap}, a qual cria um mapeamento virtual no espaço de endereço passado como argumento da função. Nos dois primeiros argumentos da função \textit{mmap}, como pode ser visto na linha 10 da Figura~\ref{fig:codigomap},  podemos definir o espaço de endereços para o mapeamento. No código apresentado este espaço se inicial no endereço zero, NULL\@, e termina na constante HPS\underline{ }TO\underline{ }FPGA\underline{ }AXI\underline{ }SPAN (0x3C000000), que guarda o valor do alcance máximo do espaço de endereço das interfaces entre o HPS e o FPGA\@. O último argumento da função \textit{mmap} é o endereço base da \textit{Lightweight HPS-to-FPGA-Bridge} (0xC0000000), representado pela constante HPS\underline{ }TO\underline{ }FPGA\underline{ }AXI\underline{ }BASE\@.
 
 Agora que já existe um ponteiro para a região de memória onde se encontra a interface de comunicação com o FPGA, podemos enviar e receber dados para o IP instanciado no FPGA\@. Para isto, vamos usar este ponteiro para o endereço da \textit{HPS-to-FPGA-Bridge}, somado com o \textit{offset} presente no arquivo hps\underline{ }0.h.  Consequentemente, será possível interagir com o IP em um programa escrito em linguagem C, da mesma maneira que interagimos com um ponteiro comum. O bloco de código da Figura~\ref{fig:codigomapdobro} ilustra este processo de escrita e leitura de dados em um IP através de um ponteiro.
 
