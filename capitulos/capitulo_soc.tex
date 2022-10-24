@@ -49,20 +49,20 @@ O processador Cortex A9 é uma linha de processadores ARM otimizados para alcan�
         Multicore                       & 1-4 cores                                   \\ \hline \hline
         \multirow{7}{*}{Suporte ISA}    & Armv7-A                                     \\ \cline{2-2} 
                                         & Thumb-2 ou Thumb                            \\ \cline{2-2}
-                                        & Tecnologia de segurança TrustZone               \\ \cline{2-2}
-                                        & Jazelle DBX e Tecnologia RCT            \\ \cline{2-2}
-                                        & Extensão DSP                               \\ \cline{2-2}
+                                        & Tecnologia de segurança TrustZone           \\ \cline{2-2}
+                                        & Jazelle DBX e Tecnologia RCT                \\ \cline{2-2}
+                                        & Extensão DSP                                \\ \cline{2-2}
                                         & Neon (Opcional)                             \\ \cline{2-2}
-                                        & Ponto Flutuante (Opcional)                   \\ \hline \hline
-        Unidade de Gerenciamento de Memória (MMU)    & Armv7 MMU                \\ \hline \hline
-        Depuração                  & CoreSight                                   \\ \hline \hline
+                                        & Ponto Flutuante (Opcional)                  \\ \hline \hline
+        Unidade de Gerenciamento de Memória (MMU)    & Armv7 MMU                      \\ \hline \hline
+        Depuração                  & CoreSight                                        \\ \hline \hline
         \multirow{4}{*}{Caracteristicas}& Dual-issue, partially out-of-order pipeline \\ \cline{2-2}
                                         & \begin{tabular}[c]{@{}l@{}}Arquitetura do sistema flexível com
                                             \\caches configuráveis\end{tabular}       \\ \cline{2-2}
-                                        & Sistema de coerência com ACP port               \\ \cline{2-2}
+                                        & Sistema de coerência com ACP port           \\ \cline{2-2}
                                         & \begin{tabular}[c]{@{}l@{}}Desempenho 50\% maior do que  
                                             \\ o processador Cortex-A8  configurado 
-                                            \\ como \textit{single-core}\end{tabular}          \\ \hline\hline
+                                            \\ como \textit{single-core}\end{tabular} \\ \hline\hline
         \end{tabular}
         \\{\small \textbf{Fonte:} \citeonline{armCortexA9}}
     \end{center}\label{tab:cortexA9config}
@@ -79,33 +79,7 @@ O Cortex-A9 MPCore processor é formado por três partes. Estas partes são comp
     \item Um controlador de interrupção integrado que é uma implementação do Generic Interrupt Controller. 
 \end{itemize}
 
-
-
-
-
-
-
-
-
-
-
-
-
-É possível implementar apenas um processador no cluster do Cortex-A9 MPCore, para isso, o processador deve ser implementado com suas próprias configurações de hardware. Mesmo contendo apenas um processador um SCU ainda estaré disponível, bem como ACP como um opcional. A Figura~\ref{fig:mpcore} apresenta um diagrama que representa o Cortex-A9 MPCore processor.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+A Figura~\ref{fig:mpcore} apresenta um diagrama que representa o Cortex-A9 MPCore processor.
 
 \begin{figure}[ht]
 	\caption{Cortex-A9 MPCore Processor}
