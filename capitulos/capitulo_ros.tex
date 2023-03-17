@@ -49,7 +49,7 @@ A seguir serão listadas algumas características que incentivam a colaboração
 \end{itemize}
 
 
-\subsection{Computacão distribuida}
+\subsection{Computacão distribuída}
 Grande parte de robôs modernos possuem diferentes unidades de processamento, que podem estar localizadas em diferentes computadores. Desde sensores microprocessados até mesmo controles específicos para motores, tais dispositivos podem possuir suas próprias unidades computacionais. Mesmo possuindo apenas um computador, dividir o processamento em processos individuais específicos para cada função e fazer com que eles trabalhem em conjunto na resolução de um problema maior, é uma excelente abordagem para a arquitetura de robôs modernos. Além disso, múltiplos robôs podem trabalhar de forma colaborativa dividindo atividades entre eles, ou até mesmo interagindo com seres humanos que poderiam enviar comandos através de um computador ou celular. Em todos estes casos, é necessário a comunicação entre processos, que podem ou não estarem no mesmo computador. 
 
 O ROS é um \textit{Inter-process communication framework} e de fato ele usa uma rede TCP/IP para realizar essa comunicação entre processos. Ele usa sockets TCP~\cite{RosTCP}, ou UDP quando a latência for mais importante que a gartia de entrega~\cite{RosUDP}, para transportar dados entre os processos. Esta abordagem proporciona grande flexibilidade na troca de mensagem: processos podem se comunicar com outros mesmo se eles não estiverem na mesma máquina, ou até mesmo em robôs separados, bastando para tal que todas as máquinas que compartilham estejam na mesma rede. Isso faz com que até mesmo processos rodando na internet possam participar da comunicação e realizar uma parte do processamento de um robô.
